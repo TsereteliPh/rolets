@@ -1,0 +1,52 @@
+.btn {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	justify-content: center;
+	padding: 30px 35px;
+	color: var(--fc-light);
+	background: var(--primary);
+	border: none;
+	border-radius: 10px;
+	transition: var(--transition);
+
+	@include mouse {
+
+		&:hover {
+			transform: translateY(-3px);
+		}
+	}
+
+	&--thick {
+		flex-direction: column;
+		gap: 25px;
+		align-items: flex-start;
+		width: 100%;
+		max-width: 270px;
+		padding: 20px;
+		background: var(--secondary);
+
+		svg {
+			align-self: flex-end;
+		}
+	}
+}
+
+.btn-underline {
+	width: fit-content;
+	color: var(--secondary);
+	font-weight: 700;
+	font-size: 14px;
+	font-family: var(--font-secondary);
+	text-decoration: underline;
+	background: none;
+	border: none;
+	transition: var(--transition);
+
+	@include mouse {
+
+		&:hover {
+			color: var(--primary);
+		}
+	}
+}
