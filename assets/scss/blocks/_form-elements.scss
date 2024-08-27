@@ -1,0 +1,37 @@
+.input {
+	position: relative;
+	width: 100%;
+	min-height: 76px;
+	padding: 25px 20px;
+	color: var(--fc-dark);
+	font-size: 14px;
+	font-family: var(--font-secondary);
+	background: var(--fc-light);
+	border: 1px solid transparent;
+	border-radius: 10px;
+	transition: var(--transition);
+
+	&:hover,
+	&:focus {
+		border-color: var(--secondary);
+	}
+
+	&::placeholder {
+		color: #8e8e8e;
+	}
+
+	&--dark {
+		color: var(--fc-light);
+		background: none;
+		border-color: #3f3f3f;
+
+		&:hover,
+		&:focus {
+			border-color: var(--secondary);
+		}
+
+		&::placeholder {
+			color: var(--fc-light);
+		}
+	}
+}
