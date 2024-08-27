@@ -141,15 +141,14 @@ function sendForm() {
 				method: 'POST',
 				body: formData,
 			})
-				.then(response => response.text())
-				.then(data => {
+				.then(response => {
 					form.classList.remove('loader');
 					Fancybox.close(true);
 					form.reset();
 					setTimeout(function () {
 						Fancybox.show([
 							{
-								src: '#success',
+								src: response.ok ? '#success' : '#failure',
 								type: 'inline',
 							},
 						]);

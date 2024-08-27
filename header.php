@@ -59,7 +59,7 @@
 						<a href="tel:<?php echo preg_replace( '/[^0-9,+]/', '', $tel ); ?>" class="header__tel"><?php echo $tel; ?></a>
 					<?php endif; ?>
 
-					<button class="btn-underline header__callback" type="button" data-fancybox data-src="<?php //TODO modal ?>">Обратный звонок</button>
+					<button class="btn-underline header__callback" type="button" data-fancybox data-src="#callback">Обратный звонок</button>
 				</div>
 
 				<button class="header__burger" type="button">
@@ -85,7 +85,7 @@
 					<a href="tel:<?php echo preg_replace( '/[^0-9,+]/', '', $tel ); ?>" class="header__tel"><?php echo $tel; ?></a>
 				<?php endif; ?>
 
-				<button class="btn-underline header__callback" type="button" data-fancybox data-src="<?php //TODO modal ?>">Обратный звонок</button>
+				<button class="btn-underline header__callback" type="button" data-fancybox data-src="#callback">Обратный звонок</button>
 			</div>
 
 			<?php if ( $socials ) : ?>
@@ -109,7 +109,7 @@
 					<div class="header__info-text"><?php echo $header_text['text']; ?></div>
 				<?php endif; ?>
 
-				<button class="btn btn--thick header__info-button" type="button" data-fancybox data-src="<?php //TODO modal ?>">
+				<button class="btn btn--thick header__info-button" type="button" data-fancybox data-src="#measure">
 					<svg width="16" height="16"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
 					Заказать замер
 				</button>

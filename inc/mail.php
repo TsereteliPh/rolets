@@ -119,8 +119,10 @@ function mail_meta_box_function( $post ) {
 add_action( "wp_ajax_send_mail", "send_mail" );
 add_action( "wp_ajax_nopriv_send_mail", "send_mail" );
 function send_mail() {
-	if ( empty ( $_POST['form_name'] ) || empty( $_POST['page_request'] ) ) exit;
-	if ( $_POST['form_name'] == 'Расчет' && ! wp_verify_nonce( $_POST['callback_input'], $_POST['form_name'] ) ) exit;
+	if ( empty ( $_POST['form_name'] ) || empty( $_POST['page_request'] ) ) throw new ErrorException;
+	if ( $_POST['form_name'] == 'Звонок' && ( ! wp_verify_nonce( $_POST['modal-callback-nonce'], $_POST['form_name'] ) && ! wp_verify_nonce( $_POST['footer-callback-nonce'], $_POST['form_name'] ) ) ) throw new ErrorException;
+	if ( $_POST['form_name'] == 'Замер' && ! wp_verify_nonce( $_POST['modal-measure-nonce'], $_POST['form_name'] ) ) throw new ErrorException;
+	if ( $_POST['form_name'] == 'Рассылка' && ! wp_verify_nonce( $_POST['footer-mailing-nonce'], $_POST['form_name'] ) ) throw new ErrorException;
 
 	$form_name = $_POST['form_name'];
 	$mail = '';

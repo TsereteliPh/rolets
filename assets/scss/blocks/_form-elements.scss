@@ -35,3 +35,136 @@
 		}
 	}
 }
+
+.radio,
+.checkbox {
+	display: flex;
+	gap: 10px;
+	font-size: 12px;
+
+	@include mouse {
+
+		&:hover {
+
+			.radio__switcher,
+			.checkbox__switcher {
+				border-color: var(--fc-light);
+			}
+		}
+	}
+
+	&__input {
+		display: none;
+		appearance: none;
+	}
+
+	&__switcher {
+		position: relative;
+		flex-shrink: 0;
+		width: 20px;
+		height: 20px;
+		background: none;
+		border: 1px solid var(--secondary);
+		cursor: pointer;
+		transition: var(--transition);
+	}
+
+	&__text {
+		color: #8e8e8e;
+	}
+}
+
+.radio {
+
+	&__switcher {
+		border-radius: 50%;
+
+		&::before {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 10px;
+			height: 10px;
+			background: var(--secondary);
+			border-radius: 50%;
+			transform: translate(-50%, -50%) scale(0);
+			visibility: hidden;
+			transition: var(--transition);
+			content: "";
+		}
+	}
+
+	&__input:checked + &__switcher::before {
+		transform: translate(-50%, -50%) scale(1);
+		visibility: visible;
+	}
+}
+
+.checkbox {
+
+	&__switcher {
+		border-radius: 5px;
+
+		&::before {
+			position: absolute;
+			top: 40%;
+			left: 50%;
+			width: 10px;
+			height: 5px;
+			border-bottom: 1px solid var(--fc-light);
+			border-left: 1px solid var(--fc-light);
+			transform: translate(-50%, -50%) rotate(-45deg);
+			visibility: hidden;
+			opacity: 0;
+			transition: var(--transition);
+			content: "";
+		}
+	}
+
+	&__input:checked + &__switcher {
+		background: var(--secondary);
+	}
+
+	&__input:checked + &__switcher::before {
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+.file-box {
+
+	&__input {
+		display: none;
+		appearance: none;
+	}
+
+	&__label {
+		display: flex;
+		gap: 10px;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		max-width: 230px;
+		min-height: 64px;
+		padding: 20px 30px;
+		font-size: 14px;
+		border: 1px solid #8e8e8e;
+		border-radius: 10px;
+		transition: var(--transition);
+
+		@include xs {
+			max-width: none;
+		}
+
+		@include mouse {
+
+			&:hover {
+				transform: translateY(-3px);
+			}
+		}
+
+		svg {
+			color: var(--secondary);
+		}
+	}
+}
