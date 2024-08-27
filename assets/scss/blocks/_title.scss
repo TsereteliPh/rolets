@@ -1,0 +1,57 @@
+.title {
+	position: relative;
+	padding: 0 15vw 30px 22vw;
+	border-bottom: 1px solid #d9d9d9;
+
+	@include md {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		padding: 0 100px 30px 0;
+	}
+
+	@include sm {
+		padding: 0;
+		border: none;
+	}
+
+	&__small-text {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: fit-content;
+		max-width: 200px;
+		color: #8e8e8e;
+		font-size: 14px;
+
+		@include md {
+			position: static;
+			max-width: none;
+		}
+	}
+
+	&__text {
+		margin-bottom: 0;
+		font-weight: 300;
+		font-size: clamp(1.5rem, 1.154rem + 1.538vw, 3rem);
+		line-height: 1;
+	}
+
+	&__link {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: fit-content;
+		max-width: 200px;
+		font-size: 16px;
+
+		@include lg {
+			max-width: 150px;
+		}
+
+		@include md {
+			position: static;
+			max-width: none;
+		}
+	}
+}
