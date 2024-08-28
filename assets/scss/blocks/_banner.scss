@@ -1,0 +1,177 @@
+.banner {
+	position: relative;
+	display: flex;
+	align-items: center;
+	min-height: 680px;
+	margin: 30px 1.25rem;
+	padding: 50px 1.25rem;
+	overflow: hidden;
+	border-radius: 20px;
+
+	@include to(1750px) {
+		margin: 30px 1.25rem;
+	}
+
+	@include hg {
+		min-height: 600px;
+	}
+
+	@include md {
+		margin: 30px 0.75rem;
+		padding: 40px 0.75rem 20px;
+	}
+
+	@include sm {
+		align-items: stretch;
+		min-height: auto;
+		background: #edeef3;
+	}
+
+	@include xs {
+		margin: 20px 0.75rem;
+	}
+
+	&--small {
+
+		.banner__box {
+			max-width: 500px;
+
+			@include md {
+				max-width: 350px;
+			}
+
+			@include sm {
+				max-width: none;
+			}
+		}
+
+		.banner__link {
+			margin-top: 20px;
+		}
+	}
+
+	&--dark {
+		align-items: flex-end;
+
+		.banner__box {
+			max-width: 600px;
+			padding: 40px;
+			color: var(--fc-light);
+			background: rgba(#232323, 0.8);
+			border-radius: 20px;
+			backdrop-filter: blur(30px);
+
+			@include sm {
+				max-width: none;
+				padding: 0 0 50vw;
+				color: var(--fc-dark);
+				background: none;
+				backdrop-filter: none;
+			}
+
+			@include xs {
+				padding-bottom: 70vw;
+			}
+		}
+
+		.banner__link {
+			margin-top: 0;
+		}
+	}
+
+	&__container {
+		position: static;
+		width: 100%;
+	}
+
+	&__img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+
+		@include sm {
+			top: auto;
+			bottom: 0;
+			height: auto;
+			aspect-ratio: 2/1;
+			border-radius: 20px;
+		}
+
+		@include xs {
+			aspect-ratio: 17/12;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__box {
+		position: relative;
+		z-index: var(--ui-index-1);
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		max-width: 720px;
+
+		@include sm {
+			max-width: none;
+			padding-bottom: 50vw;
+		}
+
+		@include xs {
+			padding-bottom: 70vw;
+		}
+	}
+
+	&__logo {
+		color: var(--primary);
+	}
+
+	&__title {
+		margin-bottom: 0;
+		font-weight: 300;
+		font-size: clamp(1.5rem, 1.154rem + 1.538vw, 3rem);
+
+		span {
+			color: var(--primary);
+			font-weight: 700;
+		}
+	}
+
+	&__text {
+		font-family: var(--font-secondary);
+	}
+
+	&__link {
+		width: fit-content;
+		margin-top: 60px;
+		padding: 25px 60px;
+
+		@include hg {
+			margin-top: 20px;
+		}
+
+		@include sm {
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			width: max-content;
+			margin-top: 0;
+			text-align: center;
+			transform: translateX(-50%);
+		}
+
+		@include xs {
+			max-width: 300px;
+			padding: 20px 60px;
+		}
+	}
+}
