@@ -33,6 +33,12 @@
 			align-self: flex-end;
 		}
 	}
+
+	&--transparent {
+		color: var(--fc-dark);
+		background: none;
+		border: 1px solid var(--primary);
+	}
 }
 
 .btn-underline {
