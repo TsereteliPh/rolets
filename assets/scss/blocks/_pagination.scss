@@ -1,0 +1,26 @@
+.pagination {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	justify-content: center;
+	margin-top: 30px;
+
+	@include xs {
+		margin-top: 20px;
+	}
+
+	&__bullet {
+		display: block;
+		width: 30px;
+		height: 2px;
+		background: #d9d9d9;
+		border-radius: 2px;
+		cursor: pointer;
+		transition: var(--transition);
+
+		&.active {
+			background: var(--secondary);
+			cursor: default;
+		}
+	}
+}
