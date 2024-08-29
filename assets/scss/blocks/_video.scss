@@ -1,0 +1,68 @@
+.video {
+	margin: 40px 0 20px;
+
+	&__container {
+		min-height: 380px;
+		padding: 50px 100px;
+		overflow: hidden;
+		border-radius: 20px;
+
+		@include hg {
+			padding: 40px 60px;
+		}
+
+		@include lg {
+			padding: 40px;
+		}
+
+		@include xs {
+			min-height: 415px;
+			padding: 25px 20px;
+		}
+	}
+
+	&__title {
+		position: relative;
+		z-index: var(--ui-index-1);
+		max-width: 300px;
+		color: var(--fc-light);
+		font-weight: 500;
+		font-size: 24px;
+
+		@include sm {
+			max-width: 250px;
+			font-size: 20px;
+		}
+	}
+
+	&__link {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+
+		@include mouse {
+
+			&:hover {
+
+				img {
+					scale: 1.01;
+				}
+
+				.video__button {
+					color: var(--secondary);
+				}
+			}
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: var(--transition);
+		}
+	}
+}
