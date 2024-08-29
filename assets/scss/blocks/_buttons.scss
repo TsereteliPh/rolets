@@ -59,3 +59,32 @@
 		}
 	}
 }
+
+.btn-play {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 70px;
+	color: var(--fc-light);
+	background: none;
+	border: none;
+	transform: translate(-50%, -55%);
+
+	@include xs {
+		width: 50px;
+	}
+
+	@include mouse {
+
+		&:hover {
+			color: var(--secondary);
+			transform: translate(-50%, -55%);
+		}
+	}
+
+	svg {
+		width: 100%;
+		height: auto;
+		transition: var(--transition);
+	}
+}
