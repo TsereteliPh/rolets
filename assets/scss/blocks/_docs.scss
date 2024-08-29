@@ -1,0 +1,96 @@
+.docs {
+	margin: 50px 0 20px;
+	overflow: hidden;
+
+	&__controls {
+
+		@include sm {
+			display: none;
+		}
+	}
+
+	&__slider {
+		margin-top: 30px;
+
+		@include sm {
+			overflow: visible;
+		}
+	}
+
+	&__item {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 25px 15px;
+		height: auto;
+		padding: 35px;
+		border: 1px solid #d9d9d9;
+		border-radius: 10px;
+
+		@include sm {
+			max-width: 420px;
+		}
+
+		@include xs {
+			max-width: 300px;
+			padding: 25px 20px;
+		}
+	}
+
+	&__item-title {
+		grid-column: span 2;
+		color: #8e8e8e;
+		font-size: 14px;
+		font-family: var(--font-secondary);
+	}
+
+	&__item-img {
+		display: flex;
+		grid-row: span 2;
+		align-items: center;
+		width: auto;
+		height: 180px;
+		aspect-ratio: 1/1.414;
+
+		@include lg {
+			height: 250px;
+		}
+
+		@include md {
+			height: 180px;
+		}
+
+		@include xs {
+			height: 125px;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	}
+
+	&__item-link {
+		margin: auto 0 10px auto;
+		color: var(--fc-dark);
+
+		@include xs {
+			margin: auto auto 0 0;
+		}
+
+		@include mouse {
+
+			&:hover {
+				color: var(--secondary);
+			}
+		}
+	}
+
+	&__pagination {
+		display: none;
+
+		@include sm {
+			display: flex;
+		}
+	}
+}

@@ -275,7 +275,7 @@ try {
 
 //Swiper
 
-//Слайдер blocks/rest
+//Слайдер blocks/advantages
 
 const advantagesSlider = document.querySelector('.advantages__container');
 
@@ -301,6 +301,53 @@ if (advantagesSlider) {
 			},
 			992: {
 				slidesPerView: 3,
+				spaceBetween: 20
+			},
+			769: {
+				slidesPerView: 2,
+				spaceBetween: 20
+			}
+		},
+		on: {
+			afterInit: function() {
+				if (this.slides.length <= this.params.slidesPerView) {
+					this.pagination.el.style.display = 'none';
+				}
+			}
+		}
+	});
+}
+
+//Слайдер blocks/rest
+
+const docsSlider = document.querySelector('.docs__slider');
+
+if (docsSlider) {
+	let docsSwiper = new Swiper(docsSlider, {
+		slidesPerView: 'auto',
+		spaceBetween: 10,
+		centerInsufficientSlides: true,
+		pagination: {
+			el: '.docs__pagination',
+			bulletClass: 'pagination__bullet',
+			bulletActiveClass: 'active',
+			clickable: true
+		},
+		navigation: {
+			nextEl: '.docs__next',
+			prevEl: '.docs__prev',
+		},
+		breakpoints: {
+			1440: {
+				slidesPerView: 4,
+				spaceBetween: 20
+			},
+			1280: {
+				slidesPerView: 3,
+				spaceBetween: 20
+			},
+			992: {
+				slidesPerView: 2,
 				spaceBetween: 20
 			},
 			769: {
