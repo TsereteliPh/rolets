@@ -277,33 +277,43 @@ try {
 
 //Слайдер blocks/rest
 
-const clientsSlider = document.querySelector('.clients__container');
+const advantagesSlider = document.querySelector('.advantages__container');
 
-if (clientsSlider) {
-	let clientsSwiper = new Swiper(clientsSlider, {
+if (advantagesSlider) {
+	let advantagesSwiper = new Swiper(advantagesSlider, {
 		slidesPerView: 'auto',
-		centeredSlides: true,
-		spaceBetween: 25,
-		navigation: {
-			nextEl: '.slider-panel__next',
-			prevEl: '.slider-panel__prev',
+		spaceBetween: 60,
+		centerInsufficientSlides: true,
+		pagination: {
+			el: '.advantages__pagination',
+			bulletClass: 'pagination__bullet',
+			bulletActiveClass: 'active',
+			clickable: true
 		},
 		breakpoints: {
 			1440: {
+				slidesPerView: 5,
+				spaceBetween: 20
+			},
+			1280: {
 				slidesPerView: 4,
-				centeredSlides: false,
+				spaceBetween: 20
 			},
 			992: {
 				slidesPerView: 3,
-				centeredSlides: false,
+				spaceBetween: 20
 			},
 			769: {
 				slidesPerView: 2,
-				centeredSlides: false,
-			},
-			577: {
-				centeredSlides: false,
-			},
+				spaceBetween: 20
+			}
+		},
+		on: {
+			afterInit: function() {
+				if (this.slides.length <= this.params.slidesPerView) {
+					this.pagination.el.style.display = 'none';
+				}
+			}
 		}
 	});
 }

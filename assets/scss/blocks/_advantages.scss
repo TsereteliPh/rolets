@@ -1,0 +1,116 @@
+.advantages {
+	margin: 40px 0;
+	overflow: hidden;
+
+	&__container {
+		overflow: visible;
+	}
+
+	&__item {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		height: auto;
+		padding: 25px 40px 40px;
+
+		@include sm {
+			max-width: 450px;
+		}
+
+		@include xs {
+			max-width: 230px;
+			padding: 0;
+		}
+
+		&::before,
+		&::after {
+			position: absolute;
+			top: 0;
+			width: 20px;
+			height: 20px;
+			border-top: 1px solid #b3b3b3;
+			content: "";
+			pointer-events: none;
+
+			@include xs {
+				display: none;
+			}
+		}
+
+		&::before {
+			left: 0;
+			border-left: 1px solid #b3b3b3;
+			border-radius: 10px 0 0 0;
+		}
+
+		&::after {
+			right: 0;
+			border-right: 1px solid #b3b3b3;
+			border-radius: 0 10px 0 0;
+		}
+	}
+
+	&__item-check {
+		position: relative;
+		align-self: flex-end;
+		width: 25px;
+		height: 25px;
+		background: var(--primary);
+		border-radius: 2px;
+
+		@include xs {
+			display: none;
+		}
+
+		&::before {
+			position: absolute;
+			top: 45%;
+			left: 50%;
+			width: 10px;
+			height: 5px;
+			border-bottom: 2px solid var(--fc-light);
+			border-left: 2px solid var(--fc-light);
+			transform: translate(-50%, -50%) rotate(-45deg);
+			content: "";
+		}
+	}
+
+	&__item-label {
+		margin-top: 10px;
+		color: var(--secondary);
+		font-size: 48px;
+		line-height: 1;
+
+		&::before,
+		&::after {
+			position: absolute;
+			bottom: 0;
+			width: 20px;
+			height: 20px;
+			border-bottom: 1px solid #b3b3b3;
+			content: "";
+			pointer-events: none;
+
+			@include xs {
+				display: none;
+			}
+		}
+
+		&::before {
+			left: 0;
+			border-left: 1px solid #b3b3b3;
+			border-radius: 0 0 0 10px;
+		}
+
+		&::after {
+			right: 0;
+			border-right: 1px solid #b3b3b3;
+			border-radius: 0 0 10px 0;
+		}
+	}
+
+	&__item-text {
+		font-family: var(--font-secondary);
+	}
+}
