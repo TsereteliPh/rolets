@@ -365,6 +365,49 @@ if (docsSlider) {
 	});
 }
 
+//Слайдер blocks/partners
+
+const partnersSlider = document.querySelector('.partners__slider');
+
+if (partnersSlider) {
+	let partnersSwiper = new Swiper(partnersSlider, {
+		slidesPerView: 2,
+		spaceBetween: 30,
+		centerInsufficientSlides: true,
+		pagination: {
+			el: '.partners__pagination',
+			bulletClass: 'pagination__bullet',
+			bulletActiveClass: 'active',
+			clickable: true
+		},
+		navigation: {
+			nextEl: '.partners__next',
+			prevEl: '.partners__prev',
+		},
+		breakpoints: {
+			1440: {
+				slidesPerView: 6,
+				spaceBetween: 150
+			},
+			1280: {
+				slidesPerView: 4,
+				spaceBetween: 60
+			},
+			769: {
+				slidesPerView: 3,
+				spaceBetween: 40
+			}
+		},
+		on: {
+			afterInit: function() {
+				if (this.slides.length <= this.params.slidesPerView) {
+					this.pagination.el.style.display = 'none';
+				}
+			}
+		}
+	});
+}
+
 // Функционал шапки сайта
 
 document.addEventListener('DOMContentLoaded', function(e) {
