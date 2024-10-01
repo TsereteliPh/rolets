@@ -273,10 +273,10 @@
 		flex-direction: column;
 
 		.menu-item {
-			border-bottom: 1px solid #d9d9d9;
+			border-bottom: 1px solid var(--fc-gray);
 
 			&:first-child {
-				border-top: 1px solid #d9d9d9;
+				border-top: 1px solid var(--fc-gray);
 			}
 
 			> a {
@@ -316,7 +316,7 @@
 			justify-content: flex-start;
 			max-width: none;
 			padding-top: 20px;
-			border-top: 1px solid #d9d9d9;
+			border-top: 1px solid var(--fc-gray);
 		}
 	}
 
