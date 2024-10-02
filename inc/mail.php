@@ -123,6 +123,7 @@ function send_mail() {
 	if ( $_POST['form_name'] == 'Звонок' && ( ! wp_verify_nonce( $_POST['modal-callback-nonce'], $_POST['form_name'] ) && ! wp_verify_nonce( $_POST['footer-callback-nonce'], $_POST['form_name'] ) ) ) throw new ErrorException;
 	if ( $_POST['form_name'] == 'Замер' && ! wp_verify_nonce( $_POST['modal-measure-nonce'], $_POST['form_name'] ) ) throw new ErrorException;
 	if ( $_POST['form_name'] == 'Рассылка' && ! wp_verify_nonce( $_POST['footer-mailing-nonce'], $_POST['form_name'] ) ) throw new ErrorException;
+	if ( $_POST['form_name'] == 'Вопрос' && ! wp_verify_nonce( $_POST['modal-question-nonce'], $_POST['form_name'] ) ) throw new ErrorException;
 
 	$form_name = $_POST['form_name'];
 	$mail = '';

@@ -82,6 +82,11 @@
 		grid-column: span 2;
 	}
 
+	&__textarea {
+		grid-column: span 2;
+		min-height: 120px;
+	}
+
 	&__calculations {
 		font-weight: 700;
 		font-size: 14px;
