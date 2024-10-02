@@ -1,0 +1,49 @@
+.reviews {
+	margin: 75px 0 40px;
+
+	@include xs {
+		margin: 40px 0;
+	}
+
+	&__title {
+
+		.title__link {
+			color: var(--fc-dark);
+		}
+	}
+
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 40px 20px;
+		margin-top: 40px;
+
+		@include md {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include sm {
+			gap: 20px;
+		}
+
+		@include xs {
+			grid-template-columns: 1fr;
+			gap: 15px;
+			margin-top: 20px;
+		}
+	}
+
+	&__btn {
+		margin: 40px auto 0;
+
+		@include xs {
+			width: 100%;
+			max-width: 380px;
+			margin: 20px auto 0;
+		}
+
+		&.hidden {
+			display: none;
+		}
+	}
+}
