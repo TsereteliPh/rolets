@@ -1,0 +1,52 @@
+.corner-border {
+	position: relative;
+
+	&::before,
+	&::after {
+		position: absolute;
+		top: 0;
+		width: 20px;
+		height: 20px;
+		border-top: 1px solid #b3b3b3;
+		content: "";
+		pointer-events: none;
+	}
+
+	&::before {
+		left: 0;
+		border-left: 1px solid #b3b3b3;
+		border-radius: 10px 0 0 0;
+	}
+
+	&::after {
+		right: 0;
+		border-right: 1px solid #b3b3b3;
+		border-radius: 0 10px 0 0;
+	}
+
+	&__helper {
+
+		&::before,
+		&::after {
+			position: absolute;
+			bottom: 0;
+			width: 20px;
+			height: 20px;
+			border-bottom: 1px solid #b3b3b3;
+			content: "";
+			pointer-events: none;
+		}
+
+		&::before {
+			left: 0;
+			border-left: 1px solid #b3b3b3;
+			border-radius: 0 0 0 10px;
+		}
+
+		&::after {
+			right: 0;
+			border-right: 1px solid #b3b3b3;
+			border-radius: 0 0 10px 0;
+		}
+	}
+}

@@ -7,7 +7,9 @@
 			<div class="container advantages__container swiper">
 				<ul class="reset-list advantages__list swiper-wrapper">
 					<?php foreach ( $advantages as $advantage ) : ?>
-						<li class="advantages__item swiper-slide">
+						<li class="corner-border advantages__item swiper-slide">
+							<div class="corner-border__helper"></div>
+
 							<div class="advantages__item-check"></div>
 
 							<div class="advantages__item-label"><?php echo $advantage['label']; ?></div>
