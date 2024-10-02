@@ -64,6 +64,33 @@ if ( ! function_exists( 'adem_setup' ) ) {
 		'query_var' => true,
 		'publicly_queryable' => false
 	] );
+
+	register_post_type( 'faq', [
+		'label' => null,
+		'labels' => [
+			'name' => 'Вопрос - ответ',
+			'singular_name' => 'Вопрос - ответ',
+			'add_new' => 'Добавить вопрос',
+			'add_new_item' => 'Добавить вопрос',
+			'edit_item' => 'Редактировать вопрос',
+			'new_item' => 'Новый вопрос',
+			'view_item' => 'Смотреть вопрос',
+			'search_items' => 'Найти вопрос',
+			'not_found' => 'Не найдено',
+			'not_found_in_trash' => 'Не найдено в корзине',
+			'menu_name' => 'Вопрос - ответ',
+		],
+		'public' => true,
+		'show_in_menu' => true,
+		'menu_position' => 22,
+		'menu_icon' => 'dashicons-editor-help',
+		'supports' => ['title'],
+		'taxonomies' => ['faq_type'],
+		'has_archive' => false,
+		'rewrite' => true,
+		'query_var' => true,
+		'publicly_queryable' => false
+	] );
 }
 
 add_action( 'after_setup_theme', 'adem_setup' );
