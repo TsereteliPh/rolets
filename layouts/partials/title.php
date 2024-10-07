@@ -9,7 +9,7 @@ if ( ! empty( $args['title']['text'] ) ) {
 			<%3$s class="title__text">%4$s</%3$s>
 	';
 
-	if ( ! $args['controls'] && $args['title']['link']['url'] ) {
+	if ( ! $args['controls'] && $args['title']['link'] ) {
 		$format .= '<a href="%5$s" class="btn-underline title__link" target="%6$s">%7$s</a>';
 	}
 
@@ -34,8 +34,8 @@ if ( ! empty( $args['title']['text'] ) ) {
 		$args['title']['small-text'],
 		$args['title']['type'],
 		$args['title']['text'],
-		$args['title']['link']['url'],
-		$args['title']['link']['target'],
-		$args['title']['link']['title'],
+		$args['title']['link']['url'] ?? null,
+		$args['title']['link']['target'] ?? null,
+		$args['title']['link']['title'] ?? null,
 	);
 }
