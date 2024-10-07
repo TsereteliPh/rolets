@@ -408,6 +408,39 @@ if (partnersSlider) {
 	});
 }
 
+//Слайдер blocks/articles-slider
+
+const articlesSlider = document.querySelector('.articles-slider__slider');
+
+if (articlesSlider && window.innerWidth < 1440) {
+	let articlesSwiper = new Swiper(articlesSlider, {
+		slidesPerView: 'auto',
+		spaceBetween: 20,
+		pagination: {
+			el: '.articles-slider__pagination',
+			bulletClass: 'pagination__bullet',
+			bulletActiveClass: 'active',
+			clickable: true
+		},
+		breakpoints: {
+			1280: {
+				slidesPerView: 3,
+			},
+			769: {
+				slidesPerView: 2,
+			},
+
+		},
+		on: {
+			afterInit: function() {
+				if (this.slides.length <= this.params.slidesPerView) {
+					this.pagination.el.style.display = 'none';
+				}
+			}
+		}
+	});
+}
+
 // Функционал шапки сайта
 
 document.addEventListener('DOMContentLoaded', function(e) {

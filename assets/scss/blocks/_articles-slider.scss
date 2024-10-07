@@ -1,0 +1,59 @@
+.articles-slider {
+	margin: 75px 0 40px;
+	overflow: hidden;
+
+	@include xs {
+		margin: 40px 0;
+	}
+
+	&__slider {
+
+		@include sm {
+			overflow: visible;
+		}
+	}
+
+	&__title {
+
+		.title__link {
+			color: var(--fc-dark);
+		}
+	}
+
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 40px 20px;
+		margin-top: 60px;
+
+		@include hg {
+			display: flex;
+			gap: 0;
+			margin-top: 40px;
+		}
+
+		@include xs {
+			margin-top: 20px;
+		}
+	}
+
+	&__item {
+
+		@include sm {
+			max-width: 450px;
+		}
+
+		@include xs {
+			flex: 0 0 auto;
+			max-width: 300px;
+		}
+	}
+
+	&__pagination {
+		display: none;
+
+		@include hg {
+			display: flex;
+		}
+	}
+}
