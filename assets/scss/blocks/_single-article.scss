@@ -1,0 +1,21 @@
+.single-article {
+	margin: 75px 0 40px;
+
+	@include xs {
+		margin: 40px 0;
+	}
+
+	&__content {
+		margin-top: 60px;
+		font-family: var(--font-secondary);
+		line-height: 1.5;
+
+		@include hg {
+			margin-top: 40px;
+		}
+
+		@include xs {
+			margin-top: 20px;
+		}
+	}
+}

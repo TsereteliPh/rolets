@@ -2,47 +2,64 @@
 
 <section class="archive-block">
 	<div class="container">
-		<div class="archive-block__header">
+		<?php get_template_part( '/layouts/partials/title', null, array(
+			'class' => 'archive-block__title',
+			'title' => array(
+				'small-text' => 'Статьи',
+				'type' => 'h1',
+				'text' => 'Наши статьи'
+			)
+		) ); ?>
+
+		<ul class="reset-list archive-block__list js-show-more-container">
 			<?php
-			the_archive_title('<h1 class="title archive-block__title">', '</h1>');
-			the_archive_description('<div class="archive-block__description">', '</div>');
-			?>
-		</div>
-		<?php
-		$term = get_queried_object();
-		$categoryID = get_cat_ID($term->name);
-		$acfPostID = 'category_' .  $categoryID
-		?>
-		<?php if (have_posts()) : ?>
-			<div class="archive-block__body js-show-more-container">
-				<?php
-				while (have_posts()) {
-					the_post();
-					if ($categoryID == 25 || $categoryID == 26) get_template_part('layouts/partials/service-card');
-					else get_template_part('layouts/partials/post-card');
+				$query = new WP_Query( [
+                    'post_type' => 'post',
+                    'cat' => 6,
+                    'orderby' => 'post_date',
+                    'posts_per_page' => 8,
+                    'paged' => 1
+                ] );
+
+				$posts = $query->posts;
+
+				if ( $query->have_posts() ) {
+					if ( is_archive() ) {
+						foreach ( $posts as $post ) {
+							get_template_part('/layouts/partials/cards/article-card', null, array(
+								'class' => 'archive-block__item',
+							) );
+						}
+					} else {
+						while ( $query->have_posts() ) {
+							$query->the_post();
+
+							get_template_part('/layouts/partials/cards/article-card', null, array(
+								'class' => 'archive-block__item',
+							) );
+						}
+
+						wp_reset_postdata();
+					}
 				}
-				?>
-				<?php $additionalDescription = get_field('services-additional-description', $acfPostID); ?>
-				<?php if($additionalDescription) : ?>
-				  <div class="archive-block__footer"><?php echo $additionalDescription; ?></div>
-				<?php endif; ?>
-				<?php if ($categoryID !== 25 && $categoryID !== 26 && $wp_query->max_num_pages > 1) : ?>
-					<button class="js-show-more btn archive-block__btn" type="button" data-text="Показать еще">Показать еще</button>
-					<script>
-						let posts = '<?php echo json_encode($wp_query->query_vars); ?>';
-						let current_page = <?php echo (get_query_var('paged')) ? get_query_var('paged') : 1; ?>;
-						let max_pages = <?php echo $wp_query->max_num_pages; ?>;
-					</script>
-				<?php endif; ?>
-			</div>
-		<?php else : ?>
-			<p>Нет записей для показа</p>
-		<?php endif; ?>
+			?>
+		</ul>
+
+		<button class="btn btn--transparent archive-block__btn js-show-more<?php echo ( $query->max_num_pages > 1) ? '' : ' hidden'; ?>" type="button">
+			Показать еще
+			<svg width="12" height="12"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
+		</button>
+
+		<script>
+			let posts = '<?php echo json_encode($query->query_vars); ?>';
+			let current_page = <?php echo ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>;
+			let max_pages = <?php echo $query->max_num_pages; ?>;
+		</script>
 	</div>
 </section>
 
-<?php get_template_part('layouts/partials/blocks', null, array(
-	'id' => $acfPostID
-)); ?>
+<?php get_template_part( 'layouts/partials/blocks', null, array(
+	'id' => get_the_ID()
+) ); ?>
 
 <?php get_footer(); ?>

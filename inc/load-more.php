@@ -15,6 +15,10 @@ function load_more() {
 				$return_html .= get_template_part('layouts/partials/cards/review-card', null, array(
 					'class' => 'reviews__item'
 				) );
+			} else if ( $args['cat'] == 6 ) {
+				$return_html .= get_template_part('layouts/partials/cards/article-card', null, array(
+					'class' => 'archive-block__item'
+				) );
 			}
 		}
 		wp_reset_postdata();

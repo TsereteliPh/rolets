@@ -1,0 +1,117 @@
+.article-card {
+	overflow: hidden;
+	border-radius: 20px;
+
+	@include xs {
+		flex: 1 1 220px;
+	}
+
+	&__link {
+		position: relative;
+		display: flex;
+		align-items: flex-end;
+		width: 100%;
+		min-height: 600px;
+		padding: 40px 35px;
+		text-decoration: none;
+
+		@include lg {
+			min-height: 500px;
+			padding: 30px 20px;
+		}
+
+		@include md {
+			min-height: 400px;
+		}
+
+		@include mouse {
+
+			&:hover {
+
+				&::before {
+					background: rgba(#000, 0.4);
+				}
+			}
+		}
+
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: var(--ui-index-1);
+			width: 100%;
+			height: 100%;
+			background: rgba(#000, 0.8);
+			transition: var(--transition);
+			content: "";
+
+			@include sm {
+				background: rgba(#000, 0.6);
+			}
+		}
+	}
+
+	&__img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__info {
+		position: relative;
+		z-index: var(--ui-index-1);
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		color: var(--fc-light);
+
+		@include md {
+			gap: 15px;
+		}
+	}
+
+	&__cat {
+		display: grid;
+		place-content: center;
+		width: fit-content;
+		padding: 10px 20px;
+		font-size: 14px;
+		border: 1px solid var(--fc-light);
+		border-radius: 20px;
+
+		@include md {
+			padding: 10px 15px;
+			font-size: 12px;
+		}
+	}
+
+	&__title {
+		max-width: 275px;
+		font-size: 20px;
+		line-height: 1.4;
+
+		@include hg {
+			max-width: none;
+		}
+
+		@include lg {
+			font-size: 18px;
+		}
+
+		@include md {
+			font-size: 16px;
+		}
+	}
+
+	&__date {
+		color: #b3b3b3;
+		font-size: 14px;
+
+		@include md {
+			font-size: 12px;
+		}
+	}
+}

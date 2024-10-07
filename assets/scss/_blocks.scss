@@ -9,11 +9,13 @@
 @import "blocks/title";
 
 // cards
+@import "blocks/article-card";
 @import "blocks/review-card";
 
 // blocks
 @import "blocks/about";
 @import "blocks/advantages";
+@import "blocks/archive-block";
 @import "blocks/banner";
 @import "blocks/controls";
 @import "blocks/docs";
@@ -24,4 +26,5 @@
 @import "blocks/order-production";
 @import "blocks/partners";
 @import "blocks/reviews";
+@import "blocks/single-article";
 @import "blocks/video";
