@@ -429,7 +429,6 @@ if (articlesSlider && window.innerWidth < 1440) {
 			769: {
 				slidesPerView: 2,
 			},
-
 		},
 		on: {
 			afterInit: function() {
@@ -437,6 +436,38 @@ if (articlesSlider && window.innerWidth < 1440) {
 					this.pagination.el.style.display = 'none';
 				}
 			}
+		}
+	});
+}
+
+// Слайдер product__gallery
+
+const productGallery = document.querySelector('.product__gallery');
+
+if (productGallery) {
+	let productThumb = document.querySelector('.product__gallery-thumb-swiper');
+	let productBig = document.querySelector('.product__gallery-big');
+
+	let thumbProductSlider = new Swiper(productThumb, {
+		direction: 'vertical',
+		spaceBetween: 10,
+		slidesPerView: 4,
+		watchSlidesProgress: true,
+		navigation: {
+			nextEl: '.product__gallery-thumb-next',
+			prevEl: '.product__gallery-thumb-prev'
+		}
+	});
+
+	let bigProductSlider = new Swiper(productBig, {
+		slidesPerView: 'auto',
+		spaceBetween: 30,
+		navigation: {
+			nextEl: '.product__gallery-big-next',
+			prevEl: '.product__gallery-big-prev'
+		},
+		thumbs: {
+			swiper: thumbProductSlider,
 		}
 	});
 }

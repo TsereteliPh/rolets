@@ -37,6 +37,34 @@ if ( ! function_exists( 'adem_setup' ) ) {
 	//	register thumbnails
 //	add_image_size( '123x123', 123, 123, true );
 
+	//register taxonomies
+	register_taxonomy( 'product_cat', [ 'products' ], [
+		'label'                 => '',
+		'labels'                => [
+			'name'              => 'Категории товаров',
+			'singular_name'     => 'Категория товара',
+			'search_items'      => 'Найти категорию',
+			'all_items'         => 'Все категории',
+			'view_item '        => 'Посмотреть категорию',
+			'edit_item'         => 'Редактировать категорию',
+			'update_item'       => 'Обновить категорию',
+			'add_new_item'      => 'Добавить новую категорию',
+			'new_item_name'     => 'Новое название категории',
+			'menu_name'         => 'Категории товаров',
+			'back_to_items'     => '← Вернуться к категориям',
+		],
+		'description'           => '',
+		'public'                => true,
+		'hierarchical'          => true,
+
+		'rewrite'               => true,
+		'capabilities'          => [],
+		'meta_box_cb'           => null,
+		'show_admin_column'     => false,
+		'show_in_rest'          => null,
+		'rest_base'             => null,
+	] );
+
 	//	register post types
 	register_post_type( 'review', [
 		'label' => null,
@@ -90,6 +118,33 @@ if ( ! function_exists( 'adem_setup' ) ) {
 		'rewrite' => true,
 		'query_var' => true,
 		'publicly_queryable' => false
+	] );
+
+	register_post_type( 'products', [
+		'label' => null,
+		'labels' => [
+			'name' => 'Товар',
+			'singular_name' => 'Товар',
+			'add_new' => 'Добавить товар',
+			'add_new_item' => 'Добавить товар',
+			'edit_item' => 'Редактировать товар',
+			'new_item' => 'Новый товар',
+			'view_item' => 'Смотреть товар',
+			'search_items' => 'Найти товар',
+			'not_found' => 'Не найдено',
+			'not_found_in_trash' => 'Не найдено в корзине',
+			'menu_name' => 'Товары',
+		],
+		'public' => true,
+		'show_in_menu' => true,
+		'menu_position' => 23,
+		'menu_icon' => 'dashicons-cart',
+		'supports' => ['title', 'thumbnail'],
+		'taxonomies' => ['product_cat'],
+		'has_archive' => true,
+		'rewrite' => true,
+		'query_var' => true,
+		'publicly_queryable' => true
 	] );
 }
 
