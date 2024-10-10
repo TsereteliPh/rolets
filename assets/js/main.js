@@ -502,3 +502,23 @@ document.addEventListener('DOMContentLoaded', function(e) {
 		})
 	}
 })
+
+// Заявка на товар
+const orderBtn = document.querySelector('.product__order');
+
+if (orderBtn) {
+	const modal = document.querySelector('.modal#order');
+	const modalProductName = modal.querySelector('.modal__text>span');
+	const formProductName = modal.querySelector('input[name=client_product_name]');
+	const formProductId = modal.querySelector('input[name=client_product_id]');
+	const formProductColor = modal.querySelector('input[name=client_product_color]');
+
+	orderBtn.addEventListener('click', function(e) {
+		const color = document.querySelector('.product__color-select').value;
+
+		modalProductName.textContent = this.dataset.productName;
+		formProductName.value = this.dataset.productName;
+		formProductId.value = this.dataset.productId;
+		formProductColor.value = color;
+    })
+}
