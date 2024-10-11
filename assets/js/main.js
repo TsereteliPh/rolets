@@ -440,6 +440,58 @@ if (articlesSlider && window.innerWidth < 1440) {
 	});
 }
 
+//Слайдер blocks/products-slider
+
+const productsSliders = document.querySelectorAll('.products-slider');
+
+if (productsSliders) {
+	productsSliders.forEach(slider => {
+		let swiper = slider.querySelector('.products-slider__slider');
+		let prevBtn = slider.querySelector('.products-slider__prev');
+		let nextBtn = slider.querySelector('.products-slider__next');
+		let pagination = slider.querySelector('.products-slider__pagination');
+
+		let productsSwiper = new Swiper(swiper, {
+			slidesPerView: 'auto',
+			spaceBetween: 20,
+			centerInsufficientSlides: true,
+			pagination: {
+				el: pagination,
+				bulletClass: 'pagination__bullet',
+				bulletActiveClass: 'active',
+				clickable: true
+			},
+			navigation: {
+				nextEl: nextBtn,
+				prevEl: prevBtn,
+			},
+			breakpoints: {
+				1440: {
+					slidesPerView: 4,
+				},
+				1280: {
+					slidesPerView: 3,
+				},
+				992: {
+					slidesPerView: 3,
+				},
+				769: {
+					slidesPerView: 2,
+				}
+			},
+			on: {
+				afterInit: function() {
+					if (this.slides.length <= this.params.slidesPerView) {
+						this.pagination.el.style.display = 'none';
+						this.navigation.nextEl.style.display = 'none';
+						this.navigation.prevEl.style.display = 'none';
+					}
+				}
+			}
+		});
+	});
+}
+
 // Слайдер product__gallery
 
 const productGallery = document.querySelector('.product__gallery');
@@ -504,7 +556,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 })
 
 // Заявка на товар
-const orderBtn = document.querySelector('.product__order');
+const orderBtn = document.querySelector('.js-order');
 
 if (orderBtn) {
 	const modal = document.querySelector('.modal#order');

@@ -187,7 +187,7 @@
 						</div>
 					<?php endif; ?>
 
-					<button class="btn product__order" type="button" data-fancybox data-src="#order" data-product-name="<?php the_title(); ?>" data-product-id="<?php the_ID(); ?>">
+					<button class="btn product__order js-order" type="button" data-fancybox data-src="#order" data-product-name="<?php the_title(); ?>" data-product-id="<?php the_ID(); ?>">
 						<?php echo $importants['availability'] ? 'Заказать' : 'Предзаказ'; ?>
 						<svg width="12" height="12"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
 					</button>

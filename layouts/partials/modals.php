@@ -116,38 +116,36 @@
 	</form>
 </div>
 
-<?php if ( is_singular( 'products' ) ) : ?>
-	<div class="modal modal--order" id="order">
-		<div class="modal__info">
-			<div class="modal__title">Заявка на товар</div>
+<div class="modal modal--order" id="order">
+	<div class="modal__info">
+		<div class="modal__title">Заявка на товар</div>
 
-			<div class="modal__text">Оставьте заявку на товар &quot;<span></span>&quot;, и мы свяжемся с вами для подтверждения и оформления заказа!</div>
-		</div>
-
-		<form method="POST" class="modal__form" name="Заказ">
-			<input type="text" class="input input--dark modal__input" name="client_name" placeholder="ФИО" required>
-
-			<input type="tel" class="input input--dark modal__input" name="client_tel" placeholder="+ 7 ( ___ ) - ___ - __ -__" required>
-
-			<textarea class="input input--dark modal__textarea" name="client_address" placeholder="Адрес доставки" required></textarea>
-
-			<input type="text" class="hidden" name="client_product_name" value="">
-
-			<input type="text" class="hidden" name="client_product_id" value="">
-
-			<input type="text" class="hidden" name="client_product_color" value="">
-
-			<label class="checkbox modal__policy">
-				<input type="checkbox" name="policy" class="checkbox__input" required checked>
-				<span class="checkbox__switcher"></span>
-				<span class="checkbox__text">Даю согласие на обработку моих персональных данных в соответствии с <a href="<?php echo get_privacy_policy_url(); ?>">Политикой конфиденциальности</a></span>
-			</label>
-
-			<button class="btn modal__submit" type="submit">Отправить</button>
-
-			<input type="text" class="hidden" name="page_request" value="<?php echo $page_title; ?>">
-
-			<?php wp_nonce_field( 'Заказ', 'modal-order-nonce' ); ?>
-		</form>
+		<div class="modal__text">Оставьте заявку на товар &quot;<span></span>&quot;, и мы свяжемся с вами для подтверждения и оформления заказа!</div>
 	</div>
-<?php endif; ?>
+
+	<form method="POST" class="modal__form" name="Заказ">
+		<input type="text" class="input input--dark modal__input" name="client_name" placeholder="ФИО" required>
+
+		<input type="tel" class="input input--dark modal__input" name="client_tel" placeholder="+ 7 ( ___ ) - ___ - __ -__" required>
+
+		<textarea class="input input--dark modal__textarea" name="client_address" placeholder="Адрес доставки" required></textarea>
+
+		<input type="text" class="hidden" name="client_product_name" value="">
+
+		<input type="text" class="hidden" name="client_product_id" value="">
+
+		<input type="text" class="hidden" name="client_product_color" value="">
+
+		<label class="checkbox modal__policy">
+			<input type="checkbox" name="policy" class="checkbox__input" required checked>
+			<span class="checkbox__switcher"></span>
+			<span class="checkbox__text">Даю согласие на обработку моих персональных данных в соответствии с <a href="<?php echo get_privacy_policy_url(); ?>">Политикой конфиденциальности</a></span>
+		</label>
+
+		<button class="btn modal__submit" type="submit">Отправить</button>
+
+		<input type="text" class="hidden" name="page_request" value="<?php echo $page_title; ?>">
+
+		<?php wp_nonce_field( 'Заказ', 'modal-order-nonce' ); ?>
+	</form>
+</div>
