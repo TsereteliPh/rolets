@@ -89,3 +89,48 @@
 		transition: var(--transition);
 	}
 }
+
+.btn-tab {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	justify-content: center;
+	padding: 30px 40px;
+	color: var(--fc-gray);
+	font-size: 18px;
+	border: 1px solid var(--fc-gray);
+	border-radius: 40px;
+	cursor: pointer;
+	transition: var(--transition);
+
+	@include md {
+		gap: 15px;
+		padding: 20px 30px;
+		font-size: 16px;
+		border-radius: 30px;
+	}
+
+	@include xs {
+		gap: 5px;
+		padding: 10px 15px;
+		font-size: 14px;
+		border-radius: 20px;
+	}
+
+	@include mouse {
+
+		&:hover {
+			border-color: var(--fc-dark);
+		}
+	}
+
+	&.active {
+		color: var(--fc-dark);
+		border-color: var(--fc-dark);
+		cursor: default;
+	}
+
+	svg {
+		transform: rotate(90deg);
+	}
+}
