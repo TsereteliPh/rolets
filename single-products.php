@@ -278,12 +278,20 @@
 			<?php if ( $analogues ) : ?>
 				<div class="reset-list product__analogues">
 					<div class="product__analogue-label">Аналоги</div>
-					<?php //TODO analogues ?>
 
 					<ul class="reset-list product__analogues-list">
-						<li class="product__analogues-item"></li>
+						<?php
+							foreach ( $analogues as $analogue ) {
+								$post = $analogue;
+								setup_postdata( $post );
 
-						<li class="product__analogues-item"></li>
+								get_template_part( '/layouts/partials/cards/product-card', null, array(
+									'class' => 'product__analogues-item',
+								) );
+							}
+
+							wp_reset_postdata();
+						?>
 					</ul>
 				</div>
 			<?php endif; ?>

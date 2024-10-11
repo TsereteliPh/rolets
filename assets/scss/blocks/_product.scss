@@ -680,7 +680,26 @@
 		margin-top: 20px;
 
 		@include hg {
-			flex-direction: row;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+
+		@include xs {
+			display: flex;
+		}
+	}
+
+	&__analogues-item.product-card {
+
+		@include sm {
+			max-width: none;
+		}
+
+		.product-card__link {
+
+			@include lg {
+				font-size: 16px;
+			}
 		}
 	}
 }
