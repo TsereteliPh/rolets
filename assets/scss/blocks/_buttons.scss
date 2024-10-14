@@ -96,8 +96,9 @@
 	align-items: center;
 	justify-content: center;
 	padding: 30px 40px;
-	color: var(--fc-gray);
+	color: var(--fc-dark);
 	font-size: 18px;
+	line-height: 1;
 	border: 1px solid var(--fc-gray);
 	border-radius: 40px;
 	cursor: pointer;
@@ -125,9 +126,16 @@
 	}
 
 	&.active {
-		color: var(--fc-dark);
-		border-color: var(--fc-dark);
+		color: var(--primary);
+		border-color: var(--primary);
 		cursor: default;
+
+		@include mouse {
+
+			&:hover {
+				border-color: var(--primary);
+			}
+		}
 	}
 
 	svg {
