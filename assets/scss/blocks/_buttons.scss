@@ -134,3 +134,18 @@
 		transform: rotate(90deg);
 	}
 }
+
+.btn-accordion {
+	display: grid;
+	flex-shrink: 0;
+	place-content: center;
+	width: 35px;
+	height: 35px;
+	border: 2px solid var(--primary);
+	border-radius: 5px;
+	transition: var(--transition);
+
+	svg {
+		transition: var(--transition);
+	}
+}

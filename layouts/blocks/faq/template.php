@@ -28,7 +28,7 @@
 								<button class="faq__item-button">
 									<?php the_title(); ?>
 
-									<div class="faq__item-switcher">
+									<div class="btn-accordion faq__item-switcher">
 										<svg width="8" height="8"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
 									</div>
 								</button>
