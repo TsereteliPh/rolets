@@ -544,6 +544,34 @@ if (basicSliders) {
 	});
 }
 
+//Слайдер blocks/extra-options
+
+const extraOptionsSliders = document.querySelectorAll('.extra-options__gallery');
+
+if (extraOptionsSliders) {
+	extraOptionsSliders.forEach(slider => {
+		let extraOptionsSwiper = new Swiper(slider, {
+			slidesPerView: 1,
+			resistanceRatio: 0,
+			pagination: {
+				el: '.extra-options__gallery-pagination',
+				type: 'fraction'
+			},
+			navigation: {
+				nextEl: '.extra-options__gallery-next',
+				prevEl: '.extra-options__gallery-prev',
+			},
+			on: {
+				afterInit: function() {
+					if (this.slides.length <= this.params.slidesPerView) {
+						slider.querySelector('.extra-options__gallery-controls').style.display = 'none';
+					}
+				}
+			}
+		});
+	});
+}
+
 // Слайдер product__gallery
 
 const productGallery = document.querySelector('.product__gallery');
