@@ -1,0 +1,49 @@
+.basic-slider {
+	margin: 120px 0 40px;
+	overflow: hidden;
+
+	@include hg {
+		margin: 75px 0 40px;
+	}
+
+	@include xs {
+		margin: 40px 0;
+	}
+
+	&__title {
+
+		.title__controls {
+
+			@include sm {
+				display: none;
+			}
+		}
+	}
+
+	&__slider {
+		margin-top: 40px;
+
+		@include sm {
+			overflow: visible;
+		}
+	}
+
+	&__item {
+
+		@include sm {
+			max-width: 450px;
+		}
+
+		@include xs {
+			max-width: 380px;
+		}
+	}
+
+	&__pagination {
+		display: none;
+
+		@include sm {
+			display: flex;
+		}
+	}
+}
