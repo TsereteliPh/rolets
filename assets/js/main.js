@@ -544,6 +544,34 @@ if (basicSliders) {
 	});
 }
 
+//Слайдер blocks/production
+
+const productionSliders = document.querySelectorAll('.production__gallery');
+
+if (productionSliders) {
+	productionSliders.forEach(slider => {
+		let productionSwiper = new Swiper(slider, {
+			slidesPerView: 1,
+			resistanceRatio: 0,
+			pagination: {
+				el: '.production__gallery-pagination',
+				type: 'fraction'
+			},
+			navigation: {
+				nextEl: '.production__gallery-next',
+				prevEl: '.production__gallery-prev',
+			},
+			on: {
+				afterInit: function() {
+					if (this.slides.length <= this.params.slidesPerView) {
+						slider.querySelector('.production__gallery-controls').style.display = 'none';
+					}
+				}
+			}
+		});
+	});
+}
+
 //Слайдер blocks/extra-options
 
 const extraOptionsSliders = document.querySelectorAll('.extra-options__gallery');
