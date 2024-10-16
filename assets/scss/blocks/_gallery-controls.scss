@@ -1,0 +1,70 @@
+.gallery-controls {
+	position: absolute;
+	right: 30px;
+	bottom: 20px;
+	z-index: var(--ui-index-1);
+	display: flex;
+	gap: 5px;
+	align-items: center;
+	color: var(--fc-light);
+	background: var(--fc-dark);
+	border-radius: 40px;
+
+	@include sm {
+		right: 20px;
+		padding: 10px 20px;
+	}
+
+	@include xs {
+		right: 10px;
+		bottom: 10px;
+		padding: 5px 15px;
+	}
+
+	&__pagination {
+		padding-left: 20px;
+		font-size: 14px;
+		font-family: var(--font-secondary);
+
+		@include sm {
+			padding-left: 0;
+		}
+
+		@include xs {
+			font-size: 12px;
+		}
+	}
+
+	&__prev,
+	&__next {
+		display: grid;
+		flex-shrink: 0;
+		place-content: center;
+		width: 40px;
+		height: 40px;
+		color: var(--fc-light);
+		border-radius: 50%;
+		cursor: pointer;
+		transition: var(--transition);
+
+		@include sm {
+			display: none;
+		}
+
+		@include mouse {
+
+			&:hover:not(.swiper-button-disabled) {
+				color: var(--secondary);
+			}
+		}
+
+		&.swiper-button-disabled {
+			cursor: default;
+			opacity: 0.3;
+		}
+	}
+
+	&__prev {
+		transform: rotate(180deg);
+	}
+}
