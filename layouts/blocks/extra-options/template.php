@@ -20,8 +20,10 @@
 									<svg width="16" height="16"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
 								</button>
 
-								<div class="extra-options__item-content">
-									<div class="extra-options__item-text"><?php echo $option['text']; ?></div>
+								<div class="extra-options__item-box">
+									<div class="extra-options__item-content">
+										<div class="extra-options__item-text"><?php echo $option['text']; ?></div>
+									</div>
 
 									<?php if ( $option['gallery'] ) : ?>
 										<div class="extra-options__gallery swiper">
@@ -33,14 +35,14 @@
                                                 <?php endforeach;?>
 											</div>
 
-											<div class="extra-options__gallery-controls">
-												<div class="extra-options__gallery-pagination"></div>
+											<div class="gallery-controls extra-options__gallery-controls">
+												<div class="gallery-controls__pagination extra-options__gallery-pagination"></div>
 
-												<div class="extra-options__gallery-prev">
+												<div class="gallery-controls__prev extra-options__gallery-prev">
 													<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
 												</div>
 
-												<div class="extra-options__gallery-next">
+												<div class="gallery-controls__next extra-options__gallery-next">
 													<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
 												</div>
 											</div>
