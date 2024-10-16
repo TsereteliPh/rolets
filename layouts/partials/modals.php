@@ -149,3 +149,32 @@
 		<?php wp_nonce_field( 'Заказ', 'modal-order-nonce' ); ?>
 	</form>
 </div>
+
+<div class="modal modal--service" id="service">
+	<div class="modal__info">
+		<div class="modal__title">Заявка на услугу &quot;<span></span>&quot;</div>
+
+		<div class="modal__text">Хотите заказать эту услугу? Оставьте заявку, и мы свяжемся с вами для уточнения деталей и оформления!</div>
+	</div>
+
+	<form method="POST" class="modal__form" name="Услуга">
+		<input type="text" class="input input--dark modal__input" name="client_name" placeholder="ФИО" required>
+
+		<input type="tel" class="input input--dark modal__input" name="client_tel" placeholder="+ 7 ( ___ ) - ___ - __ -__" required>
+
+		<input type="text" class="hidden" name="client_service" value="">
+
+		<label class="checkbox modal__policy">
+			<input type="checkbox" name="policy" class="checkbox__input" required checked>
+			<span class="checkbox__switcher"></span>
+			<span class="checkbox__text">Даю согласие на обработку моих персональных данных в соответствии с <a href="<?php echo get_privacy_policy_url(); ?>">Политикой конфиденциальности</a></span>
+		</label>
+
+		<button class="btn modal__submit" type="submit">Отправить</button>
+
+		<input type="text" class="hidden" name="page_request" value="<?php echo $page_title; ?>">
+
+		<?php wp_nonce_field( 'Заказ', 'modal-service-nonce' ); ?>
+	</form>
+</div>
+

@@ -659,3 +659,20 @@ if (orderBtns) {
 		})
 	});
 }
+
+// Заявка на услугу
+const serviceBtns = document.querySelectorAll('.js-service-btn');
+
+if (serviceBtns) {
+	const modal = document.querySelector('.modal#service');
+	const modalServiceName = modal.querySelector('.modal__title>span');
+	const formServiceName = modal.querySelector('input[name=client_service]');
+
+	serviceBtns.forEach(btn => {
+		btn.addEventListener('click', function() {
+
+			modalServiceName.textContent = this.dataset.serviceTitle;
+			formServiceName.value = this.dataset.serviceTitle;
+		})
+	});
+}

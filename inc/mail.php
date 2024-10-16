@@ -133,6 +133,7 @@ function send_mail() {
 	$mail .= isset( $_POST['client_email'] ) ? "Email: <a href='mailto:" . strip_tags( $_POST['client_email'] ) . "'>" . strip_tags( $_POST['client_email'] ) . "</a><br/>" : '';
 	$mail .= isset( $_POST['client_product_name'] ) && isset( $_POST['client_product_id'] ) ? "Товар: <a href='" . get_post_permalink( strip_tags( $_POST['client_product_id'] ) ) . "' target='_blank'>" . strip_tags( $_POST['client_product_name'] ) . "</a><br/>" : '';
 	$mail .= isset( $_POST['client_product_color'] ) ? "Цвет товара: " . strip_tags( $_POST['client_product_color'] ) . "<br/>" : '';
+	$mail .= isset( $_POST['client_service'] ) ? "Услуга: " . strip_tags( $_POST['client_service'] ) . "<br/>" : '';
 	$mail .= isset( $_POST['client_message'] ) ? "Сообщение: " . strip_tags( $_POST['client_message'] ) . "<br/>" : '';
 	$mail .= isset( $_POST['client_address'] ) ? "Адрес: " . strip_tags( $_POST['client_address'] ) . "<br/>" : '';
 	$mail .= "Страница: $_POST[page_request] <br/>";
