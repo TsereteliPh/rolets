@@ -622,14 +622,6 @@ if (newProductsSlider) {
 				slidesPerView: 2,
 				spaceBetween: 20
 			}
-		},
-		on: {
-			afterInit: function() {
-				if (this.slides.length <= this.params.slidesPerView) {
-					this.navigation.nextEl.style.display = 'none';
-					this.navigation.prevEl.style.display = 'none';
-				}
-			}
 		}
 	});
 }
@@ -703,21 +695,20 @@ const orderBtns = document.querySelectorAll('.js-order');
 if (orderBtns) {
 	const modal = document.querySelector('.modal#order');
 	const modalProductName = modal.querySelector('.modal__text>span');
+	const productColor = document.querySelector('.product__color-select');
 	const formProductName = modal.querySelector('input[name=client_product_name]');
 	const formProductId = modal.querySelector('input[name=client_product_id]');
 	const formProductColor = modal.querySelector('input[name=client_product_color]');
 
 	orderBtns.forEach(btn => {
 		btn.addEventListener('click', function() {
-			const color =
-				this.parentNode.classList.contains('product-card')
-					? ''
-					: document.querySelector('.product__color-select').value;
-
 			modalProductName.textContent = this.dataset.productName;
 			formProductName.value = this.dataset.productName;
 			formProductId.value = this.dataset.productId;
-			formProductColor.value = color;
+
+			if (productColor && formProductColor) {
+				formProductColor.value = productColor.value;
+			}
 		})
 	});
 }
