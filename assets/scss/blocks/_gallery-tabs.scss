@@ -1,0 +1,177 @@
+.gallery-tabs {
+	margin: 120px 0 40px;
+
+	@include hg {
+		margin: 75px 0 40px;
+	}
+
+	@include xs {
+		margin: 40px 0;
+	}
+
+	&__tabs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		align-items: center;
+		margin-top: 40px;
+
+		@include xs {
+			flex-wrap: nowrap;
+			margin-top: 20px;
+			overflow: scroll;
+			scrollbar-width: none;
+		}
+	}
+
+	&__tab {
+
+		@include sm {
+			flex: 1 1 fit-content;
+		}
+
+		@include xs {
+			flex: 0 0 max-content;
+		}
+	}
+
+	&__content {
+		margin-top: 20px;
+
+		@include md {
+			margin-top: 40px;
+		}
+	}
+
+	&__box {
+		position: relative;
+		display: none;
+		grid-template-columns: 3fr 1fr;
+		gap: 20px;
+		min-height: 540px;
+
+		@include hg {
+			grid-template-columns: 1fr 320px;
+		}
+
+		@include md {
+			grid-template-columns: 1fr;
+			min-height: auto;
+		}
+
+		&::before {
+			display: block;
+			content: "";
+			pointer-events: none;
+
+			@include md {
+				display: none;
+			}
+		}
+
+		&.active {
+			display: grid;
+
+			@include md {
+				display: block;
+			}
+		}
+	}
+
+	&__box-content {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+
+		@include md {
+			gap: 20px;
+		}
+
+		@include xs {
+			gap: 15px;
+		}
+	}
+
+	&__box-label {
+		margin-bottom: auto;
+		font-weight: 300;
+		font-size: 32px;
+
+		@include hg {
+			font-size: 28px;
+		}
+
+		@include sm {
+			font-size: 24px;
+		}
+
+		@include xs {
+			font-size: 20px;
+		}
+	}
+
+	&__gallery {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: calc(100% * 3 / 4 - 20px);
+		height: 100%;
+		border-radius: 20px;
+
+		@include hg {
+			width: calc(100% - 340px);
+		}
+
+		@include md {
+			position: relative;
+			top: auto;
+			left: auto;
+			width: 100%;
+			height: auto;
+			aspect-ratio: 2/1;
+		}
+
+		@include xs {
+			border-radius: 10px;
+		}
+	}
+
+	&__gallery-item {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+
+		@include md {
+			width: 100%;
+			height: auto;
+			aspect-ratio: 2/1;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__box-text {
+		font-size: 14px;
+		font-family: var(--font-secondary);
+		line-height: 1.2;
+	}
+
+	&__box-link {
+
+		@include md {
+			width: 100%;
+			max-width: 350px;
+		}
+
+		@include xs {
+			max-width: none;
+			margin-top: 25px;
+		}
+	}
+}
+

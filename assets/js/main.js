@@ -626,6 +626,27 @@ if (newProductsSlider) {
 	});
 }
 
+//Слайдер blocks/extra-options
+
+const galleryTabsSliders = document.querySelectorAll('.gallery-tabs__gallery');
+
+if (galleryTabsSliders) {
+	galleryTabsSliders.forEach(slider => {
+		let galleryTabsSwiper = new Swiper(slider, {
+			slidesPerView: 1,
+			resistanceRatio: 0,
+			pagination: {
+				el: '.gallery-tabs__gallery-pagination',
+				type: 'fraction'
+			},
+			navigation: {
+				nextEl: '.gallery-tabs__gallery-next',
+				prevEl: '.gallery-tabs__gallery-prev',
+			},
+		});
+	});
+}
+
 // Слайдер product__gallery
 
 const productGallery = document.querySelector('.product__gallery');
