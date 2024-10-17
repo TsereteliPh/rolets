@@ -600,6 +600,40 @@ if (extraOptionsSliders) {
 	});
 }
 
+//Слайдер blocks/new-products
+
+const newProductsSlider = document.querySelector('.new-products__slider');
+
+if (newProductsSlider) {
+	let newProductsSwiper = new Swiper(newProductsSlider, {
+		slidesPerView: 'auto',
+		spaceBetween: 10,
+		centerInsufficientSlides: true,
+		navigation: {
+			nextEl: '.new-products__next',
+			prevEl: '.new-products__prev',
+		},
+		breakpoints: {
+			992: {
+				slidesPerView: 3,
+				spaceBetween: 20
+			},
+			769: {
+				slidesPerView: 2,
+				spaceBetween: 20
+			}
+		},
+		on: {
+			afterInit: function() {
+				if (this.slides.length <= this.params.slidesPerView) {
+					this.navigation.nextEl.style.display = 'none';
+					this.navigation.prevEl.style.display = 'none';
+				}
+			}
+		}
+	});
+}
+
 // Слайдер product__gallery
 
 const productGallery = document.querySelector('.product__gallery');
