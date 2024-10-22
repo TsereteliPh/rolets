@@ -1,0 +1,196 @@
+.rolets-calc {
+	margin: 60px 1.25rem 40px;
+	padding: 80px 1.25rem;
+	color: var(--fc-light);
+	background: var(--fc-dark);
+	border-radius: 20px;
+
+	@include hg {
+		padding: 60px 1.25rem;
+	}
+
+	@include md {
+		margin: 60px 0.75rem 40px;
+		padding: 40px 0.75rem;
+	}
+
+	@include xs {
+		margin: 40px 0.75rem 40px;
+		border-radius: 10px;
+	}
+
+	&__form {
+		display: grid;
+		grid-auto-flow: dense;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px 100px;
+		margin-top: 60px;
+
+		@include hg {
+			gap: 20px 30px;
+		}
+
+		@include sm {
+			grid-template-columns: 1fr;
+			margin-top: 40px;
+		}
+	}
+
+	&__form-box {
+		display: grid;
+		grid-template-columns: 130px 1fr;
+		gap: 5px 15px;
+		align-items: center;
+
+		@include lg {
+			grid-template-columns: 1fr;
+		}
+
+		@include sm {
+			grid-template-columns: 130px 1fr;
+		}
+
+		@include xs {
+			grid-template-columns: 1fr;
+		}
+
+		&--sizes,
+		&--qty {
+
+			.rolets-calc__form-content {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 20px;
+
+				@include md {
+					gap: 10px;
+				}
+			}
+		}
+
+		&--sizes {
+			grid-row: 1/2;
+			grid-column: 2/3;
+
+			@include sm {
+				grid-row: auto;
+				grid-column: auto;
+			}
+
+			.rolets-calc__form-label {
+
+				@include lg {
+					display: none;
+				}
+
+				@include sm {
+					display: block;
+				}
+			}
+
+			.number {
+
+				@include lg {
+					margin-top: 25px;
+				}
+
+				&::before {
+
+					@include lg {
+						font-weight: 500;
+						font-size: 18px;
+						text-align: left;
+					}
+
+					@include sm {
+						font-weight: 400;
+						font-size: 14px;
+					}
+
+					@include xs {
+						top: -18px;
+						font-size: 12px;
+					}
+				}
+			}
+		}
+
+		&--qty {
+
+			@include sm {
+				grid-row: 3/4;
+			}
+
+			.rolets-calc__form-content {
+
+				@include sm {
+					grid-template-columns: 1fr;
+				}
+			}
+		}
+
+		&--controls {
+			grid-column: span 2;
+			grid-template-columns: 1fr 1fr;
+			gap: 20px 100px;
+			order: 1;
+			margin-top: 40px;
+
+			@include hg {
+				gap: 20px 30px;
+			}
+
+			@include lg {
+				grid-template-columns: 2fr 1fr;
+			}
+
+			@include sm {
+				grid-column: auto;
+				grid-template-columns: 1fr;
+			}
+
+			@include xs {
+				margin-top: 20px;
+			}
+		}
+	}
+
+	&__form-label {
+		font-weight: 500;
+		font-size: 18px;
+		font-family: var(--font-secondary);
+
+		@include sm {
+			font-size: 16px;
+		}
+	}
+
+	&__form-content {
+
+		.input {
+			min-height: 65px;
+		}
+	}
+
+	&__form-policy {
+		font-family: var(--font-secondary);
+		line-height: 1.2;
+
+		@include sm {
+			text-align: center;
+		}
+
+		a {
+			font-weight: 700;
+			@include ui-link(var(--fc-light));
+		}
+	}
+
+	&__form-submit {
+		justify-self: end;
+
+		@include sm {
+			justify-self: center;
+		}
+	}
+}

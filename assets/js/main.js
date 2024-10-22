@@ -172,6 +172,10 @@ function sendForm() {
 				});
 			}
 
+			if (form.name === 'Калькулятор') {
+				formData = setCalculatorFormData(formData);
+			}
+
 			const response = fetch(adem_ajax.url, {
 				method: 'POST',
 				body: formData,
@@ -192,6 +196,24 @@ function sendForm() {
 				.catch(error => console.error('Error:', error));
 		});
 	});
+}
+
+function setCalculatorFormData(formData) {
+	let calcParams = '';
+	const filteredFormData = new FormData();
+
+	for (let [key, value] of formData.entries()) {
+		if (key.startsWith('client_calc')) {
+			let elem = document.querySelector(`[data-calc-label="${key}"]`);
+			calcParams += elem.textContent.trim() + ': ' + value.trim() + '<br>';
+		} else {
+			filteredFormData.set(key, value);
+		}
+	}
+
+	filteredFormData.set('client_calc_params', calcParams);
+
+	return filteredFormData;
 }
 
 function setFileName() {

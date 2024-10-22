@@ -125,6 +125,7 @@ function send_mail() {
 	if ( $_POST['form_name'] == 'Рассылка' && ! wp_verify_nonce( $_POST['footer-mailing-nonce'], $_POST['form_name'] ) ) throw new ErrorException;
 	if ( $_POST['form_name'] == 'Вопрос' && ! wp_verify_nonce( $_POST['modal-question-nonce'], $_POST['form_name'] ) ) throw new ErrorException;
 	if ( $_POST['form_name'] == 'Заказ' && ! wp_verify_nonce( $_POST['modal-order-nonce'], $_POST['form_name'] ) ) throw new ErrorException;
+	if ( $_POST['form_name'] == 'Калькулятор' && ! wp_verify_nonce( $_POST['modal-calc-nonce'], $_POST['form_name'] ) ) throw new ErrorException;
 
 	$form_name = $_POST['form_name'];
 	$mail = '';
@@ -136,6 +137,7 @@ function send_mail() {
 	$mail .= isset( $_POST['client_service'] ) ? "Услуга: " . strip_tags( $_POST['client_service'] ) . "<br/>" : '';
 	$mail .= isset( $_POST['client_message'] ) ? "Сообщение: " . strip_tags( $_POST['client_message'] ) . "<br/>" : '';
 	$mail .= isset( $_POST['client_address'] ) ? "Адрес: " . strip_tags( $_POST['client_address'] ) . "<br/>" : '';
+	$mail .= isset( $_POST['client_calc_params'] ) ? strip_tags( $_POST['client_calc_params'], '<br>' ) : '';
 	$mail .= "Страница: $_POST[page_request] <br/>";
 
 	require_once ABSPATH . 'wp-admin/includes/image.php';
