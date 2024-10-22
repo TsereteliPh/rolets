@@ -113,6 +113,41 @@ function setTelMask() {
 	});
 }
 
+function changeInputNumber(dispatch = false) {
+	const numberHolders = document.querySelectorAll('.number');
+
+    if (!numberHolders) return;
+
+	numberHolders.forEach(numberHolder => {
+		numberHolder.addEventListener('click', function(evt) {
+			if (evt.target.classList.contains('number__btn')) {
+				let input = this.querySelector('.number__input');
+				let val = parseInt(input.value);
+				let min = parseInt(input.getAttribute('min'));
+				let max = parseInt(input.getAttribute('max'));
+				let step = parseInt(input.getAttribute('step'));
+
+				if (evt.target.classList.contains('number__btn--increment')) {
+					if (max && (max <= val)) {
+						input.value = max;
+					} else {
+						input.value = val + step;
+					}
+				} else {
+					if ((min || min == 0) && (min >= val - step)) {
+						input.value = min;
+					} else if (val > 1) {
+						input.value = val - step;
+					}
+				}
+
+				const changeNumberInput = new Event('change', {bubbles: true, cancelable: true});
+				input.dispatchEvent(changeNumberInput);
+			}
+		});
+	});
+}
+
 function sendForm() {
 	document.querySelectorAll('form[name]').forEach(function (form) {
 		form.addEventListener('submit', function (e) {
@@ -257,6 +292,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	sendForm();
 
 	setTelMask();
+
+	changeInputNumber();
 
 	showMorePosts();
 
