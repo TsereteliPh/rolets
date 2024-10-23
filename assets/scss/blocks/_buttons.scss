@@ -39,6 +39,10 @@
 		background: none;
 		border: 1px solid var(--primary);
 	}
+
+	&.hidden {
+		display: none;
+	}
 }
 
 .btn-underline {

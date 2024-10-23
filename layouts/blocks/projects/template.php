@@ -9,7 +9,7 @@
 			<?php
 				$query = new WP_Query( [
 					'post_type' => 'projects',
-					'posts_per_page' => 1,
+					'posts_per_page' => 3,
 					'paged' => 1,
 				] );
 

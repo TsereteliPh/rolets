@@ -122,7 +122,7 @@ function changeInputNumber(dispatch = false) {
 		numberHolder.addEventListener('click', function(evt) {
 			if (evt.target.classList.contains('number__btn')) {
 				let input = this.querySelector('.number__input');
-				let val = parseInt(input.value);
+				let val = parseInt(input.value || 0);
 				let min = parseInt(input.getAttribute('min'));
 				let max = parseInt(input.getAttribute('max'));
 				let step = parseInt(input.getAttribute('step'));

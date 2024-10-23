@@ -222,7 +222,7 @@ function custom_breadcrumbs( $links ) {
 		array_splice( $links, 1, -2, $breadcrumb );
 	} else if ( is_singular( 'products' ) ) {
 		$breadcrumb[] = array(
-			'url' => get_page_link( 621 ), //! change id
+			'url' => get_page_link( 621 ),
 			'text' => 'Каталог',
 		);
 
