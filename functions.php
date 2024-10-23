@@ -208,6 +208,30 @@ function adem_excerpt( $limit, $ID = null ) {
 	return mb_substr( get_the_excerpt( $ID ), 0, $limit ) . '...';
 }
 
+// Custom breadcrumbs yoast
+add_filter( 'wpseo_breadcrumb_links', 'custom_breadcrumbs' );
+function custom_breadcrumbs( $links ) {
+	global $post;
+
+	if ( in_category( 6 ) && is_single() ) {
+		$breadcrumb[] = array(
+			'url' => get_category_link( 6 ),
+			'text' => 'Статьи',
+		);
+
+		array_splice( $links, 1, -2, $breadcrumb );
+	} else if ( is_singular( 'products' ) ) {
+		$breadcrumb[] = array(
+			'url' => get_page_link( 621 ), //! change id
+			'text' => 'Каталог',
+		);
+
+		array_splice( $links, 1, -1, $breadcrumb );
+	}
+
+	return $links;
+}
+
 //! start temporarily fix acf extended pro
 // ACFE 0.9.0.5: Fix compatibility with clone on ACF 6.3.2
 add_action('acf/init', 'my_acfe_fix_clone', 100);

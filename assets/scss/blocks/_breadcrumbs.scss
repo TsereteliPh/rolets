@@ -1,0 +1,49 @@
+.breadcrumb {
+	width: 100%;
+	margin-top: 20px;
+	font-family: var(--font-secondary);
+	line-height: 1;
+
+	.container {
+
+		> span {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 15px;
+			align-items: center;
+
+			@include sm {
+				flex-wrap: nowrap;
+				overflow: scroll;
+				scrollbar-width: none;
+			}
+
+			span {
+
+				@include sm {
+					flex-shrink: 0;
+				}
+
+				a {
+					text-decoration: none;
+					cursor: pointer;
+					@include ui-link(inherit);
+				}
+			}
+		}
+	}
+
+	&_separator {
+		width: 7px;
+		height: 7px;
+		margin-top: -5px;
+		border-top: 1px solid var(--secondary);
+		border-right: 1px solid var(--secondary);
+		transform: rotate(45deg);
+	}
+
+	&_last {
+		color: #8e8e8e;
+		cursor: default;
+	}
+}
