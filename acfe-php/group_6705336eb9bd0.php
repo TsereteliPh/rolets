@@ -259,7 +259,7 @@ acf_add_local_field_group(array(
 					'layout' => 'table',
 					'pagination' => 0,
 					'min' => 0,
-					'max' => 0,
+					'max' => 5,
 					'collapsed' => '',
 					'button_label' => 'Добавить цвет',
 					'acfe_field_group_condition' => 0,
@@ -651,7 +651,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1728568675,
+	'modified' => 1729764890,
 ));
 
 endif;

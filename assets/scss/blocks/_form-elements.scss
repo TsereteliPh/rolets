@@ -246,6 +246,39 @@
 	background: #3f3f3f;
 	border-radius: 10px;
 
+	&--vertical {
+		padding: 10px 40px 10px 10px;
+
+		.number__btn {
+			position: absolute;
+			right: 10px;
+			height: fit-content;
+		}
+
+		.number__btn--decrement {
+			bottom: 13px;
+			transform: rotate(90deg);
+		}
+
+		.number__btn--increment {
+			top: 13px;
+			transform: rotate(-90deg);
+		}
+	}
+
+	&--light {
+		background: #f9f9f9;
+
+		.number__btn {
+			color: var(--secondary);
+		}
+
+		.number__input {
+			color: var(--fc-dark);
+			font-size: 14px;
+		}
+	}
+
 	&::before {
 		position: absolute;
 		top: -25px;
@@ -302,6 +335,15 @@
 .select {
 	position: relative;
 	min-height: 65px;
+
+	&--light {
+
+		.select__select {
+			color: var(--fc-dark);
+			font-size: 14px;
+			background: #f9f9f9;
+		}
+	}
 
 	&__select {
 		position: relative;
