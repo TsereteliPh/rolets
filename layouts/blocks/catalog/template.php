@@ -280,15 +280,15 @@
 				?>
 			</ul>
 
-			<button class="btn btn--transparent catalog__btn js-show-more<?php echo ( $query->max_num_pages > 1) ? '' : ' hidden'; ?>" type="button">
+			<button class="btn btn--transparent catalog__btn js-show-more<?php echo ( $query->max_num_pages > 1) ? '' : ' hidden'; ?>" type="button" data-slug="catalog">
 				Показать еще
 				<svg width="12" height="12"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
 			</button>
 
 			<script>
-				let catalogPosts = '<?php echo json_encode($query->query_vars); ?>';
-				let catalogCurrentPage = <?php echo ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>;
-				let catalogMaxPages = <?php echo $query->max_num_pages; ?>;
+				window.catalog_posts = '<?php echo json_encode($query->query_vars); ?>';
+				window.catalog_current_page = <?php echo ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>;
+				window.catalog_max_pages = <?php echo $query->max_num_pages; ?>;
 			</script>
 		</div>
 	</div>

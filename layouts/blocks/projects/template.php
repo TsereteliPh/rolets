@@ -37,15 +37,15 @@
 			?>
 		</ul>
 
-		<button class="btn btn--transparent projects__btn js-show-more<?php echo ( $query->max_num_pages > 1) ? '' : ' hidden'; ?>" type="button">
+		<button class="btn btn--transparent projects__btn js-show-more<?php echo ( $query->max_num_pages > 1) ? '' : ' hidden'; ?>" type="button" data-slug="projects">
 			Показать еще
 			<svg width="12" height="12"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
 		</button>
 
 		<script>
-			let posts = '<?php echo json_encode($query->query_vars); ?>';
-			let current_page = <?php echo ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>;
-			let max_pages = <?php echo $query->max_num_pages; ?>;
+			window.projects_posts = '<?php echo json_encode($query->query_vars); ?>';
+			window.projects_current_page = <?php echo ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>;
+			window.projects_max_pages = <?php echo $query->max_num_pages; ?>;
 		</script>
 	</div>
 </section>

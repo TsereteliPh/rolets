@@ -273,34 +273,37 @@ function tabs() {
 //Ajax
 
 function showMorePosts() {
-	const show_more_btn = document.querySelector('.js-show-more');
+	const show_more_btns = document.querySelectorAll('.js-show-more');
 
-	if (!show_more_btn) return;
+	if (!show_more_btns) return;
 
-	show_more_btn.addEventListener('click', function (e) {
-		e.stopImmediatePropagation();
-		const container = document.querySelector('.js-show-more-container');
-		this.classList.add('loader');
+	show_more_btns.forEach(button => {
+		button.addEventListener('click', function (e) {
+			e.stopImmediatePropagation();
+			let container = this.previousElementSibling;
+			this.classList.add('loader');
+			let slug = this.dataset.slug;
 
-		const response = fetch(adem_ajax.url, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-			},
-			body: new URLSearchParams({
-				action: 'load_more',
-				query: posts,
-				page: current_page,
-			}),
-		})
-			.then(response => response.text())
-			.then(data => {
-				this.classList.remove('loader');
-				container.insertAdjacentHTML('beforeend', data);
-				current_page++;
-				if (current_page === max_pages) this.remove();
+			let response = fetch(adem_ajax.url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+				},
+				body: new URLSearchParams({
+					action: 'load_more',
+					query: window[`${slug}_posts`],
+					page: window[`${slug}_current_page`],
+				}),
 			})
-			.catch(error => console.error('Error:', error));
+				.then(response => response.text())
+				.then(data => {
+					this.classList.remove('loader');
+					container.insertAdjacentHTML('beforeend', data);
+					window[`${slug}_current_page`]++;
+					if (window[`${slug}_current_page`] === window[`${slug}_max_pages`]) this.remove();
+				})
+				.catch(error => console.error('Error:', error));
+		});
 	});
 }
 
