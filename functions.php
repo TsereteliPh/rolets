@@ -274,6 +274,7 @@ function my_acfe_fix_form_fields(){
 
 require 'inc/acf.php';
 require 'inc/load-more.php';
+require 'inc/catalog-filters.php';
 require 'inc/mail.php';
 require 'inc/svg.php';
 require 'inc/tiny-mce.php';

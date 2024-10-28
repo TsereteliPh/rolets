@@ -300,10 +300,88 @@ function showMorePosts() {
 					this.classList.remove('loader');
 					container.insertAdjacentHTML('beforeend', data);
 					window[`${slug}_current_page`]++;
-					if (window[`${slug}_current_page`] === window[`${slug}_max_pages`]) this.remove();
+					if (window[`${slug}_current_page`] === window[`${slug}_max_pages`]) this.classList.add('hidden');
 				})
 				.catch(error => console.error('Error:', error));
 		});
+	});
+}
+
+//Ajax catalog filters
+
+function showCatalogFilters() {
+	const form = document.querySelector('.catalog__filters-form');
+
+	if (!form) return;
+
+	form.addEventListener('submit', function (e) {
+		e.preventDefault();
+
+		let formData = new FormData(form);
+		formData.append('action', 'catalog_filters');
+		let container = document.querySelector('.js-catalog-container');
+		for (const element of container.children) {
+			element.classList.add('loader');
+		}
+		let showMoreBtn = document.querySelector('.js-show-more');
+		showMoreBtn.disabled = true;
+
+		let response = fetch(adem_ajax.url, {
+			method: 'POST',
+			body: formData,
+		})
+			.then(response => response.json())
+			.then(data => {
+				if (data.status) {
+					window['catalog_posts'] = JSON.stringify(data.query);
+					window['catalog_current_page'] = data.paged;
+					window['catalog_max_pages'] = data.max_pages;
+
+					let response = fetch(adem_ajax.url, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+						},
+						body: new URLSearchParams({
+							action: 'load_more',
+							query: window[`catalog_posts`],
+							page: window[`catalog_current_page`],
+						}),
+					})
+						.then(response => response.text())
+						.then(data => {
+							container.innerHTML = data;
+							window[`catalog_current_page`]++;
+							if (window[`catalog_current_page`] === window[`catalog_max_pages`]) {
+								showMoreBtn.classList.add('hidden');
+							} else {
+								showMoreBtn.classList.remove('hidden');
+								showMoreBtn.disabled = false;
+							}
+						})
+						.catch(error => {
+							console.error('Error:', error);
+							Fancybox.show([
+								{
+									src: '#failure',
+									type: 'inline',
+								},
+							]);
+						});
+				} else {
+					container.innerHTML = data.message;
+					showMoreBtn.classList.add('hidden');
+				}
+			})
+			.catch(error => {
+				console.error('Error:', error);
+				Fancybox.show([
+					{
+						src: '#failure',
+						type: 'inline',
+					},
+				]);
+			});
 	});
 }
 
@@ -321,6 +399,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	changeInputNumber();
 
 	showMorePosts();
+
+	showCatalogFilters();
 
 	tabs();
 });

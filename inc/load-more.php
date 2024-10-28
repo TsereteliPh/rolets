@@ -12,16 +12,20 @@ function load_more() {
 		while( $query->have_posts() ) {
 			$query->the_post();
 			if ( $args['post_type'] == 'review' ) {
-				$return_html .= get_template_part('layouts/partials/cards/review-card', null, array(
+				$return_html .= get_template_part( 'layouts/partials/cards/review-card', null, array(
 					'class' => 'reviews__item'
 				) );
 			} else if ( $args['post_type'] == 'projects' ) {
-				$return_html .= get_template_part('layouts/partials/cards/project-card', null, array(
+				$return_html .= get_template_part( 'layouts/partials/cards/project-card', null, array(
 					'class' => 'projects__item'
 				) );
 			} else if ( $args['cat'] == 6 ) {
-				$return_html .= get_template_part('layouts/partials/cards/article-card', null, array(
+				$return_html .= get_template_part( 'layouts/partials/cards/article-card', null, array(
 					'class' => 'archive-block__item'
+				) );
+			} else if ( $args['post_type'] == 'products' ) {
+				$return_html .= get_template_part( 'layouts/partials/cards/product-card', null, array(
+					'class' => 'catalog__item'
 				) );
 			}
 		}

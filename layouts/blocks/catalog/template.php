@@ -39,16 +39,10 @@
 		?>
 
 		<div class="catalog__content">
-			<?php
-				// $post_meta = get_post_meta( 393, '', false );
-				// echo '<pre>';
-				// print_r( $post_meta );
-				// echo '</pre>';
-			?>
 			<aside class="catalog__filters">
 				<div class="catalog__filters-title">Фильтры</div>
 
-				<form method="POST" class="catalog__filters-form" name="Каталог">
+				<form method="POST" class="catalog__filters-form">
 					<div class="catalog__filters-box catalog__filters-box--price">
 						<div class="catalog__filters-label">Цена</div>
 
@@ -118,7 +112,7 @@
 
 							<div class="select select--light">
 								<select class="select__select" name="catalogCats">
-									<option value="Категории">Категория</option>
+									<option value="Категория">Категория</option>
 
 									<?php foreach ( $product_cats as $cat ) : ?>
 										<option value="<?php echo $cat->slug; ?>"<?php echo $_GET['product_cat'] === strtolower( $cat->slug ) ? ' selected' : ''; ?>>
@@ -229,7 +223,11 @@
 					</div>
 
 					<div class="catalog__filters-box catalog__filters-box--controls">
-						<input type="reset" class="btn btn--transparent catalog__filters-reset" value="Очистить"></input>
+						<?php if ( ! empty( $_GET ) ) : ?>
+							<a href="<?php echo get_page_link( 621 ); ?>" class="btn btn--transparent catalog__filters-reset">Очистить</a>
+						<?php else : ?>
+							<input type="reset" class="btn btn--transparent catalog__filters-reset" value="Очистить"></input>
+						<?php endif; ?>
 
 						<button class="btn catalog__filters-submit" type="submit">Применить</button>
 					</div>
