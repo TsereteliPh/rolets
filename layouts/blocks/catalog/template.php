@@ -164,7 +164,7 @@
 									<option value="Производитель">Производитель</option>
 
 									<?php foreach ( $all_product_manufacturers as $manufacturer ) : ?>
-										<option value="<?php echo $manufacturer; ?>"<?php echo $_GET['manufacturer'] == strtolower( $manufacturer ) ? ' selected' : ''; ?>>
+										<option value="<?php echo $manufacturer; ?>"<?php echo $_GET['manufacturer'] == $manufacturer ? ' selected' : ''; ?>>
 											<?php echo $manufacturer; ?>
 										</option>
 									<?php endforeach; ?>

@@ -115,18 +115,20 @@
 						<?php if ( $importants['manufacturer'] ) : ?>
 							<li class="product__item">
 								Производитель
-								<span><?php echo $importants['manufacturer']; //TODO manufacturer link to archive ?></span>
+								<a href="<?php echo get_page_link( 621 ) . '?manufacturer=' . $importants['manufacturer']; ?>"><?php echo $importants['manufacturer']; ?></a>
 							</li>
 						<?php endif; ?>
 
-						<?php foreach ( $attributes as $key => $attr ) : ?>
-							<?php if ( $key > 7 ) break; ?>
+						<?php if ( $attributes ) : ?>
+							<?php foreach ( $attributes as $key => $attr ) : ?>
+								<?php if ( $key > 7 ) break; ?>
 
-							<li class="product__item">
-								<?php echo $attr['label']; ?>
-								<span><?php echo $attr['value']; ?></span>
-							</li>
-						<?php endforeach; ?>
+								<li class="product__item">
+									<?php echo $attr['label']; ?>
+									<span><?php echo $attr['value']; ?></span>
+								</li>
+							<?php endforeach; ?>
+						<?php endif; ?>
 					</ul>
 				<?php endif; ?>
 
@@ -239,16 +241,18 @@
 							<?php if ( $importants['manufacturer'] ) : ?>
 								<li class="product__item">
 									Производитель
-									<span><?php echo $importants['manufacturer']; ?></span>
+									<a href="<?php echo get_page_link( 621 ) . '?manufacturer=' . $importants['manufacturer']; ?>"><?php echo $importants['manufacturer']; ?></a>
 								</li>
 							<?php endif; ?>
 
-							<?php foreach ( $attributes as $attr ) : ?>
-								<li class="product__item">
-									<?php echo $attr['label']; ?>
-									<span><?php echo $attr['value']; ?></span>
-								</li>
-							<?php endforeach; ?>
+							<?php if ( $attributes ) : ?>
+								<?php foreach ( $attributes as $attr ) : ?>
+									<li class="product__item">
+										<?php echo $attr['label']; ?>
+										<span><?php echo $attr['value']; ?></span>
+									</li>
+								<?php endforeach; ?>
+							<?php endif; ?>
 						</ul>
 					<?php endif; ?>
 

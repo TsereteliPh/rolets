@@ -331,9 +331,14 @@
 			background: #f9f9f9;
 		}
 
+		a,
 		span {
 			font-weight: 700;
 			text-align: right;
+		}
+
+		a {
+			@include ui-link(var(--primary));
 		}
 	}
 
