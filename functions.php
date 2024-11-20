@@ -53,16 +53,14 @@ if ( ! function_exists( 'adem_setup' ) ) {
 			'menu_name'         => 'Категории товаров',
 			'back_to_items'     => '← Вернуться к категориям',
 		],
-		'description'           => '',
-		'public'                => true,
-		'hierarchical'          => true,
-
-		'rewrite'               => true,
-		'capabilities'          => [],
-		'meta_box_cb'           => null,
-		'show_admin_column'     => false,
-		'show_in_rest'          => null,
-		'rest_base'             => null,
+		'public'            => true,
+		'hierarchical'      => true,
+		'show_admin_column' => true,
+		'rewrite'           => array(
+			'slug'         => 'products',
+			'with_front'   => false,
+			'hierarchical' => true
+		),
 	] );
 
 	//	register post types
@@ -135,15 +133,16 @@ if ( ! function_exists( 'adem_setup' ) ) {
 			'not_found_in_trash' => 'Не найдено в корзине',
 			'menu_name' => 'Товары',
 		],
-		'public' => true,
-		'show_in_menu' => true,
+		'public'      => true,
+		'has_archive' => true,
+		'rewrite'     => array(
+			'slug'       => 'products/%product_cat%',
+			'with_front' => false
+		),
+		'taxonomies'  => array( 'product_cat' ),
 		'menu_position' => 23,
 		'menu_icon' => 'dashicons-cart',
 		'supports' => ['title', 'thumbnail'],
-		'taxonomies' => ['product_cat'],
-		'has_archive' => true,
-		'rewrite' => true,
-		'query_var' => true,
 		'publicly_queryable' => true
 	] );
 
@@ -220,16 +219,68 @@ function custom_breadcrumbs( $links ) {
 		);
 
 		array_splice( $links, 1, -2, $breadcrumb );
-	} else if ( is_singular( 'products' ) ) {
-		$breadcrumb[] = array(
-			'url' => get_page_link( 621 ),
-			'text' => 'Каталог',
-		);
+	} else if ( is_archive() || is_tax() ) {
+		$current_term = get_queried_object();
 
-		array_splice( $links, 1, -1, $breadcrumb );
+		if ( $current_term->taxonomy == 'product_cat' ) {
+			$links[1]['url'] = str_replace( 'product_cat/', 'products/', $links[1]['url'] );
+
+			$breadcrumb[] = array(
+				'url' => get_page_link( 621 ),
+				'text' => 'Товар',
+			);
+
+			array_splice( $links, 1, 0, $breadcrumb );
+		}
+	} else if ( is_singular( 'products' ) ) {
+		$links[2]['url'] = str_replace( 'product_cat/', 'products/', $links[2]['url'] );
 	}
 
 	return $links;
+}
+
+// Display product cats recursive function
+function adem_display_terms_recursive( $taxonomy, $current_term_id, $parent_id = 0 ) {
+	$without_parents = $parent_id === 0;
+
+    $terms = get_terms( array(
+        'taxonomy' => $taxonomy,
+        'parent' => $parent_id,
+    ) );
+
+    if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+		if ( $without_parents ) {
+			echo '<ul class="reset-list filter-cats">';
+		} else {
+			echo '<ul>';
+		}
+
+        foreach ( $terms as $term ) {
+			if ( $without_parents ) {
+				echo '<li class="filter-cats__item js-accordion">';
+			} else {
+				echo '<li>';
+			}
+
+			if ( $without_parents ) echo '<button class="filter-cats__item-button" type="button">';
+
+            echo '<a href="' . get_term_link( $term ) . '" class="filter-cats__item-link' . ( $term->term_id === $current_term_id ? ' filter-cats__item-link--current' : '' ) . '">' . $term->name . '</a>';
+
+			if ( $without_parents ) {
+				if ( get_terms( array( 'taxonomy' => $taxonomy, 'parent' => $term->term_id ) ) ) {
+					echo '<svg width="14" height="14"><use xlink:href="' .get_template_directory_uri() . '/assets/images/sprite.svg#icon-controls-arrow"></use></svg>';
+				}
+
+				echo '</button>';
+			}
+
+            adem_display_terms_recursive( $taxonomy, $current_term_id, $term->term_id );
+
+            echo '</li>';
+        }
+
+        echo '</ul>';
+    }
 }
 
 //! start temporarily fix acf extended pro
@@ -271,6 +322,89 @@ function my_acfe_fix_form_fields(){
     <?php
 }
 //! end
+
+add_filter( 'post_type_link', 'filter_catalog_post_link', 10, 2 );
+function filter_catalog_post_link( $post_link, $post ) {
+	if ( $post->post_type === 'products' ) {
+		$terms = wp_get_post_terms( $post->ID, 'product_cat' );
+		if ( $terms && ! is_wp_error( $terms ) ) {
+			$term_slug = '';
+
+			if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+				$term      = $terms[0];
+				$ancestors = get_ancestors( $term->term_id, 'product_cat' );
+
+				$slugs = array_reverse( array_map( function ( $ancestor_id ) {
+					$ancestor_term = get_term( $ancestor_id, 'product_cat' );
+
+					return $ancestor_term->slug;
+				}, $ancestors ) );
+
+				$slugs[] = $term->slug;
+
+				$term_slug = implode( '/', $slugs );
+			}
+
+			$post_link = str_replace( '%product_cat%', $term_slug, $post_link );
+		} else {
+			$post_link = str_replace( '%product_cat%', 'uncategorized', $post_link );
+		}
+	}
+
+	return $post_link;
+}
+
+add_action( 'init', 'catalog_rewrite_rules', 10 );
+function catalog_rewrite_rules( $flash = false ) {
+	$terms = get_terms( array(
+		'taxonomy'   => 'product_cat',
+		'post_type'  => 'products',
+		'hide_empty' => false,
+	) );
+
+	if ( $terms && ! is_wp_error( $terms ) ) {
+		$site_url = esc_url( home_url( '/' ) );
+
+		foreach ( $terms as $term ) {
+			$term_slug = $term->slug;
+			$base_term = str_replace( $site_url, '', get_term_link( $term->term_id, 'product_cat' ) );
+
+			add_rewrite_rule( $base_term . '?$', 'index.php?product_cat=' . $term_slug, 'top' );
+			add_rewrite_rule( $base_term . '/page/([0-9]{1,})/?$', 'index.php?product_cat=' . $term_slug . '&paged=$matches[1]', 'top' );
+			add_rewrite_rule( $base_term . '(?:feed/)?(feed|rdf|rss|rss2|atom)/?$', 'index.php?product_cat=' . $term_slug . '&feed=$matches[1]', 'top' );
+
+		}
+	}
+
+	add_rewrite_rule(
+		'^products/([^/]+)/([^/]+)/?$',
+		'index.php?product_cat=$matches[1]&products=$matches[2]',
+		'top'
+	);
+
+	add_rewrite_rule(
+		'^products/([^/]+)/([^/]+)/([^/]+)/?$',
+		'index.php?product_cat=$matches[1]/$matches[2]&products=$matches[3]',
+		'top'
+	);
+
+	add_rewrite_rule(
+		'^products/([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$',
+		'index.php?product_cat=$matches[1]/$matches[2]/$matches[3]&products=$matches[4]',
+		'top'
+	);
+
+	if ( $flash === true ) {
+		update_option( 'rewrite_rules', '' );
+	}
+}
+
+add_action( 'create_catalog_category', 'create_term_flash_rewrite_rules', 10, 2 );
+function create_term_flash_rewrite_rules( $term_id, $taxonomy ) {
+	catalog_rewrite_rules( true );
+}
+
+
 
 require 'inc/acf.php';
 require 'inc/load-more.php';
