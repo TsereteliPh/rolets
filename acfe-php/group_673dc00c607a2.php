@@ -3,11 +3,11 @@
 if( function_exists('acf_add_local_field_group') ):
 
 acf_add_local_field_group(array(
-	'key' => 'group_6718ccdc4a60c',
-	'title' => 'Block:catalog',
+	'key' => 'group_673dc00c607a2',
+	'title' => 'Block:catalog-cats',
 	'fields' => array(
 		array(
-			'key' => 'field_6718ccdc63cd1',
+			'key' => 'field_673dc00c73f39',
 			'label' => 'Заголовок',
 			'name' => 'title',
 			'aria-label' => '',
@@ -29,7 +29,7 @@ acf_add_local_field_group(array(
 			'acfe_group_modal_size' => 'large',
 			'sub_fields' => array(
 				array(
-					'key' => 'field_6718ccdc6f0cc',
+					'key' => 'field_673dc00c83017',
 					'label' => 'Небольшой текст',
 					'name' => 'small-text',
 					'aria-label' => '',
@@ -50,7 +50,7 @@ acf_add_local_field_group(array(
 					'acfe_field_group_condition' => 0,
 				),
 				array(
-					'key' => 'field_6718ccdc72c52',
+					'key' => 'field_673dc00c86b2b',
 					'label' => 'Тип',
 					'name' => 'type',
 					'aria-label' => '',
@@ -84,7 +84,7 @@ acf_add_local_field_group(array(
 					'min' => '',
 				),
 				array(
-					'key' => 'field_6718ccdc765f7',
+					'key' => 'field_673dc00c8a451',
 					'label' => 'Текст',
 					'name' => 'text',
 					'aria-label' => '',
@@ -104,14 +104,31 @@ acf_add_local_field_group(array(
 					'append' => '',
 					'acfe_field_group_condition' => 0,
 				),
+				array(
+					'key' => 'field_673dc3413f4f7',
+					'label' => 'Ссылка',
+					'name' => 'link',
+					'aria-label' => '',
+					'type' => 'link',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array(
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'return_format' => 'array',
+					'acfe_field_group_condition' => 0,
+				),
 			),
 		),
 		array(
-			'key' => 'field_6718ce11dcf83',
-			'label' => '',
-			'name' => '',
+			'key' => 'field_673dc00c77a7e',
+			'label' => 'Категории',
+			'name' => 'cats',
 			'aria-label' => '',
-			'type' => 'message',
+			'type' => 'taxonomy',
 			'instructions' => '',
 			'required' => 0,
 			'conditional_logic' => 0,
@@ -120,10 +137,23 @@ acf_add_local_field_group(array(
 				'class' => '',
 				'id' => '',
 			),
-			'message' => 'Автоматически отображает все товары и категории из вкладки "Товары".',
-			'new_lines' => 'wpautop',
-			'esc_html' => 0,
+			'taxonomy' => 'product_cat',
+			'add_term' => 0,
+			'save_terms' => 0,
+			'load_terms' => 0,
+			'return_format' => 'id',
+			'field_type' => 'multi_select',
+			'min' => '',
+			'max' => '',
+			'allow_null' => 0,
+			'acfe_bidirectional' => array(
+				'acfe_bidirectional_enabled' => '0',
+			),
 			'acfe_field_group_condition' => 0,
+			'bidirectional' => 0,
+			'multiple' => 0,
+			'bidirectional_target' => array(
+			),
 		),
 	),
 	'location' => array(
@@ -151,7 +181,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1732100254,
+	'modified' => 1732100942,
 ));
 
 endif;
