@@ -1,7 +1,8 @@
 <?php
-if ( have_rows('blocks') ) {
+$id = $args['id'] ?? null;
+if ( have_rows( 'blocks', $id ) ) {
 	$counters = array();
-	while ( have_rows('blocks') ) {
+	while ( have_rows( 'blocks', $id ) ) {
 		the_row();
 		$layout = get_row_layout();
 		if ( ! isset( $counters[$layout] ) ) {
