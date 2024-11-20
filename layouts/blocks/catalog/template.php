@@ -1,12 +1,18 @@
-<?php global $wpdb; ?>
+<?php
+	global $wpdb;
+	$current_term = get_queried_object();
+?>
 
 <section class="catalog">
 	<div class="container">
 		<?php
 			$title = get_sub_field( 'title' );
-			if ( isset( $_GET['product_cat'] ) ) {
-				$term_name = get_term_by( 'slug', $_GET['product_cat'], 'product_cat' )->name;
-				$title['small-text'] = $term_name;
+
+			$title['small-text'] = $title['small-text'] ?? 'Категория';
+			$title['type'] = $title['type'] ?? 'h1';
+
+			if ( $current_term->name ) {
+				$title['text'] = $current_term->name;
 			}
 
 			get_template_part( '/layouts/partials/title', null, array(
@@ -16,20 +22,34 @@
 		?>
 
 		<?php
-			$cats = get_sub_field( 'cats' );
+			$cats = false;
+
+			if ( $current_term->ID ) {
+				$cats = get_terms( array(
+					'taxonomy' => 'product_cat',
+					'parent' => 0,
+				) );
+			} else if ( $current_term->term_id ) {
+				$cats = get_terms( array(
+					'taxonomy' => 'product_cat',
+					'parent' => $current_term->term_id
+				) );
+			}
+
 			if ( $cats ) :
 				?>
 
-				<ul class="reset-list catalog__cats-list swiper-wrapper">
+				<ul class="reset-list catalog__cats-list">
 					<?php foreach ( $cats as $cat ) : ?>
-						<?php $term = get_term( $cat['cat'], 'product_cat' ); ?>
-
-						<li class="catalog__cats-item swiper-slide<?php echo $_GET['product_cat'] === $term->slug ? ' active' : ''; ?>">
+						<li class="catalog__cats-item">
 							<div class="catalog__cats-img">
-								<?php echo wp_get_attachment_image( $cat['img'] ? $cat['img'] : 31, 'large', false ); ?>
+								<?php
+									$cat_img = get_field( 'tax_img', $cat );
+									echo wp_get_attachment_image( $cat_img ? $cat_img : 31, 'large', false );
+								?>
 							</div>
 
-							<a href="<?php echo get_page_link( 621 ) . '?product_cat=' . $term->slug; ?>" class="catalog__cats-link"><?php echo $term->name; ?></a>
+							<a href="<?php echo get_term_link( $cat->term_id, 'product_cat' ); ?>" class="catalog__cats-link"><?php echo $cat->name; ?></a>
 						</li>
 					<?php endforeach;?>
 				</ul>
@@ -38,11 +58,19 @@
 			endif;
 		?>
 
-		<div class="catalog__content">
+		<div class="catalog__content" id="catalog-content">
 			<aside class="catalog__filters">
 				<div class="catalog__filters-title">Фильтры</div>
 
 				<form method="POST" class="catalog__filters-form">
+					<div class="catalog__filters-box catalog__filters-box--cats">
+						<div class="catalog__filters-label">Категории</div>
+
+						<?php adem_display_terms_recursive( 'product_cat', $current_term->term_id ); ?>
+
+						<input type="text" class="hidden" name="catalogCats" value="<?php echo $current_term->term_id; ?>">
+					</div>
+
 					<div class="catalog__filters-box catalog__filters-box--price">
 						<div class="catalog__filters-label">Цена</div>
 
@@ -104,29 +132,7 @@
 						</div>
 					</div>
 
-					<div class="catalog__filters-box catalog__filters--cats">
-						<div class="catalog__filters-label">Категории</div>
-
-						<div class="catalog__filters-content">
-							<?php $product_cats = get_terms( array( 'taxonomy' => 'product_cat' ) ); ?>
-
-							<div class="select select--light">
-								<select class="select__select" name="catalogCats">
-									<option value="Категория">Категория</option>
-
-									<?php foreach ( $product_cats as $cat ) : ?>
-										<option value="<?php echo $cat->slug; ?>"<?php echo $_GET['product_cat'] === strtolower( $cat->slug ) ? ' selected' : ''; ?>>
-											<?php echo $cat->name; ?>
-										</option>
-									<?php endforeach; ?>
-								</select>
-
-								<svg class="select__toggle" width="14" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
-							</div>
-						</div>
-					</div>
-
-					<div class="catalog__filters-box catalog__filters--manufacturer">
+					<div class="catalog__filters-box catalog__filters-box--manufacturer">
 						<div class="catalog__filters-label">Производитель</div>
 
 						<div class="catalog__filters-content">
@@ -175,7 +181,7 @@
 						</div>
 					</div>
 
-					<div class="catalog__filters-box catalog__filters--color">
+					<div class="catalog__filters-box catalog__filters-box--color">
 						<div class="catalog__filters-label">Цвет</div>
 
 						<div class="catalog__filters-content">
@@ -223,11 +229,7 @@
 					</div>
 
 					<div class="catalog__filters-box catalog__filters-box--controls">
-						<?php if ( ! empty( $_GET ) ) : ?>
-							<a href="<?php echo get_page_link( 621 ); ?>" class="btn btn--transparent catalog__filters-reset">Очистить</a>
-						<?php else : ?>
-							<input type="reset" class="btn btn--transparent catalog__filters-reset" value="Очистить"></input>
-						<?php endif; ?>
+						<a href="<?php echo get_page_link( 621 ); ?>#catalog-content" class="btn btn--transparent catalog__filters-reset">Очистить</a>
 
 						<button class="btn catalog__filters-submit" type="submit">Применить</button>
 					</div>
@@ -238,12 +240,12 @@
 				<?php
 					$tax_query = '';
 
-					if ( ! empty( $_GET['product_cat'] ) ) {
+					if ( $current_term->term_id ) {
 						$tax_query = array(
 							array(
 								'taxonomy' => 'product_cat',
-								'field' => 'slug',
-								'terms' => $_GET['product_cat']
+								'field' => 'id',
+								'terms' => $current_term->term_id
 							)
 						);
 					}

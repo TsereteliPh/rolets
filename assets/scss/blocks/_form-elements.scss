@@ -281,12 +281,13 @@
 
 	&::before {
 		position: absolute;
-		top: -25px;
+		top: -15px;
 		left: 0;
 		width: 100%;
 		height: fit-content;
-		font-size: 14px;
+		font-size: 12px;
 		font-family: var(--font-secondary);
+		line-height: 1;
 		text-align: center;
 		content: attr(data-legend);
 	}

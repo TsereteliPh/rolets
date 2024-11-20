@@ -7,13 +7,12 @@ function catalog_filters() {
 		'message' => '<li class="catalog__item catalog__item--message">К сожалению, ничего не найдено по вашему запросу. Возможно, что-то упустили? Вы можете вернуться и посмотреть <a href="' . get_page_link( 621 ) . '">весь каталог</a>, где точно найдется то, что вас заинтересует.</li>'
 	);
 
-	if ( $_POST['catalogCats'] === 'Категория' ) {
-		$tax_query = '';
-	} else {
+	$tax_query = '';
+	if ( $_POST['catalogCats'] ) {
 		$tax_query = array(
 			array(
 				'taxonomy' => 'product_cat',
-				'field' => 'slug',
+				'field' => 'id',
 				'terms' => $_POST['catalogCats']
 			)
 		);

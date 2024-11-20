@@ -32,10 +32,13 @@
 			gap: 10px;
 		}
 
-		&.active {
+		@include mouse {
 
-			.catalog__cats-img {
-				border: 5px solid var(--secondary);
+			&:hover {
+
+				.catalog__cats-img {
+					border: 5px solid var(--secondary);
+				}
 			}
 		}
 	}
@@ -47,6 +50,7 @@
 		height: auto;
 		aspect-ratio: 3/1;
 		overflow: hidden;
+		border: 5px solid transparent;
 		border-radius: 20px;
 		transition: var(--transition);
 
@@ -155,7 +159,15 @@
 
 		@include xs {
 			grid-template-columns: 1fr;
-			gap: 5px;
+			gap: 0;
+		}
+
+		&--cats {
+			grid-template-columns: 1fr;
+
+			@include md {
+				align-items: start;
+			}
 		}
 
 		&--price {
@@ -179,6 +191,10 @@
 				display: grid;
 				grid-template-columns: 1fr 1fr;
 				gap: 10px;
+
+				@include xs {
+					margin-top: 25px;
+				}
 			}
 
 			.number::before {
@@ -213,6 +229,10 @@
 			@include md {
 				grid-template-columns: 1fr 1fr;
 				gap: 20px;
+			}
+
+			@include xs {
+				gap: 10px;
 			}
 		}
 	}
