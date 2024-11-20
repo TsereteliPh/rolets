@@ -233,7 +233,11 @@
 					</div>
 
 					<div class="catalog__filters-box catalog__filters-box--controls">
-						<a href="<?php echo get_page_link( 621 ); ?>#catalog-content" class="btn btn--transparent catalog__filters-reset">Очистить</a>
+						<?php if ( is_page( 621 ) ) : ?>
+							<input type="reset" class="btn btn--transparent catalog__filters-reset" value="Очистить"></input>
+						<?php else : ?>
+							<a href="<?php echo get_page_link( 621 ); ?>#catalog-content" class="btn btn--transparent catalog__filters-reset">Очистить</a>
+						<?php endif; ?>
 
 						<button class="btn catalog__filters-submit" type="submit">Применить</button>
 					</div>
