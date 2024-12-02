@@ -63,7 +63,7 @@ function catalog_filters() {
 			'relation' => 'OR',
 		);
 
-		for ( $i = 0;  $i < 5;  $i++ ) {
+		for ( $i = 0;  $i < 10;  $i++ ) {
 			$color_query[] = array(
 				'key'     => "important_attributes_colors_{$i}_color",
 				'value'   => $_POST['catalogColor'],
