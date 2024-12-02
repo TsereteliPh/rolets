@@ -3,9 +3,13 @@
 
 	&__list {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(4, 1fr);
 		gap: 50px 20px;
 		margin-top: 40px;
+
+		@include lg {
+			grid-template-columns: repeat(3, 1fr);
+		}
 
 		@include sm {
 			grid-template-columns: 1fr 1fr;
@@ -48,17 +52,13 @@
 		align-items: center;
 		width: 100%;
 		height: auto;
-		aspect-ratio: 3/1;
+		aspect-ratio: 1/1;
 		overflow: hidden;
 		border: 5px solid transparent;
 		border-radius: 20px;
 		transition: var(--transition);
 
-		@include hg {
-			aspect-ratio: 2/1;
-		}
-
-		@include xs {
+		@include lg {
 			aspect-ratio: 4/3;
 		}
 
