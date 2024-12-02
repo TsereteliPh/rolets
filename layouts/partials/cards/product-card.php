@@ -26,10 +26,16 @@
 
 	<?php if ( $importants['price'] ) : ?>
 		<div class="product-card__price">
-			<div class="product-card__price-default<?php echo $importants['price']['sale'] ? ' product-card__price-default--del' : ''; ?>"><?php echo $importants['price']['default'] . ' руб.'; ?></div>
+			<div class="product-card__price-default<?php echo $importants['price']['sale'] ? ' product-card__price-default--del' : ''; ?>">
+				<?php echo empty( $importants['price']['sale_price'] ) ? 'От' : ''; ?>
+				<?php echo $importants['price']['default'] . ' руб.'; ?>
+			</div>
 
 			<?php if ( $importants['price']['sale_price'] ) : ?>
-				<div class="product-card__price-sale"><?php echo $importants['price']['sale_price'] . ' руб.'; ?></div>
+				<div class="product-card__price-sale">
+					От
+					<?php echo $importants['price']['sale_price'] . ' руб.'; ?>
+				</div>
 			<?php endif; ?>
 		</div>
 	<?php endif; ?>

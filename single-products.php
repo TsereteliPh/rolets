@@ -161,10 +161,16 @@
 				<div class="product__panel-wrapper">
 					<?php if ( $importants['price'] ) : ?>
 						<div class="product__price">
-							<div class="product__price-default<?php echo $importants['price']['sale'] ? ' product__price-default--del' : ''; ?>"><?php echo $importants['price']['default'] . ' руб.'; ?></div>
+							<div class="product__price-default<?php echo $importants['price']['sale'] ? ' product__price-default--del' : ''; ?>">
+								<?php echo empty( $importants['price']['sale_price'] ) ? 'От' : ''; ?>
+								<?php echo $importants['price']['default'] . ' руб.'; ?>
+							</div>
 
 							<?php if ( $importants['price']['sale_price'] ) : ?>
-								<div class="product__price-sale"><?php echo $importants['price']['sale_price'] . ' руб.'; ?></div>
+								<div class="product__price-sale">
+									От
+									<?php echo $importants['price']['sale_price'] . ' руб.'; ?>
+								</div>
 							<?php endif; ?>
 						</div>
 					<?php endif; ?>
