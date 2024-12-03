@@ -64,183 +64,188 @@
 	<div class="container">
 		<div class="catalog__content" id="catalog-content">
 			<aside class="catalog__filters">
-				<div class="catalog__filters-title">Фильтры</div>
+				<div class="catalog__filters-title">Категории</div>
 
 				<form method="POST" class="catalog__filters-form">
 					<div class="catalog__filters-box catalog__filters-box--cats">
-						<div class="catalog__filters-label">Категории</div>
+						<!-- <div class="catalog__filters-label">Категории</div> -->
 
 						<?php adem_display_terms_recursive( 'product_cat', $current_term->term_id ); ?>
 
 						<input type="text" class="hidden" name="catalogCats" value="<?php echo $current_term->term_id; ?>">
 					</div>
 
-					<div class="catalog__filters-box catalog__filters-box--price">
-						<div class="catalog__filters-label">Цена</div>
 
-						<div class="catalog__filters-content">
-							<?php
-								$all_product_prices = get_transient( 'product_prices_cache' );
+					<?php //? temporarily disable start ?>
+					<?php if ( false ) : ?>
+						<div class="catalog__filters-box catalog__filters-box--price">
+							<div class="catalog__filters-label">Цена</div>
 
-								if ( empty( $all_product_prices ) ) {
-									$prices_meta = $wpdb->get_results( "
-										SELECT pm.post_id, pm.meta_value
-										FROM {$wpdb->postmeta} pm
-										INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
-										WHERE pm.meta_key = 'important_attributes_price_default'
-										AND p.post_type = 'products'
-										AND p.post_status = 'publish'
-									" );
+							<div class="catalog__filters-content">
+								<?php
+									$all_product_prices = get_transient( 'product_prices_cache' );
 
-									$all_product_prices = array();
+									if ( empty( $all_product_prices ) ) {
+										$prices_meta = $wpdb->get_results( "
+											SELECT pm.post_id, pm.meta_value
+											FROM {$wpdb->postmeta} pm
+											INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+											WHERE pm.meta_key = 'important_attributes_price_default'
+											AND p.post_type = 'products'
+											AND p.post_status = 'publish'
+										" );
 
-									if ( ! empty( $prices_meta ) ) {
-										foreach ( $prices_meta as $meta ) {
-											if ( empty( $meta->meta_value ) ) continue;
+										$all_product_prices = array();
 
-											$all_product_prices[] = $meta->meta_value;
+										if ( ! empty( $prices_meta ) ) {
+											foreach ( $prices_meta as $meta ) {
+												if ( empty( $meta->meta_value ) ) continue;
+
+												$all_product_prices[] = $meta->meta_value;
+											}
 										}
+
+										$all_product_prices = array_unique( $all_product_prices );
+
+										set_transient( 'product_prices_cache', $all_product_prices, 3600 );
 									}
 
-									$all_product_prices = array_unique( $all_product_prices );
+									$max_price = max( $all_product_prices );
+								?>
 
-									set_transient( 'product_prices_cache', $all_product_prices, 3600 );
-								}
+								<div class="number number--vertical number--light" data-legend="От">
+									<div class="number__btn number__btn--decrement">
+										<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
+									</div>
 
-								$max_price = max( $all_product_prices );
-							?>
+									<input type="number" class="number__input" name="catalogMinPrice" value="0" min="0" max="<?php echo $max_price; ?>" step="1">
 
-							<div class="number number--vertical number--light" data-legend="От">
-								<div class="number__btn number__btn--decrement">
-									<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
+									<div class="number__btn number__btn--increment">
+										<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
+									</div>
 								</div>
 
-								<input type="number" class="number__input" name="catalogMinPrice" value="0" min="0" max="<?php echo $max_price; ?>" step="100">
+								<div class="number number--vertical number--light" data-legend="До">
+									<div class="number__btn number__btn--decrement">
+										<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
+									</div>
 
-								<div class="number__btn number__btn--increment">
-									<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
-								</div>
-							</div>
+									<input type="number" class="number__input" name="catalogMaxPrice" value="<?php echo $max_price; ?>" min="0" max="<?php echo $max_price; ?>" step="1">
 
-							<div class="number number--vertical number--light" data-legend="До">
-								<div class="number__btn number__btn--decrement">
-									<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
-								</div>
-
-								<input type="number" class="number__input" name="catalogMaxPrice" value="<?php echo $max_price; ?>" min="0" max="<?php echo $max_price; ?>" step="100">
-
-								<div class="number__btn number__btn--increment">
-									<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
+									<div class="number__btn number__btn--increment">
+										<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="catalog__filters-box catalog__filters-box--manufacturer">
-						<div class="catalog__filters-label">Производитель</div>
+						<div class="catalog__filters-box catalog__filters-box--manufacturer">
+							<div class="catalog__filters-label">Производитель</div>
 
-						<div class="catalog__filters-content">
-							<?php
-								$all_product_manufacturers = get_transient( 'product_manufacturers_cache' );
+							<div class="catalog__filters-content">
+								<?php
+									$all_product_manufacturers = get_transient( 'product_manufacturers_cache' );
 
-								if ( empty( $all_product_manufacturers ) ) {
-									$manufacturers_meta = $wpdb->get_results( "
-										SELECT pm.post_id, pm.meta_value
-										FROM {$wpdb->postmeta} pm
-										INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
-										WHERE pm.meta_key = 'important_attributes_manufacturer'
-										AND p.post_type = 'products'
-										AND p.post_status = 'publish'
-									" );
+									if ( empty( $all_product_manufacturers ) ) {
+										$manufacturers_meta = $wpdb->get_results( "
+											SELECT pm.post_id, pm.meta_value
+											FROM {$wpdb->postmeta} pm
+											INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+											WHERE pm.meta_key = 'important_attributes_manufacturer'
+											AND p.post_type = 'products'
+											AND p.post_status = 'publish'
+										" );
 
-									$all_product_manufacturers = array();
+										$all_product_manufacturers = array();
 
-									if ( ! empty( $manufacturers_meta ) ) {
-										foreach ( $manufacturers_meta as $meta ) {
-											if ( empty( $meta->meta_value ) ) continue;
+										if ( ! empty( $manufacturers_meta ) ) {
+											foreach ( $manufacturers_meta as $meta ) {
+												if ( empty( $meta->meta_value ) ) continue;
 
-											$all_product_manufacturers[] = $meta->meta_value;
+												$all_product_manufacturers[] = $meta->meta_value;
+											}
 										}
+
+										$all_product_manufacturers = array_unique( $all_product_manufacturers );
+
+										set_transient( 'product_manufacturers_cache', $all_product_manufacturers, 3600 );
 									}
+								?>
 
-									$all_product_manufacturers = array_unique( $all_product_manufacturers );
+								<div class="select select--light">
+									<select class="select__select" name="catalogManufacturer">
+										<option value="Производитель">Производитель</option>
 
-									set_transient( 'product_manufacturers_cache', $all_product_manufacturers, 3600 );
-								}
-							?>
+										<?php foreach ( $all_product_manufacturers as $manufacturer ) : ?>
+											<option value="<?php echo $manufacturer; ?>"<?php echo $_GET['manufacturer'] == $manufacturer ? ' selected' : ''; ?>>
+												<?php echo $manufacturer; ?>
+											</option>
+										<?php endforeach; ?>
+									</select>
 
-							<div class="select select--light">
-								<select class="select__select" name="catalogManufacturer">
-									<option value="Производитель">Производитель</option>
-
-									<?php foreach ( $all_product_manufacturers as $manufacturer ) : ?>
-										<option value="<?php echo $manufacturer; ?>"<?php echo $_GET['manufacturer'] == $manufacturer ? ' selected' : ''; ?>>
-											<?php echo $manufacturer; ?>
-										</option>
-									<?php endforeach; ?>
-								</select>
-
-								<svg class="select__toggle" width="14" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
+									<svg class="select__toggle" width="14" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
+								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="catalog__filters-box catalog__filters-box--color">
-						<div class="catalog__filters-label">Цвет</div>
+						<div class="catalog__filters-box catalog__filters-box--color">
+							<div class="catalog__filters-label">Цвет</div>
 
-						<div class="catalog__filters-content">
-							<?php
-								$all_product_colors = get_transient( 'product_colors_cache' );
+							<div class="catalog__filters-content">
+								<?php
+									$all_product_colors = get_transient( 'product_colors_cache' );
 
-								if ( empty( $all_product_colors ) ) {
-									$colors_meta = $wpdb->get_results( "
-										SELECT pm.post_id, pm.meta_key, pm.meta_value
-										FROM {$wpdb->postmeta} pm
-										INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
-										WHERE pm.meta_key LIKE 'important_attributes_colors_%_color'
-										AND p.post_type = 'products'
-										AND p.post_status = 'publish'
-									" );
+									if ( empty( $all_product_colors ) ) {
+										$colors_meta = $wpdb->get_results( "
+											SELECT pm.post_id, pm.meta_key, pm.meta_value
+											FROM {$wpdb->postmeta} pm
+											INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+											WHERE pm.meta_key LIKE 'important_attributes_colors_%_color'
+											AND p.post_type = 'products'
+											AND p.post_status = 'publish'
+										" );
 
-									$all_product_colors = array();
+										$all_product_colors = array();
 
-									if ( ! empty( $colors_meta ) ) {
-										foreach ( $colors_meta as $meta ) {
-											if ( empty( $meta->meta_value ) ) continue;
+										if ( ! empty( $colors_meta ) ) {
+											foreach ( $colors_meta as $meta ) {
+												if ( empty( $meta->meta_value ) ) continue;
 
-											$all_product_colors[] = $meta->meta_value;
+												$all_product_colors[] = $meta->meta_value;
+											}
 										}
+
+										$all_product_colors = array_unique( $all_product_colors );
+
+										set_transient( 'product_colors_cache', $all_product_colors, 3600 );
 									}
+								?>
 
-									$all_product_colors = array_unique( $all_product_colors );
+								<div class="select select--light">
+									<select class="select__select" name="catalogColor">
+										<option value="Цвет">Цвет</option>
 
-									set_transient( 'product_colors_cache', $all_product_colors, 3600 );
-								}
-							?>
+										<?php foreach ( $all_product_colors as $color ) : ?>
+											<option value="<?php echo $color; ?>"><?php echo $color; ?></option>
+										<?php endforeach; ?>
+									</select>
 
-							<div class="select select--light">
-								<select class="select__select" name="catalogColor">
-									<option value="Цвет">Цвет</option>
-
-									<?php foreach ( $all_product_colors as $color ) : ?>
-										<option value="<?php echo $color; ?>"><?php echo $color; ?></option>
-									<?php endforeach; ?>
-								</select>
-
-								<svg class="select__toggle" width="14" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
+									<svg class="select__toggle" width="14" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
+								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="catalog__filters-box catalog__filters-box--controls">
-						<?php if ( is_page( 621 ) ) : ?>
-							<input type="reset" class="btn btn--transparent catalog__filters-reset" value="Очистить"></input>
-						<?php else : ?>
-							<a href="<?php echo get_page_link( 621 ); ?>#catalog-content" class="btn btn--transparent catalog__filters-reset">Очистить</a>
-						<?php endif; ?>
+						<div class="catalog__filters-box catalog__filters-box--controls">
+							<?php if ( is_page( 621 ) ) : ?>
+								<input type="reset" class="btn btn--transparent catalog__filters-reset" value="Очистить"></input>
+							<?php else : ?>
+								<a href="<?php echo get_page_link( 621 ); ?>#catalog-content" class="btn btn--transparent catalog__filters-reset">Очистить</a>
+							<?php endif; ?>
 
-						<button class="btn catalog__filters-submit" type="submit">Применить</button>
-					</div>
+							<button class="btn catalog__filters-submit" type="submit">Применить</button>
+						</div>
+					<?php endif; ?>
+					<?php //? end ?>
 				</form>
 			</aside>
 

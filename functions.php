@@ -408,7 +408,7 @@ function create_term_flash_rewrite_rules( $term_id, $taxonomy ) {
 
 require 'inc/acf.php';
 require 'inc/load-more.php';
-require 'inc/catalog-filters.php';
+// require 'inc/catalog-filters.php'; //? temporarily disable filters
 require 'inc/mail.php';
 require 'inc/svg.php';
 require 'inc/tiny-mce.php';
