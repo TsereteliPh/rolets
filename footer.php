@@ -193,7 +193,7 @@
 
 			<a href="<?php echo $privacy_url; ?>">Политика конфиденциальности</a>
 
-			<a href="https://ademcorp.ru/" target="_blank">Разработка ADEM internet technology</a>
+			<a href="https://ademcorp.ru/" target="_blank">Разработка ADEM IT</a>
 		</div>
 	</div>
 </footer>
