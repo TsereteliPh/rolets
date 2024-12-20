@@ -249,60 +249,73 @@
 				</form>
 			</aside>
 
-			<ul class="reset-list catalog__list js-catalog-container">
-				<?php
-					$tax_query = '';
+			<div class="catalog__wrapper">
+				<ul class="reset-list catalog__list js-catalog-container">
+					<?php
+						$tax_query = '';
 
-					if ( $current_term->term_id ) {
-						$tax_query = array(
-							array(
-								'taxonomy' => 'product_cat',
-								'field' => 'id',
-								'terms' => $current_term->term_id
-							)
-						);
-					}
-
-					$query = new WP_Query( [
-						'post_type' => 'products',
-						'tax_query' => $tax_query,
-						'posts_per_page' => 9,
-						'paged' => 1,
-						'meta_query' => array(
-							array(
-								'key' => 'important_attributes_manufacturer',
-                                'value' => $_GET['manufacturer'] ?? '',
-                                'compare' => 'LIKE',
-							)
-						)
-					] );
-
-					if ( $query->have_posts() ) {
-						while ( $query->have_posts() ) {
-							$query->the_post();
-
-							get_template_part( '/layouts/partials/cards/product-card', null, array(
-								'class' => 'catalog__item',
-							) );
+						if ( $current_term->term_id ) {
+							$tax_query = array(
+								array(
+									'taxonomy' => 'product_cat',
+									'field' => 'id',
+									'terms' => $current_term->term_id
+								)
+							);
 						}
 
-						wp_reset_postdata();
-					} else {
-						echo '<li class="catalog__item catalog__item--message">К сожалению, ничего не найдено по вашему запросу. Возможно, что-то упустили? Вы можете вернуться и посмотреть <a href="' . get_page_link( 621 ) . '">весь каталог</a>, где точно найдется то, что вас заинтересует.</li>';
-					}
-				?>
-			</ul>
+						$query = new WP_Query( [
+							'post_type' => 'products',
+							'tax_query' => $tax_query,
+							'posts_per_page' => 9,
+							'paged' => 1,
+							'meta_query' => array(
+								array(
+									'key' => 'important_attributes_manufacturer',
+									'value' => $_GET['manufacturer'] ?? '',
+									'compare' => 'LIKE',
+								)
+							)
+						] );
 
-			<button class="btn btn--transparent catalog__btn js-show-more<?php echo ( $query->max_num_pages > 1) ? '' : ' hidden'; ?>" type="button" data-slug="catalog">
-				Показать еще
-				<svg width="12" height="12"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
-			</button>
+						if ( $query->have_posts() ) {
+							while ( $query->have_posts() ) {
+								$query->the_post();
 
-			<script>
-				window.catalog_posts = '<?php echo json_encode($query->query_vars); ?>';
-				window.catalog_current_page = <?php echo ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>;
-				window.catalog_max_pages = <?php echo $query->max_num_pages; ?>;
-			</script>
+								get_template_part( '/layouts/partials/cards/product-card', null, array(
+									'class' => 'catalog__item',
+								) );
+							}
+
+							wp_reset_postdata();
+						} else {
+							echo '<li class="catalog__item catalog__item--message">К сожалению, ничего не найдено по вашему запросу. Возможно, что-то упустили? Вы можете вернуться и посмотреть <a href="' . get_page_link( 621 ) . '">весь каталог</a>, где точно найдется то, что вас заинтересует.</li>';
+						}
+					?>
+				</ul>
+
+				<button class="btn btn--transparent catalog__btn js-show-more<?php echo ( $query->max_num_pages > 1) ? '' : ' hidden'; ?>" type="button" data-slug="catalog">
+					Показать еще
+					<svg width="12" height="12"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
+				</button>
+
+				<script>
+					window.catalog_posts = '<?php echo json_encode($query->query_vars); ?>';
+					window.catalog_current_page = <?php echo ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>;
+					window.catalog_max_pages = <?php echo $query->max_num_pages; ?>;
+				</script>
+			</div>
+
+			<?php
+				$extra = get_field( 'tax_info', $current_term );
+				if ( $extra ) :
+					?>
+
+					<div class="catalog__extra"><?php echo $extra; ?></div>
+
+					<?php
+				endif;
+			?>
 		</div>
 	</div>
 </section>

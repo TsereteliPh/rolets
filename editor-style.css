@@ -1,1 +1,17 @@
+.article-table {
+	position: relative;
+	width: 100%;
+	margin: 10px 0 20px;
+	overflow: auto;
+}
 
+.article-table table {
+	border-collapse: collapse;
+}
+
+.article-table table th,
+.article-table table td {
+	padding: 10px 5px;
+	text-align: center;
+	border: 1px solid var(--fc-dark);
+}

@@ -246,6 +246,7 @@ function adem_display_terms_recursive( $taxonomy, $current_term_id, $parent_id =
     $terms = get_terms( array(
         'taxonomy' => $taxonomy,
         'parent' => $parent_id,
+		'hide_empty' => false
     ) );
 
     if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
@@ -267,7 +268,7 @@ function adem_display_terms_recursive( $taxonomy, $current_term_id, $parent_id =
             echo '<a href="' . get_term_link( $term ) . '" class="filter-cats__item-link' . ( $term->term_id === $current_term_id ? ' filter-cats__item-link--current' : '' ) . '">' . $term->name . '</a>';
 
 			if ( $without_parents ) {
-				if ( get_terms( array( 'taxonomy' => $taxonomy, 'parent' => $term->term_id ) ) ) {
+				if ( get_terms( array( 'taxonomy' => $taxonomy, 'parent' => $term->term_id, 'hide_empty' => false ) ) ) {
 					echo '<svg width="14" height="14"><use xlink:href="' .get_template_directory_uri() . '/assets/images/sprite.svg#icon-controls-arrow"></use></svg>';
 				}
 

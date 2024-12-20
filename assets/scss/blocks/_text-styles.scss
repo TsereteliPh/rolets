@@ -1,0 +1,25 @@
+.article-table {
+	position: relative;
+	width: 100%;
+	margin: 10px 0 20px;
+	overflow: auto;
+
+	table {
+		border-collapse: collapse;
+
+		@include hg {
+			font-size: 14px;
+		}
+
+		th,
+		td {
+			padding: 10px 5px;
+			text-align: center;
+			border: 1px solid var(--fc-dark);
+
+			@include hg {
+				padding: 5px;
+			}
+		}
+	}
+}
