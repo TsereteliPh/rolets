@@ -460,7 +460,7 @@ if (advantagesSlider) {
 	});
 }
 
-//Слайдер blocks/rest
+//Слайдер blocks/docs
 
 const docsSlider = document.querySelector('.docs__slider');
 
@@ -768,7 +768,7 @@ if (newProductsSlider) {
 	});
 }
 
-//Слайдер blocks/extra-options
+//Слайдер blocks/gallery-tabs
 
 const galleryTabsSliders = document.querySelectorAll('.gallery-tabs__gallery');
 
@@ -821,7 +821,7 @@ if (productGallery) {
 	});
 }
 
-//Слайдер blocks/rest
+//Слайдер blocks/brands-slider
 
 const brandsSlider = document.querySelector('.brands-slider__slider');
 
