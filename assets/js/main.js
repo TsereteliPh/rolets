@@ -857,6 +857,21 @@ if (brandsSlider) {
 	});
 }
 
+//Слайдер blocks/profiles-slider
+
+const profilesSlider = document.querySelector('.profiles-slider__slider');
+
+if (profilesSlider) {
+	let profilesSwiper = new Swiper(profilesSlider, {
+		slidesPerView: 'auto',
+		freeMode: true,
+		scrollbar: {
+			el: '.profiles-slider__scrollbar',
+			draggable: true,
+		},
+	});
+}
+
 // Функционал шапки сайта
 
 document.addEventListener('DOMContentLoaded', function(e) {
