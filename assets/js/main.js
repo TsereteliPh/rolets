@@ -419,12 +419,12 @@ try {
 
 //Слайдер blocks/advantages
 
-const advantagesSlider = document.querySelector('.advantages__container');
+const advantagesSlider = document.querySelector('.advantages__slider');
 
 if (advantagesSlider) {
 	let advantagesSwiper = new Swiper(advantagesSlider, {
 		slidesPerView: 'auto',
-		spaceBetween: 60,
+		spaceBetween: 20,
 		centerInsufficientSlides: true,
 		pagination: {
 			el: '.advantages__pagination',
@@ -432,22 +432,22 @@ if (advantagesSlider) {
 			bulletActiveClass: 'active',
 			clickable: true
 		},
+		navigation: {
+			nextEl: '.advantages__next',
+			prevEl: '.advantages__prev',
+		},
 		breakpoints: {
 			1440: {
-				slidesPerView: 5,
-				spaceBetween: 20
+				slidesPerView: 5
 			},
 			1280: {
-				slidesPerView: 4,
-				spaceBetween: 20
+				slidesPerView: 4
 			},
 			992: {
-				slidesPerView: 3,
-				spaceBetween: 20
+				slidesPerView: 3
 			},
 			769: {
-				slidesPerView: 2,
-				spaceBetween: 20
+				slidesPerView: 2
 			}
 		},
 		on: {

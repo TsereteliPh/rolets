@@ -1,10 +1,22 @@
 <?php
+	$text = get_sub_field( 'text' );
 	$advantages = get_sub_field( 'advantages' );
-	if ( $advantages ) :
-		?>
+?>
 
-		<section class="advantages">
-			<div class="container advantages__container swiper">
+<section class="advantages">
+	<div class="container">
+		<?php get_template_part( '/layouts/partials/title', null, array(
+			'class' => 'advantages__title',
+			'title' => get_sub_field( 'title' ),
+			'controls' => true
+		) ); ?>
+
+		<?php if ( $text ) : ?>
+			<div class="advantages__text"><?php echo $text; ?></div>
+		<?php endif; ?>
+
+		<?php if ( $advantages ) : ?>
+			<div class="advantages__slider swiper">
 				<ul class="reset-list advantages__list swiper-wrapper">
 					<?php foreach ( $advantages as $advantage ) : ?>
 						<li class="corner-border advantages__item swiper-slide">
@@ -21,8 +33,6 @@
 
 				<div class="pagination advantages__pagination"></div>
 			</div>
-		</section>
-
-		<?php
-	endif;
-?>
+		<?php endif; ?>
+	</div>
+</section>
