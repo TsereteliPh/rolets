@@ -821,6 +821,42 @@ if (productGallery) {
 	});
 }
 
+//Слайдер blocks/rest
+
+const brandsSlider = document.querySelector('.brands-slider__slider');
+
+if (brandsSlider) {
+	let brandsSwiper = new Swiper(brandsSlider, {
+		slidesPerView: 'auto',
+		spaceBetween: 20,
+		centerInsufficientSlides: true,
+		pagination: {
+			el: '.brands-slider__pagination',
+			bulletClass: 'pagination__bullet',
+			bulletActiveClass: 'active',
+			clickable: true
+		},
+		navigation: {
+			nextEl: '.brands-slider__next',
+			prevEl: '.brands-slider__prev',
+		},
+		breakpoints: {
+			1440: {
+				slidesPerView: 4,
+				spaceBetween: 35
+			},
+			992: {
+				slidesPerView: 3,
+				spaceBetween: 20
+			},
+			769: {
+				slidesPerView: 2,
+				spaceBetween: 20
+			}
+		},
+	});
+}
+
 // Функционал шапки сайта
 
 document.addEventListener('DOMContentLoaded', function(e) {
