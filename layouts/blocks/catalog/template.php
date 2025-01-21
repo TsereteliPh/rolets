@@ -289,7 +289,8 @@
 
 							wp_reset_postdata();
 						} else {
-							echo '<li class="catalog__item catalog__item--message">К сожалению, ничего не найдено по вашему запросу. Возможно, что-то упустили? Вы можете вернуться и посмотреть <a href="' . get_page_link( 621 ) . '">весь каталог</a>, где точно найдется то, что вас заинтересует.</li>';
+							//! temporarily hidden empty catalog message
+							// echo '<li class="catalog__item catalog__item--message">К сожалению, ничего не найдено по вашему запросу. Возможно, что-то упустили? Вы можете вернуться и посмотреть <a href="' . get_page_link( 621 ) . '">весь каталог</a>, где точно найдется то, что вас заинтересует.</li>';
 						}
 					?>
 				</ul>

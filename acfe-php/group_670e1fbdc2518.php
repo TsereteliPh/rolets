@@ -197,7 +197,7 @@ acf_add_local_field_group(array(
 					),
 					'default_value' => '',
 					'acfe_textarea_code' => 0,
-					'maxlength' => 250,
+					'maxlength' => '',
 					'rows' => 4,
 					'placeholder' => '',
 					'new_lines' => '',
@@ -232,7 +232,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1728979005,
+	'modified' => 1737031171,
 ));
 
 endif;

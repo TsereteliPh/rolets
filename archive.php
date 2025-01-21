@@ -65,7 +65,7 @@
 <?php endif; ?>
 
 <?php get_template_part( 'layouts/partials/blocks', null, array(
-	'id' => get_the_ID()
+	'id' => 'term_' . $current_term->term_id
 ) ); ?>
 
 <?php get_footer(); ?>

@@ -1540,6 +1540,13 @@ acf_add_local_field_group(array(
 				'value' => 'products',
 			),
 		),
+		array(
+			array(
+				'param' => 'taxonomy',
+				'operator' => '==',
+				'value' => 'product_cat',
+			),
+		),
 	),
 	'menu_order' => 0,
 	'position' => 'normal',
@@ -1564,7 +1571,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1736428363,
+	'modified' => 1736505872,
 ));
 
 endif;
