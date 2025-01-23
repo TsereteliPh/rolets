@@ -37,6 +37,10 @@
 				}
 			}
 		}
+
+		&.swiper-button-lock {
+			display: none;
+		}
 	}
 
 	&__prev {
