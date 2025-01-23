@@ -21,10 +21,11 @@
 <header class="container--large header<?php echo is_front_page() ? ' header--index' : ''; ?>">
 	<div class="container">
 		<div class="header__panel">
-			<div class="header__panel-city">
-				Ваш город <b>Москва</b>
-				<?php //TODO cities ?>
-			</div>
+			<?php if ( false ) : //! temporerily remove cities ?>
+				<div class="header__panel-city">
+					Ваш город <b>Москва</b>
+				</div>
+			<?php endif; ?>
 
 			<div class="header__panel-content">
 				<a href="<?php echo bloginfo( 'url' ); ?>" class="header__logo">
@@ -51,7 +52,7 @@
 				<?php endif; ?>
 
 				<div class="header__contacts">
-					<?php if ( $email ) : ?>
+					<?php if ( false ) : //! temporarily remove email ?>
 						<a href="mailto:<?php echo $email; ?>" class="header__email"><?php echo $email; ?></a>
 					<?php endif; ?>
 
