@@ -227,7 +227,7 @@ function custom_breadcrumbs( $links ) {
 
 			$breadcrumb[] = array(
 				'url' => get_page_link( 621 ),
-				'text' => 'Товар',
+				'text' => 'Каталог',
 			);
 
 			array_splice( $links, 1, 0, $breadcrumb );
