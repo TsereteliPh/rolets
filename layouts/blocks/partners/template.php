@@ -14,7 +14,7 @@
 				<div class="partners__slider swiper">
 					<div class="partners__links swiper-wrapper">
 						<?php foreach ( $partners as $partner ) : ?>
-							<a <?php echo $partner['link'] ? 'href="' . $partner['link']['url'] . '"' : ''; ?> class="partners__link swiper-slide" target="<?php echo $partner['link']['target']; ?>">
+							<a <?php echo $partner['link'] ? 'href="' . $partner['link']['url'] . '"' : ''; ?> class="partners__link swiper-slide" target="<?php echo $partner['link'] ? $partner['link']['target'] : ''; ?>">
 								<?php echo wp_get_attachment_image( $partner['icon'], 'large', false ); ?>
 							</a>
 						<?php endforeach; ?>

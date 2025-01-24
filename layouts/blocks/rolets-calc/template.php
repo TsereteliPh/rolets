@@ -1,5 +1,5 @@
 <?php $options = get_sub_field( 'options' ); ?>
-<section class="container--large rolets-calc">
+<section class="container--large rolets-calc" id="calculator">
 	<div class="container">
 		<?php get_template_part( '/layouts/partials/title', null, array(
 			'class' => 'rolets-calc__title',

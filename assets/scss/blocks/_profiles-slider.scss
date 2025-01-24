@@ -51,7 +51,7 @@
 		font-family: var(--font-secondary);
 		border-spacing: 30px 10px;
 
-		@include sm {
+		@include lg {
 			margin-left: -20px;
 			border-spacing: 20px 0;
 		}
@@ -68,24 +68,24 @@
 	}
 
 	&__table-data {
-		width: calc((1720px - 300px - 90px) / 3);
+		width: calc((1720px - 250px - 120px) / 4);
 		height: 30px;
 		font-size: 18px;
 
 		@include hg {
-			width: calc((1400px - 250px - 90px) / 3);
+			width: calc((1400px - 250px - 120px) / 4);
 		}
 
 		@include lg {
-			width: calc((1240px - 250px - 90px) / 3);
+			width: calc((1240px - 250px - 80px) / 4);
 		}
 
 		@include md {
-			width: calc((960px - 250px - 60px) / 2);
+			width: calc((960px - 200px - 60px) / 3);
 		}
 
 		@include sm {
-			width: calc((730px - 250px - 40px) / 2);
+			width: calc((740px - 200px - 40px) / 2);
 			font-size: 16px;
 		}
 
@@ -96,7 +96,7 @@
 		}
 
 		&--first {
-			width: 300px;
+			width: 250px;
 			color: #737373;
 
 			@include hg {
@@ -108,14 +108,14 @@
 			}
 
 			@include md {
-				width: 250px;
+				width: 200px;
 			}
 
 			@include sm {
-				width: 250px;
+				width: 200px;
 			}
 
-			@include sm {
+			@include xs {
 				width: 150px;
 			}
 		}
@@ -129,14 +129,10 @@
 		display: flex;
 		align-items: center;
 		width: 100%;
-		height: 385px;
+		height: 185px;
 
-		@include lg {
-			height: 250px;
-		}
-
-		@include sm {
-			height: 200px;
+		@include xs {
+			height: 150px;
 		}
 
 		img {

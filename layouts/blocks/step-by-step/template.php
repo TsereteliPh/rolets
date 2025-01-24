@@ -21,9 +21,11 @@
 
 						<div class="step-by-step__item-text"><?php echo $step['text']; ?></div>
 
-						<div class="step-by-step__item-arrow">
-							<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
-						</div>
+						<?php if ( false ) : //! temporarily remove arrow ?>
+							<div class="step-by-step__item-arrow">
+								<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
+							</div>
+						<?php endif; ?>
 					</li>
 				<?php endforeach; ?>
 			</ul>

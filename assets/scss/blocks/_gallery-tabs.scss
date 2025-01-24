@@ -46,12 +46,12 @@
 	&__box {
 		position: relative;
 		display: none;
-		grid-template-columns: 3fr 1fr;
+		grid-template-columns: 3fr 2fr;
 		gap: 20px;
 		min-height: 540px;
 
 		@include hg {
-			grid-template-columns: 1fr 320px;
+			grid-template-columns: 1fr 450px;
 		}
 
 		@include md {
@@ -114,12 +114,12 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: calc(100% * 3 / 4 - 20px);
+		width: calc(100% * 3 / 5 - 20px);
 		height: 100%;
 		border-radius: 20px;
 
 		@include hg {
-			width: calc(100% - 340px);
+			width: calc(100% - 470px);
 		}
 
 		@include md {
@@ -133,6 +133,7 @@
 
 		@include xs {
 			border-radius: 10px;
+			aspect-ratio: 16/9;
 		}
 	}
 
@@ -156,7 +157,6 @@
 	}
 
 	&__box-text {
-		font-size: 14px;
 		font-family: var(--font-secondary);
 		line-height: 1.2;
 	}

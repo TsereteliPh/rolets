@@ -1,41 +1,47 @@
 <?php
-if ( ! empty( $args['title']['text'] ) ) {
-	$class = str_replace( '__title', '', $args['class'] );
+$title = $args['title'] ?? null;
+$small_text = ! empty( $title['small-text'] ) ? $title['small-text'] : '';
+$type = ! empty( $title['type'] ) ? $title['type'] : '';
+$text = ! empty( $title['text'] ) ? $title['text'] : '';
+$link_url = ! empty( $title['link']['url'] ) ? $title['link']['url'] : '';
+$link_target = ! empty( $title['link']['target'] ) ? $title['link']['target'] : '_self';
+$link_title = ! empty( $title['link']['title'] ) ? $title['link']['title'] : 'Подробнее';
+$controls = ! empty( $args['controls'] ) ? $args['controls'] : false;
 
-	$format = '
-		<div class="title %1$s">
-			<div class="title__small-text">%2$s</div>
+if ( $title ) :
+	?>
 
-			<%3$s class="title__text">%4$s</%3$s>
-	';
+	<div class="title <?php echo ! empty( $args['class'] ) ? $args['class'] : ''; ?>">
+		<?php if ( $small_text ) : ?>
+			<div class="title__small-text"><?php echo $small_text; ?></div>
+		<?php endif; ?>
 
-	if ( ! $args['controls'] && $args['title']['link'] ) {
-		$format .= '<a href="%5$s" class="btn-underline title__link" target="%6$s">%7$s</a>';
-	}
+		<?php
+			echo sprintf(
+				'<%1$s class="title__text">%2$s</%1$s>',
+				$type,
+				$text,
+			);
+		?>
 
-	if ( $args['controls'] ) {
-		$format .= '
-			<div class="controls title__controls ' . $class . '__controls">
-				<div class="controls__prev ' . $class . '__prev">
-					<svg width="7" height="14"><use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
+		<?php if ( ! $controls && $link_url ) : ?>
+			<a href="<?php echo $link_url; ?>" class="btn-underline title__link" target="<?php echo $link_target; ?>"><?php echo $link_title; ?></a>
+		<?php endif; ?>
+
+		<?php if ( $controls ) : ?>
+			<?php $class = str_replace( '__title', '', $args['class'] ); ?>
+
+			<div class="controls title__controls <?php echo $class . '__controls'; ?>">
+				<div class="controls__prev <?php echo $class . '__prev'; ?>">
+					<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
 				</div>
 
-				<div class="controls__next ' . $class . '__next">
-					<svg width="7" height="14"><use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
+				<div class="controls__next <?php echo $class . '__next'; ?>">
+					<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
 				</div>
 			</div>
-		';
-	}
+		<?php endif; ?>
+	</div>
 
-	$format .= '</div>';
-	echo sprintf(
-		$format,
-		$args['class'],
-		$args['title']['small-text'],
-		$args['title']['type'],
-		$args['title']['text'],
-		$args['title']['link']['url'] ?? null,
-		$args['title']['link']['target'] ?? null,
-		$args['title']['link']['title'] ?? null,
-	);
-}
+	<?php
+endif;

@@ -180,7 +180,7 @@ acf_add_local_field_group(array(
 					'name' => 'img',
 					'aria-label' => '',
 					'type' => 'image',
-					'instructions' => '',
+					'instructions' => 'Если высота изображения больше ширины, то пропорция должна быть равна формату A4 (1:1.414)',
 					'required' => 0,
 					'conditional_logic' => 0,
 					'wrapper' => array(
@@ -263,7 +263,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1736428168,
+	'modified' => 1737970647,
 ));
 
 endif;

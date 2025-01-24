@@ -47,20 +47,14 @@
 		display: flex;
 		grid-row: span 2;
 		align-items: center;
-		width: auto;
-		height: 180px;
-		aspect-ratio: 1/1.414;
-
-		@include lg {
-			height: 250px;
-		}
-
-		@include md {
-			height: 180px;
-		}
+		width: 120px;
+		height: fit-content;
+		max-height: 170px;
+		overflow: hidden;
 
 		@include xs {
-			height: 125px;
+			width: 100px;
+			max-height: 125px;
 		}
 
 		img {
