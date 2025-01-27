@@ -28,8 +28,7 @@ if ( ! function_exists( 'adem_setup' ) ) {
 			array(
 				'menu_main' => 'Основное меню',
 				'footer_catalog' => 'Меню-каталог',
-				'footer_clients' => 'Меню для клиентов',
-				'footer_services' => 'Меню услуг',
+				'footer_clients' => 'Меню для клиентов'
 			)
 		);
 	}

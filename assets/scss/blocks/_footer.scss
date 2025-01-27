@@ -41,18 +41,18 @@
 
 	&__contacts-content {
 		display: grid;
-		grid-template-columns: 1fr minmax(500px, 1.3fr) minmax(320px, 1fr);
-		gap: 80px 140px;
-		margin-top: 75px;
+		grid-template-columns: 1fr 2fr 1fr;
+		gap: 40px 80px;
+		margin-top: 30px;
 		padding-bottom: 40px;
 		border-bottom: 1px solid var(--fc-gray);
 
 		@include hg {
-			grid-template-columns: 1fr 1.5fr auto;
-			gap: 60px;
+			grid-template-columns: 1fr 2fr 1fr;
+			gap: 40px 60px;
 		}
 
-		@include md {
+		@include sm {
 			grid-template-columns: 1fr auto;
 			margin-top: 60px;
 		}
@@ -67,7 +67,7 @@
 	}
 
 	&__contacts-label {
-		margin-bottom: 45px;
+		margin-bottom: 15px;
 		color: #9ccbe2;
 		font-size: 14px;
 
@@ -82,7 +82,7 @@
 
 	&__address-wrapper {
 
-		@include md {
+		@include sm {
 			grid-row: 2/3;
 			grid-column: span 2;
 		}
@@ -90,28 +90,41 @@
 
 	&__address,
 	&__schedule {
-		font-size: clamp(1.125rem, 0.923rem + 0.897vw, 2rem);
+		font-size: clamp(1.125rem, 1.067rem + 0.256vw, 1.375rem);
 		font-family: var(--font-secondary);
 	}
 
+	&__info-wrapper {
+		align-items: center;
+		text-align: center;
+
+		@include sm {
+			align-items: flex-start;
+			text-align: left;
+		}
+	}
 
 	&__info {
 		display: grid;
 		grid-template-columns: auto 1fr;
 		gap: 30px 50px;
 		align-items: center;
-		width: fit-content;
+		width: 100%;
 
 		@include lg {
 			grid-template-columns: 1fr;
 			gap: 15px;
+		}
+
+		@include sm {
+			justify-items: start;
 		}
 	}
 
 	&__tel {
 		grid-column: span 2;
 		font-weight: 300;
-		font-size: clamp(2.875rem, 1rem + 2.083vw, 3.5rem);
+		font-size: clamp(2.5rem, 0.625rem + 2.083vw, 3.125rem);
 		text-align: center;
 
 		@include lg {
@@ -119,7 +132,7 @@
 			font-size: 38px;
 		}
 
-		@include sm {
+		@include md {
 			font-size: 32px;
 		}
 	}
@@ -139,10 +152,16 @@
 
 	&__socials {
 
-		@include lg {
-			justify-content: start;
-			order: 1;
+		@include hg {
 			max-width: none;
+		}
+
+		@include lg {
+			order: 1;
+		}
+
+		@include sm {
+			justify-content: flex-start;
 		}
 	}
 
@@ -152,7 +171,7 @@
 		text-align: right;
 
 		@include lg {
-			text-align: left;
+			text-align: center;
 		}
 
 		@include sm {
@@ -162,6 +181,11 @@
 
 	&__schedule-wrapper {
 		justify-self: end;
+		text-align: right;
+
+		@include xs {
+			text-align: left;
+		}
 	}
 
 	&__schedule {
@@ -169,17 +193,7 @@
 		grid-template-columns: auto 1fr;
 		gap: 10px 30px;
 
-		@include hg {
-			grid-template-columns: 1fr;
-			gap: 0;
-		}
-
-		@include md {
-			grid-template-columns: auto 1fr;
-			gap: 5px 15px;
-		}
-
-		@include sm {
+		@include lg {
 			grid-template-columns: 1fr;
 			gap: 0;
 		}
@@ -204,7 +218,7 @@
 		overflow: hidden;
 		border-radius: 20px;
 
-		@include md {
+		@include sm {
 			grid-column: span 2;
 			padding: 40px 20px;
 		}
@@ -237,14 +251,14 @@
 
 	&__content {
 		display: grid;
-		grid-template-columns: 375px 2fr minmax(375px, 1.1fr);
+		grid-template-columns: 450px 1fr minmax(400px, 1fr);
 		gap: 40px 60px;
 		margin-top: 40px;
 		padding-bottom: 40px;
 		border-bottom: 1px solid var(--fc-gray);
 
 		@include hg {
-			grid-template-columns: 285px 1fr 285px;
+			grid-template-columns: 400px 1fr 1fr;
 			gap: 40px;
 		}
 
@@ -257,8 +271,11 @@
 			gap: 40px;
 		}
 
-		@include xs {
+		@include sm {
 			grid-template-columns: 1fr;
+		}
+
+		@include xs {
 			margin-top: 20px;
 			padding-bottom: 0;
 			border-bottom: none;
@@ -271,6 +288,23 @@
 		flex-direction: column;
 		gap: 40px;
 		justify-content: space-between;
+	}
+
+	&__first-column {
+
+		@include lg {
+			display: grid;
+			grid-column: span 2;
+			grid-template-columns: 1fr 1fr;
+		}
+
+		@include sm {
+			grid-column: auto;
+		}
+
+		@include xs {
+			display: flex;
+		}
 	}
 
 	&__logo-link {
@@ -399,19 +433,17 @@
 	&__second-column {
 
 		@include lg {
-			grid-column: span 2;
 			order: 1;
 		}
 
-		@include xs {
-			grid-column: auto;
-			order: -1;
+		@include sm {
+			order: 0;
 		}
 	}
 
 	&__tabs {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: 1fr 1fr;
 		gap: 40px;
 
 		@include xs {
@@ -461,7 +493,7 @@
 	&__menus {
 		position: relative;
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: 1fr 1fr;
 		gap: 40px;
 		margin-top: 20px;
 
@@ -508,19 +540,17 @@
 	&__mailing {
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
+		gap: 5px;
 		padding: 30px 20px 40px;
 		background: var(--primary);
 		border-radius: 20px;
 	}
 
 	&__mailing-label {
-		max-width: 250px;
 		font-size: 18px;
 	}
 
 	&__mailing-text {
-		max-width: 275px;
 		color: #9ccbe2;
 		font-size: 14px;
 		font-family: var(--font-secondary);
@@ -528,7 +558,7 @@
 
 	&__mailing-form {
 		position: relative;
-		margin-top: 20px;
+		margin-top: 10px;
 
 		@include hg {
 			display: flex;
@@ -587,10 +617,10 @@
 
 	&__payment {
 		display: flex;
-		flex-wrap: wrap;
+		flex-direction: column;
 		gap: 10px;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: center;
 
 		@include xs {
 			flex-direction: column;
@@ -600,9 +630,9 @@
 
 	&__payment-text {
 		width: fit-content;
-		max-width: 100px;
 		font-size: 14px;
 		font-family: var(--font-secondary);
+		text-align: center;
 
 		@include hg {
 			max-width: none;

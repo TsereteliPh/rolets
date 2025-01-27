@@ -125,8 +125,6 @@
 					<li class="footer__tab active" data-tab="catalog-menu">Каталог</li>
 
 					<li class="footer__tab" data-tab="clients-menu">Клиентам</li>
-
-					<li class="footer__tab" data-tab="services-menu">Услуги</li>
 				</ul>
 
 				<div class="footer__menus">
@@ -146,15 +144,6 @@
 								'container' => '',
 								'menu_id' => 'clients-menu',
 								'menu_class' => 'reset-list footer__menu footer__menu--clients'
-							) );
-						}
-
-						if ( is_nav_menu( 5 ) ) {
-							wp_nav_menu( array(
-								'theme_location' => 'footer_services',
-								'container' => '',
-								'menu_id' => 'services-menu',
-								'menu_class' => 'reset-list footer__menu footer__menu--services'
 							) );
 						}
 					?>
