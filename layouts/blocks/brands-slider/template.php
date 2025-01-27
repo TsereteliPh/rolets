@@ -29,13 +29,15 @@
 								<div class="brands-slider__item-text"><?php echo $brand['text']; ?></div>
 							<?php endif; ?>
 
-							<?php if ( $brand['price'] ) : ?>
-								<div class="brands-slider__item-price">
-									Цена от
-									<?php echo number_format( $brand['price'], 0, ',', ' ' ); ?>
-									руб.
-								</div>
-							<?php endif; ?>
+							<div class="brands-slider__item-price">
+								<?php
+									if ( $brand['price'] ) {
+										echo 'Цена от ' . number_format( $brand['price'], 0, ',', ' ' ) . ' руб.';
+									} else {
+										echo 'Цена по запросу.';
+									}
+								?>
+							</div>
                         </li>
                     <?php endforeach; ?>
 				</ul>

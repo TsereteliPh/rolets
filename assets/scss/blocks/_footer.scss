@@ -106,8 +106,8 @@
 
 	&__info {
 		display: grid;
-		grid-template-columns: auto 1fr;
-		gap: 30px 50px;
+		grid-template-columns: 1fr 1fr;
+		gap: 10px 30px;
 		align-items: center;
 		width: 100%;
 
@@ -124,16 +124,11 @@
 	&__tel {
 		grid-column: span 2;
 		font-weight: 300;
-		font-size: clamp(2.5rem, 0.625rem + 2.083vw, 3.125rem);
+		font-size: 32px;
 		text-align: center;
 
 		@include lg {
 			grid-column: auto;
-			font-size: 38px;
-		}
-
-		@include md {
-			font-size: 32px;
 		}
 	}
 
@@ -151,13 +146,15 @@
 	}
 
 	&__socials {
+		justify-self: end;
 
 		@include hg {
-			max-width: none;
+			max-width: max-content;
 		}
 
 		@include lg {
 			order: 1;
+			max-width: none;
 		}
 
 		@include sm {
@@ -166,16 +163,18 @@
 	}
 
 	&__email {
+		justify-self: start;
 		font-size: 24px;
 		font-family: var(--font-secondary);
-		text-align: right;
 
 		@include lg {
+			justify-self: auto;
 			text-align: center;
 		}
 
 		@include sm {
 			font-size: 20px;
+
 		}
 	}
 
