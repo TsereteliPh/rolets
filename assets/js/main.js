@@ -848,6 +848,41 @@ if (profilesSlider) {
 	});
 }
 
+//Слайдер blocks/catalog-cats
+
+const catalogCatsSliders = document.querySelectorAll(".catalog-cats__slider");
+
+if (catalogCatsSliders) {
+	catalogCatsSliders.forEach((slider) => {
+		let catalogCatsSwiper = new Swiper(slider, {
+			slidesPerView: 2,
+			spaceBetween: 20,
+			centerInsufficientSlides: true,
+			pagination: {
+				el: slider.querySelector(".catalog-cats__pagination"),
+				bulletClass: "pagination__bullet",
+				bulletActiveClass: "active",
+				clickable: true,
+			},
+			navigation: {
+				nextEl: slider.parentNode.querySelector(".catalog-cats__next"),
+				prevEl: slider.parentNode.querySelector(".catalog-cats__prev"),
+			},
+			breakpoints: {
+				1440: {
+					slidesPerView: 5,
+				},
+				992: {
+					slidesPerView: 4,
+				},
+				769: {
+					slidesPerView: 3,
+				},
+			},
+		});
+	});
+}
+
 // Функционал шапки сайта
 
 document.addEventListener("DOMContentLoaded", function (e) {

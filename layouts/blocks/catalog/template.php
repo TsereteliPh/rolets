@@ -4,64 +4,34 @@
 ?>
 
 <section class="catalog">
-	<section class="catalog-cats">
-		<div class="container">
-			<?php
-				$title = get_sub_field( 'title' );
+	<?php
+		$title = get_sub_field( 'title' );
+		$title['small-text'] = $title['small-text'] ?? 'Категория';
+		$title['type'] = $title['type'] ?? 'h1';
+		if ( $current_term->name ) {
+			$title['text'] = $current_term->name;
+		}
 
-				$title['small-text'] = $title['small-text'] ?? 'Категория';
-				$title['type'] = $title['type'] ?? 'h1';
+		$cats = false;
+		if ( $current_term->ID ) {
+			$cats = get_terms( array(
+				'taxonomy' => 'product_cat',
+				'parent' => 0,
+				'hide_empty' => false
+			) );
+		} else if ( $current_term->term_id ) {
+			$cats = get_terms( array(
+				'taxonomy' => 'product_cat',
+				'parent' => $current_term->term_id,
+				'hide_empty' => false
+			) );
+		}
 
-				if ( $current_term->name ) {
-					$title['text'] = $current_term->name;
-				}
-
-				get_template_part( '/layouts/partials/title', null, array(
-					'class' => 'catalog__title',
-					'title' => $title
-				) );
-			?>
-
-			<?php
-				$cats = false;
-
-				if ( $current_term->ID ) {
-					$cats = get_terms( array(
-						'taxonomy' => 'product_cat',
-						'parent' => 0,
-						'hide_empty' => false
-					) );
-				} else if ( $current_term->term_id ) {
-					$cats = get_terms( array(
-						'taxonomy' => 'product_cat',
-						'parent' => $current_term->term_id,
-						'hide_empty' => false
-					) );
-				}
-
-				if ( $cats ) :
-					?>
-
-					<ul class="reset-list catalog-cats__list">
-						<?php foreach ( $cats as $cat ) : ?>
-							<li class="catalog-cats__item">
-								<div class="catalog-cats__img">
-									<?php
-										$cat_img = get_field( 'tax_img', $cat );
-										echo wp_get_attachment_image( $cat_img ? $cat_img : 31, 'large', false );
-									?>
-								</div>
-
-								<a href="<?php echo get_term_link( $cat->term_id, 'product_cat' ); ?>" class="catalog-cats__link"><?php echo $cat->name; ?></a>
-							</li>
-						<?php endforeach;?>
-					</ul>
-
-					<?php
-				endif;
-			?>
-		</div>
-	</section>
+		get_template_part( '/layouts/blocks/catalog-cats/template', null, array(
+			'title' => $title,
+			'cats' => $cats
+		) );
+	?>
 
 	<div class="container">
 		<?php
