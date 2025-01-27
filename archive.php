@@ -2,15 +2,15 @@
 
 <?php $current_term = get_queried_object(); ?>
 
-<?php if ( in_category( 6 ) ) : ?>
+<?php if ( in_category( 6 ) || in_category( 54 ) ) : ?>
 	<section class="archive-block">
 		<div class="container">
 			<?php get_template_part( '/layouts/partials/title', null, array(
 				'class' => 'archive-block__title',
 				'title' => array(
-					'small-text' => 'Статьи',
+					'small-text' => in_category( 6 ) ? 'Статьи' : 'Новости',
 					'type' => 'h1',
-					'text' => 'Наши статьи'
+					'text' => in_category( 6 ) ? 'Наши статьи' : 'Наши новости'
 				)
 			) ); ?>
 
@@ -18,7 +18,7 @@
 				<?php
 					$query = new WP_Query( [
 						'post_type' => 'post',
-						'cat' => 6,
+						'cat' => in_category( 6 ) ? 6 : 54,
 						'orderby' => 'post_date',
 						'posts_per_page' => 8,
 						'paged' => 1

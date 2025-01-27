@@ -1,12 +1,12 @@
 <?php get_header(); ?>
 
-<?php if ( in_category( 6 ) ) : ?>
+<?php if ( in_category( 6 ) || in_category( 54 ) ) : ?>
 	<section class="single-article">
 		<div class="container">
 			<?php get_template_part( '/layouts/partials/title', null, array(
 				'class' => 'single-article__title',
 				'title' => array(
-					'small-text' => 'Статья',
+					'small-text' => in_category( 6 ) ? 'Статья' : 'Новость',
 					'type' => 'h1',
 					'text' => get_the_title()
 				)

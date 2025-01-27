@@ -19,7 +19,7 @@ function load_more() {
 				$return_html .= get_template_part( 'layouts/partials/cards/project-card', null, array(
 					'class' => 'projects__item'
 				) );
-			} else if ( $args['cat'] == 6 ) {
+			} else if ( $args['cat'] == 6 || $args['cat'] == 54 ) {
 				$return_html .= get_template_part( 'layouts/partials/cards/article-card', null, array(
 					'class' => 'archive-block__item'
 				) );

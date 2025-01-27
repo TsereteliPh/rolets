@@ -1,16 +1,9 @@
 <section class="articles-slider">
 	<div class="container articles-slider__slider swiper">
 		<?php
-			$title = get_sub_field( 'title' );
-			$title['link'] = array(
-				'url' => get_category_link( 6 ),
-				'title' => 'Смотреть все',
-				'target' => ''
-			);
-
 			get_template_part( '/layouts/partials/title', null, array(
 				'class' => 'articles-slider__title',
-				'title' => $title
+				'title' => get_sub_field( 'title' )
 			) );
 		?>
 
@@ -18,7 +11,7 @@
 			<?php
 				$query = new WP_Query( [
                     'post_type' => 'post',
-                    'cat' => 6,
+                    'cat' => get_sub_field( 'content' ) === 'articles' ? 6 : 54,
                     'orderby' => 'post_date',
                     'posts_per_page' => 4,
                     'paged' => 1

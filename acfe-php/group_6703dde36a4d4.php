@@ -57,6 +57,18 @@ acf_add_local_field_group(array(
 				'value' => 'category:articles',
 			),
 		),
+		array(
+			array(
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'post',
+			),
+			array(
+				'param' => 'post_category',
+				'operator' => '==',
+				'value' => 'category:news',
+			),
+		),
 	),
 	'menu_order' => 0,
 	'position' => 'normal',
@@ -74,7 +86,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1728306705,
+	'modified' => 1737987860,
 ));
 
 endif;

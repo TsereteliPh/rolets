@@ -14,15 +14,15 @@
 
 		<div class="article-card__info">
 			<?php
-				$cat = get_the_category();
-				if ( $cat) :
+				$cats = get_the_category();
+				if ( $cats) :
 					?>
 
 					<div class="article-card__cat">
 						<?php
-							foreach ( $cat as $key => $item ) {
+							foreach ( $cats as $key => $item ) {
 								echo $item->name;
-								echo ( count( $cat ) != $key + 1 ) ? ' , ' : '';
+								echo ( count( $cats ) != $key + 1 ) ? ' , ' : '';
 							}
 						?>
 					</div>
@@ -33,7 +33,9 @@
 
 			<div class="article-card__title"><?php the_title(); ?></div>
 
-			<div class="article-card__date"><?php echo get_the_date( 'd/m/Y' ); ?></div>
+			<?php if ( in_category( 6 ) ) : ?>
+				<div class="article-card__date"><?php echo get_the_date( 'd/m/Y' ); ?></div>
+			<?php endif; ?>
 		</div>
 	</a>
 </li>
