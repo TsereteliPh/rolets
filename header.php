@@ -110,9 +110,9 @@
 					<div class="header__info-text"><?php echo $header_text['text']; ?></div>
 				<?php endif; ?>
 
-				<button class="btn btn--thick header__info-button" type="button" data-fancybox data-src="#measure">
-					<svg width="16" height="16"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
+				<button class="btn btn--secondary header__info-button" type="button" data-fancybox data-src="#measure">
 					Заказать замер
+					<svg width="16" height="16"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
 				</button>
 			</div>
 		<?php endif; ?>

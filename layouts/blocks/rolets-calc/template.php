@@ -136,9 +136,9 @@
 					После <b>отправки заявки</b> наш менеджер свяжется с вами в удобное время и озвучит окончательную стоимость проекта
 				</div>
 
-				<button class="btn btn--thick rolets-calc__form-submit" type="submit">
-					<svg width="16" height="16"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
+				<button class="btn btn--secondary rolets-calc__form-submit" type="submit">
 					Отправить заявку
+					<svg width="16" height="16"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
 				</button>
 			</div>
 

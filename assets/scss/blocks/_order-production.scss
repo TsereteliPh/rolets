@@ -77,16 +77,16 @@
 			&::before {
 				background-image: url(assets/images/order-production--bid.jpg);
 			}
+
+			.order-production__box-button {
+				background: var(--primary);
+			}
 		}
 
 		&--measurer {
 
 			&::before {
 				background-image: url(assets/images/order-production--measurer.jpg);
-			}
-
-			.order-production__box-button {
-				background: var(--primary);
 			}
 		}
 
@@ -143,7 +143,9 @@
 	}
 
 	&__box-button {
+		min-height: 65px;
 		margin-top: auto;
+		padding: 15px 30px;
 		text-align: left;
 
 		@include xs {

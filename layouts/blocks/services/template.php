@@ -33,8 +33,7 @@
 								<div class="services__box-img"><?php echo wp_get_attachment_image( $service['img'], 'large', false ); ?></div>
 							<?php endif; ?>
 
-							<button class="btn btn--thick services__box-btn js-service-btn" type="button" data-fancybox data-src="#service" data-service-title="<?php echo $service['label']; ?>">
-								<svg width="16" height="16"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
+							<button class="btn btn--secondary services__box-btn js-service-btn" type="button" data-fancybox data-src="#service" data-service-title="<?php echo $service['label']; ?>">
 								Заказать
 							</button>
                         </div>

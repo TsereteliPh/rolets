@@ -19,18 +19,11 @@
 		}
 	}
 
-	&--thick {
-		flex-direction: column;
-		gap: 25px;
-		align-items: flex-start;
-		width: 100%;
-		max-width: 270px;
-		padding: 20px;
-		font-size: 18px;
+	&--secondary {
 		background: var(--secondary);
 
 		svg {
-			align-self: flex-end;
+			flex-shrink: 0;
 		}
 	}
 

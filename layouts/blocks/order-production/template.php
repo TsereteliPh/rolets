@@ -18,10 +18,10 @@
 						<div class="order-production__box-text"><?php echo $bid['text']; ?></div>
 
 						<?php if ( $bid['link'] ) : ?>
-							<button class="btn btn--thick order-production__box-button" type="button" data-fancybox data-src="#callback">
-								<svg width="16" height="16"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
-
+							<button class="btn btn--secondary order-production__box-button" type="button" data-fancybox data-src="#callback">
 								<?php echo $bid['link']; ?>
+
+								<svg width="16" height="16"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
 							</button>
 						<?php endif; ?>
 					</div>
@@ -34,10 +34,10 @@
 						<div class="order-production__box-text"><?php echo $measurer['text']; ?></div>
 
 						<?php if ( $measurer['link'] ) : ?>
-							<button class="btn btn--thick order-production__box-button" type="button" data-fancybox data-src="#measure">
-								<svg width="16" height="16"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
-
+							<button class="btn btn--secondary order-production__box-button" type="button" data-fancybox data-src="#measure">
 								<?php echo $measurer['link']; ?>
+
+								<svg width="16" height="16"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
 							</button>
 						<?php endif; ?>
 					</div>
@@ -50,10 +50,10 @@
 						<div class="order-production__box-text"><?php echo $calculator['text']; ?></div>
 
 						<?php if ( $calculator['link'] ) : ?>
-							<a href="<?php echo $calculator['link']['url']; ?>" class="btn btn--thick order-production__box-button" target="<?php echo $calculator['link']['target']; ?>">
-								<svg width="16" height="16"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
-
+							<a href="<?php echo $calculator['link']['url']; ?>" class="btn btn--secondary order-production__box-button" target="<?php echo $calculator['link']['target']; ?>">
 								<?php echo $calculator['link']['title']; ?>
+
+								<svg width="16" height="16"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow"></use></svg>
 							</a>
 						<?php endif; ?>
 					</div>
