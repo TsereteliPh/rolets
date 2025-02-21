@@ -366,7 +366,12 @@
 	}
 
 	&__info-button {
+		flex-shrink: 0;
 		margin-left: auto;
+
+		@include sm {
+			padding: 25px;
+		}
 
 		@include md {
 			grid-row: 1/3;

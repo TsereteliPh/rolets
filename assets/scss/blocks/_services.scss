@@ -120,6 +120,7 @@
 
 	&__box-btn {
 		align-self: end;
+		width: fit-content;
 		height: fit-content;
 
 		@include hg {
@@ -128,6 +129,10 @@
 
 		@include sm {
 			align-self: auto;
+		}
+
+		@include xs {
+			width: 100%;
 		}
 	}
 }
