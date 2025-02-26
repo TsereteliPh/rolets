@@ -885,6 +885,62 @@ if (catalogCatsSliders) {
 	});
 }
 
+//Слайдер blocks/basic-tabs-slider
+
+const basicTabsSlidersBlock = document.querySelector(".basic-tabs-slider");
+
+if (basicTabsSlidersBlock) {
+	const basicTabsSliders = basicTabsSlidersBlock.querySelectorAll(".basic-tabs-slider__slider");
+	const basicTabsSliderNext = basicTabsSlidersBlock.querySelector(".controls__next");
+	const basicTabsSliderPrev = basicTabsSlidersBlock.querySelector(".controls__prev");
+
+    basicTabsSliders.forEach(slider => {
+        let basicTabsSwiper = new Swiper(slider, {
+            slidesPerView: 'auto',
+            spaceBetween: 20,
+			pagination: {
+				el: slider.querySelector(".basic-tabs-slider__pagination"),
+				bulletClass: "pagination__bullet",
+				bulletActiveClass: "active",
+				clickable: true,
+			},
+            navigation: {
+				nextEl: basicTabsSliderNext,
+                prevEl: basicTabsSliderPrev,
+            },
+			breakpoints: {
+				1280: {
+					slidesPerView: 4,
+				},
+				992: {
+					slidesPerView: 3,
+				},
+				769: {
+                    slidesPerView: 2,
+                },
+			},
+        });
+    });
+
+	if (window.innerWidth > 768) {
+		const observer = new MutationObserver(mutations => {
+			mutations.forEach(mutation => {
+				if (mutation.target.classList.contains('active')) {
+					mutation.target.swiper.updateActiveIndex();
+					mutation.target.swiper.navigation.update();
+				}
+			})
+		})
+
+		basicTabsSliders.forEach(slider => {
+			observer.observe(slider, {
+				attributes: true,
+				attributeFilter: ['class']
+			})
+		})
+	}
+}
+
 // Функционал шапки сайта
 
 document.addEventListener("DOMContentLoaded", function (e) {

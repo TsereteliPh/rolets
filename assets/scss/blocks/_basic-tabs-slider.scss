@@ -1,0 +1,69 @@
+.basic-tabs-slider {
+	margin: 120px 0 40px;
+	overflow: hidden;
+
+	@include hg {
+		margin: 75px 0 40px;
+	}
+
+	@include xs {
+		margin: 40px 0;
+	}
+
+	&__title {
+
+		.title__controls {
+
+			@include sm {
+				display: none;
+			}
+		}
+	}
+
+	&__tabs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		align-items: center;
+		margin-top: 40px;
+
+		@include xs {
+			margin-top: 20px;
+		}
+	}
+
+	&__sliders {
+		margin-top: 20px;
+	}
+
+	&__slider {
+		display: none;
+
+		@include sm {
+			overflow: visible;
+		}
+
+		&.active {
+			display: block;
+		}
+	}
+
+	&__slide {
+
+		@include sm {
+			max-width: 450px;
+		}
+
+		@include xs {
+			max-width: 380px;
+		}
+	}
+
+	&__pagination {
+		display: none;
+
+		@include sm {
+			display: flex;
+		}
+	}
+}
