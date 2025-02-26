@@ -10,18 +10,24 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 40px;
-		height: 40px;
-		background: #f9f9f9;
-		border-radius: 50%;
+		width: 55px;
+		height: 55px;
+		color: var(--fc-light);
+		background: var(--primary);
+		border-radius: 10px;
 		cursor: pointer;
 		transition: var(--transition);
+		-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+		-webkit-tap-highlight-color: transparent;
+
+		&:active {
+			scale: 0.9;
+		}
 
 		@include mouse {
 
 			&:hover {
-				color: var(--primary);
-				transform: translateY(-3px);
+				color: var(--secondary);
 			}
 		}
 
@@ -32,7 +38,7 @@
 			@include mouse {
 
 				&:hover {
-					color: var(--fc-dark);
+					color: var(--fc-light);
 					transform: none;
 				}
 			}

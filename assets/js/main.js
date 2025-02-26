@@ -677,12 +677,12 @@ if (productionSliders) {
 			slidesPerView: 1,
 			resistanceRatio: 0,
 			pagination: {
-				el: ".production__gallery-pagination",
+				el: slider.querySelector(".gallery-controls__pagination"),
 				type: "fraction",
 			},
 			navigation: {
-				nextEl: ".production__gallery-next",
-				prevEl: ".production__gallery-prev",
+				nextEl: slider.querySelector(".gallery-controls__next"),
+				prevEl: slider.querySelector(".gallery-controls__prev"),
 			},
 		});
 	});
@@ -700,12 +700,12 @@ if (extraOptionsSliders) {
 			slidesPerView: 1,
 			resistanceRatio: 0,
 			pagination: {
-				el: ".extra-options__gallery-pagination",
+				el: slider.querySelector(".gallery-controls__pagination"),
 				type: "fraction",
 			},
 			navigation: {
-				nextEl: ".extra-options__gallery-next",
-				prevEl: ".extra-options__gallery-prev",
+				nextEl: slider.querySelector(".gallery-controls__next"),
+				prevEl: slider.querySelector(".gallery-controls__prev"),
 			},
 			on: {
 				afterInit: function () {
@@ -756,12 +756,12 @@ if (galleryTabsSliders) {
 			slidesPerView: 1,
 			resistanceRatio: 0,
 			pagination: {
-				el: ".gallery-tabs__gallery-pagination",
+				el: slider.querySelector(".gallery-controls__pagination"),
 				type: "fraction",
 			},
 			navigation: {
-				nextEl: ".gallery-tabs__gallery-next",
-				prevEl: ".gallery-tabs__gallery-prev",
+				nextEl: slider.querySelector(".gallery-controls__next"),
+				prevEl: slider.querySelector(".gallery-controls__prev"),
 			},
 		});
 	});

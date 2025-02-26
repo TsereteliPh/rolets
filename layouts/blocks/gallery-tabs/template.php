@@ -40,17 +40,9 @@
 										<?php endif; ?>
 									</div>
 
-									<div class="gallery-controls gallery-tabs__gallery-controls">
-										<div class="gallery-controls__pagination gallery-tabs__gallery-pagination"></div>
-
-										<div class="gallery-controls__prev gallery-tabs__gallery-prev">
-											<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
-										</div>
-
-										<div class="gallery-controls__next gallery-tabs__gallery-next">
-											<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
-										</div>
-									</div>
+									<?php get_template_part( '/layouts/partials/gallery-controls', null, array(
+										'class' => 'gallery-tabs__gallery-controls'
+									) ); ?>
 								</div>
 
 								<?php if ( $tab['text'] ) : ?>

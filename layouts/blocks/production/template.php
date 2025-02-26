@@ -46,17 +46,9 @@
                                                 <?php endforeach;?>
 											</div>
 
-											<div class="gallery-controls production__gallery-controls">
-												<div class="gallery-controls__pagination production__gallery-pagination"></div>
-
-												<div class="gallery-controls__prev production__gallery-prev">
-													<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
-												</div>
-
-												<div class="gallery-controls__next production__gallery-next">
-													<svg width="7" height="14"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-controls-arrow"></use></svg>
-												</div>
-											</div>
+											<?php get_template_part( '/layouts/partials/gallery-controls', null, array(
+												'class' => 'production__gallery-controls'
+											) ); ?>
 										</div>
 									<?php endif; ?>
 								</div>
