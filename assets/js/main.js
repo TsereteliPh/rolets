@@ -941,6 +941,51 @@ if (basicTabsSlidersBlock) {
 	}
 }
 
+// Слайдер partials/cards/project-card
+const projectCards = document.querySelectorAll(".project-card");
+
+if (projectCards) {
+	projectCards.forEach(card => {
+		const smallGallery = card.querySelector(".project-card__small-gallery");
+		const smallGalleryItems = card.querySelectorAll(".project-card__small-gallery-item");
+
+        let projectSwiper = new Swiper(card.querySelector(".project-card__gallery-slider"), {
+            slidesPerView: 1,
+            spaceBetween: 30,
+			watchSlidesProgress: true,
+			navigation: {
+				nextEl: card.querySelector(".controls__next"),
+				prevEl: card.querySelector(".controls__prev"),
+			},
+			pagination: {
+				el: card.querySelector(".project-card__gallery-pagination"),
+				bulletClass: "pagination__bullet",
+				bulletActiveClass: "active",
+				clickable: true,
+			},
+			on: {
+				slideChange: function() {
+					if (smallGalleryItems && window.innerWidth > 768) {
+						smallGalleryItems.forEach(item => {
+							item.classList.remove("active");
+						});
+
+						smallGalleryItems[this.activeIndex].classList.add("active");
+					}
+				}
+			}
+        });
+
+		if (smallGallery && window.innerWidth > 768) {
+			smallGallery.addEventListener("click", function(e) {
+				if (e.target.classList.contains("project-card__small-gallery-item")) {
+					projectSwiper.slideTo(parseInt(e.target.dataset.slide))
+				}
+			})
+		}
+    });
+}
+
 // Функционал шапки сайта
 
 document.addEventListener("DOMContentLoaded", function (e) {

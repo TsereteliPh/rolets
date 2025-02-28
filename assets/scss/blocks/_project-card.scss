@@ -1,126 +1,344 @@
 .project-card {
 	position: relative;
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	height: 640px;
-	padding-bottom: 35px;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 15px;
+	min-height: 750px;
 	overflow: hidden;
-	border-bottom: 1px solid var(--fc-gray);
-	transition: var(--transition);
 
-	@include sm {
-		height: 500px;
+	@include hg {
+		min-height: 600px;
 	}
 
-	@include xs {
-		height: 550px;
-		padding-bottom: 20px;
+	@include lg {
+		grid-template-columns: 3fr 2fr;
+		min-height: 500px;
 	}
 
-	&:hover {
-		padding-bottom: 0;
-		border-width: 0;
-
-		.project-card__new {
-			opacity: 0;
-		}
-
-		.project-card__info {
-			height: 100%;
-		}
-	}
-
-	&__new {
-		position: absolute;
-		top: 10px;
-		left: 10px;
-		padding: 10px 15px;
-		color: var(--fc-light);
-		font-size: 14px;
-		background: var(--primary);
-		border-radius: 20px;
-		opacity: 1;
-		transition: var(--transition);
-	}
-
-	&__img {
+	@include md {
 		display: flex;
-		flex: 1 1;
-		align-items: center;
+		flex-direction: column;
+		gap: 10px;
+		min-height: auto;
+		padding-bottom: 20px;
+		border-bottom: 1px solid var(--fc-gray);
+	}
+
+	&:nth-child(even) {
+		grid-template-columns: 1fr 2fr;
+
+		@include lg {
+			grid-template-columns: 2fr 3fr;
+		}
+
+		.project-card__gallery-new {
+			right: 10px;
+			left: auto;
+
+			@include md {
+				right: auto;
+				left: 10px;
+			}
+		}
+
+		.project-card__gallery {
+			order: 1;
+
+			@include md {
+				order: 0;
+			}
+		}
+	}
+
+	&__mobile-title {
+		display: none;
+		font-size: 18px;
+
+		@include md {
+			display: block;
+		}
+	}
+
+	&__gallery {
+		position: relative;
 		width: 100%;
 		height: 100%;
-		overflow: hidden;
 		border-radius: 20px;
+	}
+
+	&__gallery-slider {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+
+		@include md {
+			position: relative;
+			height: fit-content;
+		}
+	}
+
+	&__gallery-item {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+
+		@include md {
+			height: auto;
+			aspect-ratio: 16/9;
+		}
 
 		@include xs {
-			border-radius: 10px;
+			aspect-ratio: 4/3;
 		}
+	}
+
+	&__gallery-link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
 
 		img {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
+			border-radius: 20px;
 		}
 	}
 
+	&__gallery-pagination {
+		display: none;
+
+		@include sm {
+			display: flex;
+			margin-top: 15px;
+		}
+	}
+
+	&__gallery-controls {
+
+		&.controls {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			z-index: var(--ui-index-1);
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: calc(100% - 20px);
+			transform: translate(-50%, -50%);
+			pointer-events: none;
+
+			@include xs {
+				display: none;
+			}
+		}
+
+		.controls__prev,
+		.controls__next {
+			pointer-events: all;
+		}
+	}
+
+	&__gallery-button {
+		position: absolute;
+		right: 20px;
+		bottom: 20px;
+		z-index: var(--ui-index-1);
+
+		@include sm {
+			bottom: 35px;
+			width: fit-content;
+			padding: 20px 30px;
+		}
+
+		@include xs {
+			padding: 15px 20px;
+			font-size: 14px;
+		}
+
+		svg {
+			@include xs {
+				width: 12px;
+				height: auto;
+			}
+		}
+	}
+
+	&__gallery-new {
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		z-index: var(--ui-index-2);
+		padding: 10px 15px;
+		color: var(--fc-light);
+		font-size: 14px;
+		background: var(--primary);
+		border-radius: 20px;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
 	&__title {
-		margin-top: 10px;
 		font-size: 20px;
+
+		@include md {
+			display: none;
+		}
 	}
 
 	&__price {
 		color: var(--secondary);
 		font-weight: 700;
 		font-size: 20px;
-	}
 
-	&__info {
-		display: flex;
-		flex-direction: column;
-		gap: 10px;
-		height: 0;
-		overflow: hidden;
-		transition: var(--transition);
+		@include md {
+			font-size: 18px;
+		}
 	}
 
 	&__label {
-		margin-top: 10px;
+		margin-bottom: 10px;
 		font-size: 14px;
+		font-family: var(--font-primary);
 	}
 
 	&__task,
-	&__text {
+	&__done {
 		font-size: 14px;
 		font-family: var(--font-secondary);
-		line-height: 1.2;
+		line-height: 1.25;
 	}
 
-	&__buttons {
+	&__task {
+		margin-top: 10px;
+		font-size: 14px;
+		font-family: var(--font-secondary);
+
+		@include hg {
+			margin-top: 0;
+		}
+	}
+
+	&__done {
+		margin-top: 10px;
+
+		@include hg {
+			margin-top: 0;
+		}
+	}
+
+	&__done-text,
+	&__done-characteristics {
+		height: 100%;
+		max-height: 180px;
+		overflow: auto;
+
+		@include md {
+			max-height: none;
+		}
+
+		&::-webkit-scrollbar {
+			width: 5px;
+			height: 5px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background-color: #f9f9f9;
+			border-radius: 5px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: var(--primary);
+			border-radius: 5px;
+		}
+
+		@supports (-moz-appearance: none) {
+			scrollbar-color: var(--primary) var(--fc-gray);
+		}
+	}
+
+	&__done-characteristics {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+	}
+
+	&__done-characteristic {
+		display: flex;
+		gap: 10px;
+		align-items: flex-end;
+		justify-content: space-between;
+		font-size: 14px;
+		font-family: var(--font-secondary);
+	}
+
+	&__done-characteristic-label {
+		font-weight: 300;
+	}
+
+	&__done-characteristic-value {
+		font-weight: 600;
+		text-align: right;
+	}
+
+	&__small-gallery {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 10px 20px;
+		gap: 16px;
 		margin-top: auto;
 
-		@include xs {
-			grid-template-columns: 1fr;
+		@include hg {
+			gap: 5px;
 		}
-	}
 
-	&__order {
-
-		svg {
-
-			@include hg {
-				display: none;
-			}
+		@include md {
+			grid-template-columns: repeat(4, 1fr);
+			order: -1;
 		}
-	}
 
-	&__question {
-
-		@include xs {
+		@include sm {
 			display: none;
+		}
+	}
+
+	&__small-gallery-item {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 175px;
+		overflow: hidden;
+		border: 4px solid transparent;
+		border-radius: 20px;
+		transition: border 0.3s ease;
+
+		@include hg {
+			height: 125px;
+		}
+
+		@include md {
+			height: auto;
+			aspect-ratio: 16/9;
+		}
+
+		&.active {
+			border-color: var(--secondary);
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			pointer-events: none;
 		}
 	}
 }

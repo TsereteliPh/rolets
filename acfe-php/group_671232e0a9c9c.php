@@ -104,27 +104,10 @@ acf_add_local_field_group(array(
 					'append' => '',
 					'acfe_field_group_condition' => 0,
 				),
-				array(
-					'key' => 'field_671232e0c64c2',
-					'label' => 'Ссылка',
-					'name' => 'link',
-					'aria-label' => '',
-					'type' => 'link',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => 0,
-					'wrapper' => array(
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					),
-					'return_format' => 'array',
-					'acfe_field_group_condition' => 0,
-				),
 			),
 		),
 		array(
-			'key' => 'field_671232e0b7714',
+			'key' => 'field_67c069165a9e5',
 			'label' => '',
 			'name' => '',
 			'aria-label' => '',
@@ -168,7 +151,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1729245958,
+	'modified' => 1740663104,
 ));
 
 endif;
