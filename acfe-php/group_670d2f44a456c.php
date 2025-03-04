@@ -107,6 +107,28 @@ acf_add_local_field_group(array(
 			),
 		),
 		array(
+			'key' => 'field_67c727cd6eb61',
+			'label' => 'Текст',
+			'name' => 'text',
+			'aria-label' => '',
+			'type' => 'textarea',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'acfe_textarea_code' => 0,
+			'maxlength' => '',
+			'rows' => 4,
+			'placeholder' => '',
+			'new_lines' => '',
+			'acfe_field_group_condition' => 0,
+		),
+		array(
 			'key' => 'field_670d2f5a88b66',
 			'label' => 'Товары',
 			'name' => 'products',
@@ -258,7 +280,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1728917496,
+	'modified' => 1741105128,
 ));
 
 endif;

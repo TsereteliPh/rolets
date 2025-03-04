@@ -6,6 +6,17 @@
 		) ); ?>
 
 		<?php
+			$text = get_sub_field( 'text' );
+			if ( $text ) :
+				?>
+
+				<div class="product-colors__text"><?php echo $text; ?></div>
+
+				<?php
+			endif;
+		?>
+
+		<?php
 			$products = get_sub_field( 'products' );
 			if ( $products ) :
 				?>
