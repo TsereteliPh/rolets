@@ -986,6 +986,35 @@ if (projectCards) {
     });
 }
 
+//Слайдер blocks/project-links
+
+const projectLinksSlider = document.querySelector(".project-links__slider");
+
+if (projectLinksSlider) {
+	let basicSwiper = new Swiper(projectLinksSlider, {
+		slidesPerView: 1,
+		spaceBetween: 20,
+		pagination: {
+			el: ".project-links__pagination",
+			bulletClass: "pagination__bullet",
+			bulletActiveClass: "active",
+			clickable: true,
+		},
+		navigation: {
+			nextEl: ".project-links__next",
+			prevEl: ".project-links__prev",
+		},
+		breakpoints: {
+			1280: {
+				slidesPerView: 3,
+			},
+			769: {
+				slidesPerView: 2,
+			},
+		},
+	});
+}
+
 // Функционал шапки сайта
 
 document.addEventListener("DOMContentLoaded", function (e) {
