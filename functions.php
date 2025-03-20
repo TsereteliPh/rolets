@@ -206,6 +206,16 @@ function adem_excerpt( $limit, $ID = null ) {
 	return mb_substr( get_the_excerpt( $ID ), 0, $limit ) . '...';
 }
 
+// Add <span> into menu-item that has children
+add_filter( 'walker_nav_menu_start_el', 'adem_add_span_to_menu_items', 10, 4 );
+function adem_add_span_to_menu_items( $item_output, $item, $depth, $args ) {
+    if ( $depth === 0 && in_array( 'menu-item-has-children', $item->classes ) ) {
+        $item_output = preg_replace( '/(<a.*?>)(.*?)(<\/a>)/', '$1$2<span></span>$3', $item_output );
+    }
+    return $item_output;
+}
+
+
 // Custom breadcrumbs yoast
 add_filter( 'wpseo_breadcrumb_links', 'custom_breadcrumbs' );
 function custom_breadcrumbs( $links ) {

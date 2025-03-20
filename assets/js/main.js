@@ -1021,8 +1021,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
 	const header = document.querySelector(".header");
 
 	if (header) {
+		const isBurger = window.innerWidth <= 991;
 		const headerBurger = header.querySelector(".header__burger");
 		const headerDrop = header.querySelector(".header__drop");
+		const headerMenuLinks = header.querySelectorAll(".header__menu > li");
 
 		const dropOpener = () => {
 			header.classList.add("active");
@@ -1036,13 +1038,31 @@ document.addEventListener("DOMContentLoaded", function (e) {
 			headerDrop.style.maxHeight = 0;
 		};
 
-		headerBurger.addEventListener("click", function () {
-			if (this.classList.contains("active")) {
-				dropCloser();
-			} else {
-				dropOpener();
-			}
-		});
+		if (headerMenuLinks && !isBurger) {
+			// headerMenuLinks.forEach(item => {
+			// 	if (item.classList.contains("menu-item-has-children")) {
+			// 		item.addEventListener("mouseenter", function (e) {
+			// 			item.classList.add("active");
+			// 		});
+
+			// 		item.addEventListener("mouseleave", function (e) {
+			// 			if (!item.contains(e.relatedTarget)) {
+			// 				item.classList.remove("active");
+			// 			}
+            //         });
+			// 	}
+			// });
+		}
+
+		if (isBurger) {
+			headerBurger.addEventListener("click", function () {
+				if (this.classList.contains("active")) {
+					dropCloser();
+				} else {
+					dropOpener();
+				}
+			});
+		}
 	}
 });
 
