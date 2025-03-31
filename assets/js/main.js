@@ -448,7 +448,7 @@ if (advantagesSliders) {
 	advantagesSliders.forEach((slider) => {
 		let advantagesSwiper = new Swiper(slider, {
 			slidesPerView: "auto",
-			spaceBetween: 20,
+			spaceBetween: 10,
 			centerInsufficientSlides: true,
 			pagination: {
 				el: ".advantages__pagination",

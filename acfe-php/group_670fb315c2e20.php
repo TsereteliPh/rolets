@@ -262,6 +262,24 @@ acf_add_local_field_group(array(
 					'parent_repeater' => 'field_670fb315d1ccd',
 				),
 				array(
+					'key' => 'field_67e1419d83cca',
+					'label' => 'Ссылка',
+					'name' => 'link',
+					'aria-label' => '',
+					'type' => 'link',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array(
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'return_format' => 'array',
+					'acfe_field_group_condition' => 0,
+					'parent_repeater' => 'field_670fb315d1ccd',
+				),
+				array(
 					'key' => 'field_670fb315f311c',
 					'label' => '(Column 6/12)',
 					'name' => '',
@@ -342,7 +360,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1729083444,
+	'modified' => 1742815693,
 ));
 
 endif;

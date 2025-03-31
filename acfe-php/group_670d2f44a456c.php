@@ -221,6 +221,28 @@ acf_add_local_field_group(array(
 							'parent_repeater' => 'field_670d2fa088b68',
 						),
 						array(
+							'key' => 'field_67e129c82aaf7',
+							'label' => 'Цвет (RAL)',
+							'name' => 'color',
+							'aria-label' => '',
+							'type' => 'text',
+							'instructions' => '',
+							'required' => 0,
+							'conditional_logic' => 0,
+							'wrapper' => array(
+								'width' => '',
+								'class' => '',
+								'id' => '',
+							),
+							'acfe_field_group_condition' => 0,
+							'default_value' => '',
+							'maxlength' => '',
+							'placeholder' => '',
+							'prepend' => '',
+							'append' => '',
+							'parent_repeater' => 'field_670d2fa088b68',
+						),
+						array(
 							'key' => 'field_670d2fc988b6a',
 							'label' => 'Изображение',
 							'name' => 'img',
@@ -280,7 +302,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1741105128,
+	'modified' => 1742809577,
 ));
 
 endif;

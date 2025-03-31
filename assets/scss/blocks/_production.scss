@@ -55,6 +55,8 @@
 	&__list {
 		display: flex;
 		flex-direction: column;
+		max-width: 100%;
+		overflow: hidden;
 		counter-reset: extra-options-counter 0;
 	}
 
@@ -205,11 +207,26 @@
 		line-height: 1.2;
 	}
 
+	&__item-wrapper {
+		display: flex;
+		gap: 10px;
+		align-items: center;
+		justify-content: space-between;
+
+		@include xs {
+			flex-wrap: wrap;
+		}
+	}
+
 	&__item-price {
 
 		span {
 			color: var(--secondary);
 		}
+	}
+
+	&__item-link {
+		font-size: 16px;
 	}
 
 	&__gallery {

@@ -39,7 +39,10 @@
 								<li class="product-colors__item">
 									<div class="product-colors__item-img"><?php echo wp_get_attachment_image( $product['img'] ? $product['img'] : 31, 'medium', false ); ?></div>
 
-									<div class="product-colors__item-label"><?php echo $product['product']; ?></div>
+									<div class="product-colors__item-label">
+										<?php echo $product['product']; ?>
+										<div><?php echo $product['color']; ?></div>
+									</div>
 								</li>
 							<?php endforeach; ?>
 						</ul>

@@ -28,12 +28,20 @@
 
 										<div class="production__item-text"><?php echo $product['text']; ?></div>
 
-										<?php if ( $product['price'] ) : ?>
-											<div class="production__item-price">
-												От
-												<span><?php echo $product['price'] . ' руб.'; ?></span>
-											</div>
-										<?php endif; ?>
+										<div class="production__item-wrapper">
+											<?php if ( $product['price'] ) : ?>
+												<div class="production__item-price">
+													От
+													<span><?php echo $product['price'] . ' руб.'; ?></span>
+												</div>
+											<?php endif; ?>
+
+											<?php if ( isset( $product['link']['url'] ) ) : ?>
+												<a href="<?php echo $product['link']['url']; ?>" class="btn-underline production__item-link" target="<?php echo $product['link']['target']; ?>">
+													Подробнее
+												</a>
+											<?php endif; ?>
+										</div>
 									</div>
 
 									<?php if ( $product['gallery'] ) : ?>
